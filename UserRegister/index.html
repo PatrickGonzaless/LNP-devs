@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/LNP-Devs/Register/styles.css">
+
+    <title>LNP-Devs Cadatro do Usuário</title>
+</head>
+<body>
+    
+    <section id="container">
+        <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Usuários</h1>
+
+        <div class="search-box">
+            
+            <input type="text" id="search" placeholder="Pesquisar usuário...">
+            
+            </button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Grupo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">Lucas</a></td>
+                    <td>contadolucas40@gmail.com</td>
+                    <td>Ativo</td>
+                    <td>Grupo A</td>
+                    <td>
+                        <button class="btn-ativar-desativar" data-id="1" data-status="desativado">Desativar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#">Lucas</a></td>
+                    <td>casillas.chumbinho2@gmail.com</td>
+                    <td>Desativado</td>
+                    <td>Grupo B</td>
+                    <td>
+                        <button class="btn-ativar-desativar" data-id="2" data-status="ativado">Ativar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="cadastrar-usuario">Cadastrar Usuário</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <p id="modal-message"></p>
+            <div class="modal-buttons">
+                <button id="modal-confirm">Confirmar</button>
+                <button id="modal-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+        
+        <div class="register-area-container">  
+            
+        </div>
+    </section>
+</body>
+<script src="/LNP-Devs/Register/script.js" defer></script>
+</html>

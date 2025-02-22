@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/LNP-Devs/Register/styles.css">
+
+    <title>LNP-Devs Cadatro do Usuário</title>
+</head>
+<body>
+    
+    <section id="container">
+        
+        
+        <div class="register-area-container">  
+            <div class="pagetitle"><h3>CADASTRAR USUÁRIO</h3></div>
+            <div class="register-area">
+                <div class="title-area">
+                        <h1>CADASTRO DE USER</h1>
+                </div>
+                <form action="">
+                <div class="form-area">
+                    <div class="input-container">
+                        <span class="input-icon1"><img src="/LNP-Devs/Main/img/username.png"></span>
+                        <input type="text" class="username" name="username" placeholder="Username">
+                    </div>
+
+                    <div class="input-container">
+                        <!--<span class="input-icon3"><img src="/LNP-Devs/Main/img/cpf.png"></span>-->
+                        <input type="text" class="cpf" name="CPF" placeholder="CPF">
+                    </div>
+
+                    <div class="input-container">
+                        <!--<span class="input-icon3"><img src="/LNP-Devs/Main/img/cpf.png"></span>-->
+                        <input type="text" class="email" name="email" placeholder="E-mail">
+                    </div>
+
+                    <div class="input-container">
+                        <!--<span class="input-icon3"><img src="/LNP-Devs/Main/img/cpf.png"></span>-->
+                        <select name="grupo" class="grupo">
+                            <option value="" disabled selected>Selecione um grupo</option>
+                            <option value="adm">Administrador</option>
+                            <option value="est">Estoquista</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <span class="input-icon2"><img src="/LNP-Devs/Main/img/password.png"></span>
+                        <input type="password" class="senha" name="senha" placeholder="Crie uma senha">
+                    </div>
+
+                    <div class="input-container">
+                        <span class="input-icon2"><img src="/LNP-Devs/Main/img/password.png"></span>
+                        <input type="password" class="confpassword" name="confpassword" placeholder="Confirmar senha">
+                    </div>
+
+                    <button class="register-btn">CADASTRAR</button>
+            </div>
+            
+            </form>
+        </div>
+        </div>
+    </section>
+</body>
+<script src="/LNP-Devs/Register/script.js" defer></script>
+</html>

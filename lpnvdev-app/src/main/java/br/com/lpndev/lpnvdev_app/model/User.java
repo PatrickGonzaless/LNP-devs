@@ -1,7 +1,13 @@
 package br.com.lpndev.lpnvdev_app.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 
+@Data
 @Entity
 @Table(name="register")
 public class User {
@@ -11,77 +17,31 @@ public class User {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "username", length = 200, nullable = true)
+    @NotBlank(message = "O nome é obrigatório!")
+    @Size(min = 3, message = "O nome deve ter no mínimo 3 caracteres!")
+    @Column(name = "username", length = 200, nullable = false)
     private String username;
 
-    @Column(name = "cpf", length = 11, nullable = true)
+    @CPF(message = "Insira um cpf válido!")
+    @NotBlank(message = "O cpf é obrigatório!")
+    @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
 
-    @Column(name = "email", length = 50, nullable = true)
+    @Email(message = "Insira um e-mail válido!")
+    @NotBlank(message = "O e-mail é obrigatório!")
+    @Column(name = "email", length = 50, nullable = false)
     private String email;
 
+    @NotBlank(message = "O grupo é obrigatório!")
     @Column(name = "grupo")
     private String grupo;
 
-    @Column(name = "senha", columnDefinition = "TEXT", nullable = true)
+    @NotBlank(message = "A senha é obrigatório!")
+    @Column(name = "senha", columnDefinition = "TEXT", nullable = false)
     private String senha;
 
     @Column(name = "stats", nullable = false)
     private boolean stats;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public boolean isStats() {
-        return stats;
-    }
-
-    public void setStats(boolean stats) {
-        this.stats = stats;
-    }
 }

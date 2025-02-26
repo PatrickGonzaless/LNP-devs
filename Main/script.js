@@ -2,32 +2,47 @@ const form = document.querySelector("form");
 const Iusername = document.querySelector(".username");
 const Ipassword = document.querySelector(".password");
 
-function login(){
-    fetch("http://localhost:8080/login",
-        {
-            headers: {
-                'Accept' : 'applcation/json',
-                'Content-Type' : 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-                username: Iusername.value,
-                password: Ipassword.value
-            })            
-        })
-        .then(function(res) {console.log (res)})
-        .catch(function(res) {console.log (res)})      
-};
-
-function clean(){
-    Iusername.value = "";
-    Ipassword.value = "";
+function navigateTo(page) {
+  window.location.href = page;
 }
 
-form.addEventListener('submit', function (event){
-    event.preventDefault();
+function login() {
+  return fetch("http://localhost:8080/users", {
+    headers: {
+      Accept: "application/json",
+    },
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      let users = Array.isArray(res) ? res : [];
+      for (let i = 0; i < users.length; i++) {
+        if (
+          users[i].username === Iusername.value &&
+          users[i].password === Ipassword.value
+        ) {
+          return users[i];
+        }
+      }
+      alert("Usuario ou senha incorretos");
+      return null;
+    })
+    .catch(function (res) {
+      console.log(res);
+      return null;
+    });
+}
 
-    login();
-    clean();
-    
+function clean() {
+  Iusername.value = "";
+  Ipassword.value = "";
+}
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let user = login();
+  clean();
+  if (user != null) {
+    navigateTo("../LinkPage/index.html");
+  }
 });

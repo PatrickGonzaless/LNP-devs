@@ -139,3 +139,77 @@ input::placeholder{
     cursor: pointer;
 }
 
+@media screen and (min-width:500px) and (max-width: 1426px) {
+    #container {
+        width: 60%;
+        height: 73vh;
+    }
+
+    .pagetitle{
+        left: 50%;
+    }
+}
+
+
+@media screen and (max-width: 1490px) {
+    #container {
+        width: 50%;
+    }
+}
+
+
+@media screen and (min-width:800px) and (max-width: 1400px) {
+    #container {
+        
+            width: 60%;
+            height: 80vh;
+        
+    }
+}
+
+@media screen and (max-width: 1170px) {
+    #container {
+        width: 50%;
+    }
+
+    .title-area h1{
+        font-size: 25px;
+    }
+
+    .register-area-container{
+        width: 60%;
+    }
+
+    .pagetitle h3{
+        font-size: 22px;
+    }
+
+    .pagetitle{
+        left: 45%;
+    }
+
+    .register-btn{
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:563px) and (max-width: 1067px) {
+    #container {
+        width: 50%;
+        height: 77vh;
+    }
+}
+
+
+@media screen and (max-width: 1040px) {
+    #container {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #container {
+        width: 80%;
+    }
+}
+

@@ -31,10 +31,10 @@ function register(){
             return res.json();
         })
         .then(data => {
-            console.log("Usuário cadastrado com sucesso:", data);
+            alert("Usuário cadastrado com sucesso!", data);
         })
         .catch(err => {
-            console.error("Erro ao cadastrar usuário:", err);
+            console.error("Erro ao cadastrar usuário!", err);
         });   
 };
 

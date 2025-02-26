@@ -27,7 +27,6 @@ public class UserController {
         return dao.save(user);
     }
 
-
     @PutMapping
     public User editUser (@RequestBody User user){
         User newUser = dao.save(user);

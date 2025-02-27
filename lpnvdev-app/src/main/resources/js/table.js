@@ -1,13 +1,10 @@
 const form = document.querySelector("form");
-const Iusername = document.querySelector(".username");
-const Icpf = document.querySelector(".cpf");
-const Iemail = document.querySelector(".email");
-const Sgrupo = document.querySelector(".grupo");
 const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search");
 const closeButton = document.getElementById("close-btn");
 const tabela = document.querySelector("table");
 const lupaIcon = document.getElementById("lupa");
+const estado = {};
 
 function listUser(searchTerm = "") {
   fetch(`http://localhost:8080/users`, {
@@ -56,21 +53,58 @@ function listarUsuarios(usuarios, searchTerm = "") {
   }
 
   usuariosFiltrados.forEach((usuario) => {
-    console.log(usuario);
     let linha = `
-            <tr>
-                <td>${usuario.username}</td>
-                <td>${usuario.email}</td>
-                <td>${usuario.stats ? "Ativo" : "Inativo"}</td>
-                <td>${usuario.grupo || "Sem grupo"}</td>
-            </tr>
-        `;
+        <tr>
+          <td>${usuario.username}</td>
+          <td>${usuario.email}</td>
+          <td class="stats" value="${
+            usuario.id
+          }" onclick='alteraStatus(${JSON.stringify(usuario)})'>${
+      usuario.stats ? "Ativo" : "Inativo"
+    }</td>
+          <td>${usuario.grupo || "Sem grupo"}</td>
+        </tr>
+      `;
     tbody.insertAdjacentHTML("beforeend", linha);
   });
-
   lupaIcon.style.display = "none";
   tabela.style.display = "table";
   closeButton.style.display = "block";
+}
+
+function alteraStatus(usuario) {
+  console.log(typeof usuario);
+  fetch("http://localhost:8080/users", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "PUT",
+    body: JSON.stringify({
+      id: usuario.id,
+      username: usuario.username,
+      cpf: usuario.cpf,
+      email: usuario.email,
+      grupo: usuario.grupo,
+      senha: usuario.senha,
+      stats: !usuario.stats,
+    }),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(
+          `Erro na requisição: ${res.status} - ${res.statusText}`
+        );
+      }
+      return res.json();
+    })
+    .then((data) => {
+      alert("Usuário alterado com sucesso!", data);
+      listUser();
+    })
+    .catch((err) => {
+      console.error("Erro ao alterar usuário!", err);
+    });
 }
 
 function closeUsersList() {
@@ -81,18 +115,9 @@ function closeUsersList() {
   lupaIcon.style.display = "block";
 }
 
-function clean() {
-  if (Iusername) Iusername.value = "";
-  if (Icpf) Icpf.value = "";
-  if (Iemail) Iemail.value = "";
-  if (Sgrupo) Sgrupo.value = "";
-  if (searchInput) searchInput.value = "";
-}
-
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   listUser();
-  clean();
 });
 
 searchButton.addEventListener("click", function (event) {

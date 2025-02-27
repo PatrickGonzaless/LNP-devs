@@ -183,6 +183,13 @@ tbody {
 #close-btn b {
   margin: auto;
 }
+.stats {
+  cursor: pointer;
+}
+.stats ::after {
+  color: #6d2a2a;
+  background-color: #b0aeae;
+}
 
 @media screen and (min-width: 500px) and (max-width: 1600px) {
   #container {
@@ -233,9 +240,6 @@ tbody {
 }
 
 @media screen and (max-width: 1000px) {
-  #container {
-  }
-
   .pagetitle {
     left: 13%;
   }

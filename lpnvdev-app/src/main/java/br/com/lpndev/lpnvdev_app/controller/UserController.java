@@ -17,24 +17,24 @@ public class UserController {
     private IUser dao;
 
     @GetMapping
-    public List<User> userList(){
+    public List<User> userList() {
         return (List<User>) dao.findAll();
     }
 
     @PostMapping
-    public User createUser (@RequestBody User user){
+    public User createUser(@RequestBody User user) {
         System.out.println("Recebendo usuário: " + user); // DEBUG
         return dao.save(user);
     }
 
     @PutMapping
-    public User editUser (@RequestBody User user){
+    public User editUser(@RequestBody User user) {
         User newUser = dao.save(user);
         return newUser;
     }
 
     @DeleteMapping("/{id}")
-    public Optional<User> deleteUser (@PathVariable Integer id){
+    public Optional<User> deleteUser(@PathVariable Integer id) {
         Optional<User> user = dao.findById(id);
         dao.deleteById(id);
         return user;

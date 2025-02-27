@@ -17,17 +17,18 @@ function login() {
     .then((res) => {
       for (let i = 0; i < res.length; i++) {
         if (res[i].email === Iemail.value && res[i].senha === Ipassword.value) {
-          clean();
-          return res[i];
+          navigateTo("../pages/linkPage.html");
+          return;
         }
       }
       alert("Usuario ou senha incorretos");
       clean();
-      return null;
+      return;
     })
-    .catch(function (res) {
+    .catch(function () {
+      alert("Não sei o que aconteceu");
       clean();
-      return null;
+      return;
     });
 }
 
@@ -38,8 +39,5 @@ function clean() {
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  let user = login();
-  if (user.email == Iemail) {
-    navigateTo("../LinkPage/index.html");
-  }
+  login();
 });

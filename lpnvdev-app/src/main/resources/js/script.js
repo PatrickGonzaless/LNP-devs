@@ -17,7 +17,11 @@ function login() {
     .then((res) => {
       for (let i = 0; i < res.length; i++) {
         if (res[i].email === Iemail.value && res[i].senha === Ipassword.value) {
-          navigateTo("../pages/linkPage.html");
+          if (res[i].grupo === "Adm") {
+            navigateTo("../pages/linkPage.html");
+            return;
+          }
+          navigateTo("../pages/emConstrucao.html");
           return;
         }
       }

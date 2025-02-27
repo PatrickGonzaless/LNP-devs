@@ -15,8 +15,10 @@ function login() {
   })
     .then((res) => res.json())
     .then((res) => {
-      let users = Array.isArray(res) ? res : [];
+      let users = Array.isArray(JSON.stringify(res)) ? res : [];
       for (let i = 0; i < users.length; i++) {
+        console.log(users.username);
+
         if (
           users[i].username === Iusername.value &&
           users[i].password === Ipassword.value
@@ -42,7 +44,8 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
   let user = login();
   clean();
-  if (user != null) {
-    navigateTo("../LinkPage/index.html");
+  if (user.username==Iusername) {
+    console.log(user);
+    // navigateTo("../LinkPage/index.html");
   }
 });

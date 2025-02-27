@@ -3,7 +3,11 @@ const Iusername = document.querySelector(".username");
 const Icpf = document.querySelector(".cpf");
 const Iemail = document.querySelector(".email");
 const Sgrupo = document.querySelector(".grupo");
-const stats = true;
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search");
+const closeButton = document.getElementById("close-btn");
+const tabela = document.querySelector("table");
+const lupaIcon = document.getElementById("lupa");
 
 function listUser(searchTerm = "") {
     fetch(`http://localhost:8080/users`, {
@@ -24,12 +28,11 @@ function listUser(searchTerm = "") {
         listarUsuarios(data, searchTerm);
     })
     .catch(err => {
-        alert("Erro ao buscar usuários", err);
+        alert("Erro ao buscar usuários: " + err.message);
     });
 }
 
 function listarUsuarios(usuarios, searchTerm = "") {
-    const tabela = document.querySelector("table");
     let tbody = tabela.querySelector("tbody");
     if (!tbody) {
         tbody = document.createElement("tbody");
@@ -40,8 +43,7 @@ function listarUsuarios(usuarios, searchTerm = "") {
     
     const usuariosFiltrados = searchTerm ? usuarios.filter(usuario => {
         const nomeCompleto = usuario.username.toLowerCase();
-        const partesNome = nomeCompleto.split(" ");
-        return nomeCompleto === searchTerm.toLowerCase() || partesNome[0] === searchTerm.toLowerCase();
+        return nomeCompleto.includes(searchTerm.toLowerCase());
     }) : usuarios;
 
     if (searchTerm && usuariosFiltrados.length === 0) {
@@ -50,27 +52,29 @@ function listarUsuarios(usuarios, searchTerm = "") {
     }
 
     usuariosFiltrados.forEach(usuario => {
-        console.log(usuario); 
+        console.log(usuario);
         let linha = `
             <tr>
                 <td>${usuario.username}</td>
                 <td>${usuario.email}</td>
-                <td>${usuario.stats}</td>
+                <td>${usuario.stats ? 'Ativo' : 'Inativo'}</td>
                 <td>${usuario.grupo || "Sem grupo"}</td>
             </tr>
         `;
         tbody.insertAdjacentHTML("beforeend", linha);
     });
 
-    document.getElementById("lupa").style.display = "none";
-    tbody.style.display = "table-row-group";
-    document.getElementById("close-btn").style.display = "block";
+    lupaIcon.style.display = "none";
+    tabela.style.display = "table";
+    closeButton.style.display = "block";
 }
 
 function closeUsersList() {
-    const tabela = document.querySelector("tbody");
+    const tbody = tabela.querySelector("tbody");
+    if (tbody) tbody.innerHTML = "";
     tabela.style.display = "none";
-    document.getElementById("close-btn").style.display = "none";
+    closeButton.style.display = "none";
+    lupaIcon.style.display = "block";
 }
 
 function clean() {
@@ -78,16 +82,19 @@ function clean() {
     if (Icpf) Icpf.value = "";
     if (Iemail) Iemail.value = "";
     if (Sgrupo) Sgrupo.value = "";
+    if (searchInput) searchInput.value = "";
 }
 
-form.addEventListener('submit', function (event) {
+form.addEventListener("submit", function (event) {
     event.preventDefault();
     listUser();
     clean();
 });
 
-document.getElementById("search-button").addEventListener("click", function(event) {
-    event.preventDefault(); 
-    const searchTerm = document.getElementById("search").value.trim();
+searchButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    const searchTerm = searchInput.value.trim();
     listUser(searchTerm);
 });
+
+closeButton.addEventListener("click", closeUsersList);

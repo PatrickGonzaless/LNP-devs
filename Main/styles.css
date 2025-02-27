@@ -1,215 +1,206 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-    background-color: #5D1010;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #5d1010;
 }
 
 #container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 40%;
-    height: 58.5vh;
-    border-radius: 0 42px 42px 42px;
-    background-image: url(./img/Group\ 4.png);
-    background-position:98%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 40%;
+  height: 58.5vh;
+  border-radius: 0 42px 42px 42px;
+  background-image: url(./img/Group\ 4.png);
+  background-position: 98%;
 }
 
-.login-inv{
-    position: relative;
-    display: flex;
-    width: 50%;
-    height: 58.5vh;
+.login-inv {
+  position: relative;
+  display: flex;
+  width: 50%;
+  height: 58.5vh;
 }
 
-.login-area-container{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    height: 58.5vh;
+.login-area-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  height: 58.5vh;
 }
 
-.login-area{
-    margin: auto;
-    display: flex;
-    flex-direction: column; 
-    justify-content: flex-start;
-    align-items: center;
-    width: 85%;
-    height: 43vh;
-
+.login-area {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 85%;
+  height: 43vh;
 }
 
-.title-area{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    text-align: center;
-    width: 100%;
-    height: 11vh;
+.title-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 11vh;
 }
 
-.title-area h1{
-    font-family: 'Arial Narrow', sans-serif;
-    font-weight: 400;
-    font-size: 30px;
-    margin: auto;
+.title-area h1 {
+  font-family: "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  margin: auto;
 }
 
-.form-area{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    height: 32vh;
-   
+.form-area {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 32vh;
 }
-
 
 .input-container {
-    position: relative; 
+  position: relative;
 }
 
 .input-icon1 {
-    position: absolute; 
-    left: 10px; 
-    top: 50%;
-    transform: translateY(-100%); 
-    color: white; 
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-100%);
+  color: white;
 }
 
 .input-icon2 {
-    position: absolute; 
-    left: 10px; 
-    top: 50%;
-    transform: translateY(-50%); 
-    color: white; 
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
 }
 
-input{
-    width: 270px;
-    height: 5vh;
-    border: 1px solid white;
-    background-color: black;
-    padding-left: 40px;
-    color: white;
+input {
+  width: 270px;
+  height: 5vh;
+  border: 1px solid white;
+  background-color: black;
+  padding-left: 40px;
+  color: white;
 }
 
-.username{
-    margin-bottom: 30px;
+.email {
+  margin-bottom: 30px;
 }
 
-input::placeholder{
-    opacity: 100%;
-    color: white;
-    opacity: 50%;
-    font-size: 13px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+input::placeholder {
+  opacity: 100%;
+  color: white;
+  opacity: 50%;
+  font-size: 13px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.login-btn{
-    margin-top: 35px;
-    font-size: 25px;
-    width: 270px;
-    height: 6vh;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: white;
-    border: 1px solid #5D1010;
-    cursor:pointer;
+.login-btn {
+  margin-top: 35px;
+  font-size: 25px;
+  width: 270px;
+  height: 6vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: white;
+  border: 1px solid #5d1010;
+  cursor: pointer;
 }
 
 .forgetpass {
-    margin-top: 15px; 
-    align-self: flex-start;
-    color: #656565; 
-    margin-left: 30px;
-    text-decoration: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif; 
-    cursor: pointer;
+  margin-top: 15px;
+  align-self: flex-start;
+  color: #656565;
+  margin-left: 30px;
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
 }
 
-@media screen and (min-width:500px) and (max-width: 1426px) {
-    #container {
-        width: 60%;
-        height: 73vh;
-    }
+@media screen and (min-width: 500px) and (max-width: 1426px) {
+  #container {
+    width: 60%;
+    height: 73vh;
+  }
 
-    .pagetitle{
-        left: 50%;
-    }
+  .pagetitle {
+    left: 50%;
+  }
 }
-
 
 @media screen and (max-width: 1490px) {
-    #container {
-        width: 50%;
-    }
+  #container {
+    width: 50%;
+  }
 }
 
-
-@media screen and (min-width:800px) and (max-width: 1400px) {
-    #container {
-        
-            width: 60%;
-            height: 80vh;
-        
-    }
+@media screen and (min-width: 800px) and (max-width: 1400px) {
+  #container {
+    width: 60%;
+    height: 80vh;
+  }
 }
 
 @media screen and (max-width: 1170px) {
-    #container {
-        width: 50%;
-    }
+  #container {
+    width: 50%;
+  }
 
-    .title-area h1{
-        font-size: 25px;
-    }
+  .title-area h1 {
+    font-size: 25px;
+  }
 
-    .register-area-container{
-        width: 60%;
-    }
+  .register-area-container {
+    width: 60%;
+  }
 
-    .pagetitle h3{
-        font-size: 22px;
-    }
+  .pagetitle h3 {
+    font-size: 22px;
+  }
 
-    .pagetitle{
-        left: 45%;
-    }
+  .pagetitle {
+    left: 45%;
+  }
 
-    .register-btn{
-        font-size: 20px;
-    }
+  .register-btn {
+    font-size: 20px;
+  }
 }
 
-@media screen and (min-width:563px) and (max-width: 1067px) {
-    #container {
-        width: 50%;
-        height: 77vh;
-    }
+@media screen and (min-width: 563px) and (max-width: 1067px) {
+  #container {
+    width: 50%;
+    height: 77vh;
+  }
 }
-
 
 @media screen and (max-width: 1040px) {
-    #container {
-        width: 60%;
-    }
+  #container {
+    width: 60%;
+  }
 }
 
 @media screen and (max-width: 800px) {
-    #container {
-        width: 80%;
-    }
+  #container {
+    width: 80%;
+  }
 }
-

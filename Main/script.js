@@ -1,5 +1,5 @@
 const form = document.querySelector("form");
-const Iusername = document.querySelector(".username");
+const Iemail = document.querySelector(".email");
 const Ipassword = document.querySelector(".password");
 
 function navigateTo(page) {
@@ -15,37 +15,31 @@ function login() {
   })
     .then((res) => res.json())
     .then((res) => {
-      let users = Array.isArray(JSON.stringify(res)) ? res : [];
-      for (let i = 0; i < users.length; i++) {
-        console.log(users.username);
-
-        if (
-          users[i].username === Iusername.value &&
-          users[i].password === Ipassword.value
-        ) {
-          return users[i];
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].email === Iemail.value && res[i].senha === Ipassword.value) {
+          clean();
+          return res[i];
         }
       }
       alert("Usuario ou senha incorretos");
+      clean();
       return null;
     })
     .catch(function (res) {
-      console.log(res);
+      clean();
       return null;
     });
 }
 
 function clean() {
-  Iusername.value = "";
+  Iemail.value = "";
   Ipassword.value = "";
 }
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   let user = login();
-  clean();
-  if (user.username==Iusername) {
-    console.log(user);
-    // navigateTo("../LinkPage/index.html");
+  if (user.email == Iemail) {
+    navigateTo("../LinkPage/index.html");
   }
 });

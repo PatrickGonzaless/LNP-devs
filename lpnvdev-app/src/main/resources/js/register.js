@@ -7,6 +7,79 @@ const Isenha = document.querySelector(".senha");
 const Iconfpassword = document.querySelector(".confpassword");
 let stats = true;
 
+function validateForm() {
+  // Validação do nome de usuário
+  if (Iusername.value.trim() === "") {
+    alert("Nome de usuário é obrigatório.");
+    return false;
+  }
+
+  // Validação do CPF
+  function validateCPF(cpf) {
+    cpf = cpf.replace(/[^\d]+/g, "");
+    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+      return false;
+    }
+    let sum = 0;
+    let remainder;
+    for (let i = 1; i <= 9; i++) {
+      sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+    }
+    remainder = (sum * 10) % 11;
+    if (remainder === 10 || remainder === 11) {
+      remainder = 0;
+    }
+    if (remainder !== parseInt(cpf.substring(9, 10))) {
+      return false;
+    }
+    sum = 0;
+    for (let i = 1; i <= 10; i++) {
+      sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+    }
+    remainder = (sum * 10) % 11;
+    if (remainder === 10 || remainder === 11) {
+      remainder = 0;
+    }
+    if (remainder !== parseInt(cpf.substring(10, 11))) {
+      return false;
+    }
+    return true;
+  }
+
+  if (!validateCPF(Icpf.value)) {
+    alert("CPF inválido.");
+    return false;
+  }
+
+  // Validação do e-mail
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if (!emailRegex.test(Iemail.value)) {
+    alert("E-mail inválido. Verifique o formato.");
+    return false;
+  }
+
+  // Validação do grupo (pode ser um campo de seleção)
+  if (Sgrupo.value === "") {
+    alert("Selecione um grupo.");
+    return false;
+  }
+
+  // Validação da senha
+  if (Isenha.value.length < 6) {
+    alert("A senha deve ter pelo menos 6 caracteres.");
+    return false;
+  }
+
+  // Validação de confirmação de senha
+  if (Isenha.value !== Iconfpassword.value) {
+    alert("As senhas não coincidem.");
+    return false;
+  }
+
+  // Se todas as validações passaram, retorna true
+  return true;
+}
+
 function register() {
   fetch("http://localhost:8080/users", {
     headers: {
@@ -51,12 +124,13 @@ function clean() {
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  register();
-  console.log(Iusername.value);
-  console.log(Icpf.value);
-  console.log(Iemail.value);
-  console.log(Sgrupo.value);
-  console.log(Isenha.value);
-
-  clean();
+  if (validateForm()) {
+    register();
+    console.log(Iusername.value);
+    console.log(Icpf.value);
+    console.log(Iemail.value);
+    console.log(Sgrupo.value);
+    console.log(Isenha.value);
+    clean();
+  }
 });

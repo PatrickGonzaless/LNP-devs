@@ -2,6 +2,7 @@ package br.com.lpndev.lpnvdev_app.controller;
 
 import br.com.lpndev.lpnvdev_app.dao.IUser;
 import br.com.lpndev.lpnvdev_app.model.User;
+import br.com.lpndev.lpnvdev_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,12 @@ public class UserController {
 
     @Autowired
     private IUser dao;
+
+    private UserService userService;
+
+    public UserController(UserService userService){
+        this.userService = userService;
+    }
 
     @GetMapping
     public List<User> userList() {

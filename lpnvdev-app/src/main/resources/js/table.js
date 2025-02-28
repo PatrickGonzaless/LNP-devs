@@ -73,6 +73,9 @@ function listarUsuarios(usuarios, searchTerm = "") {
 }
 
 function alteraStatus(usuario) {
+  if (!confirm("Deseja realmente alterar o status deste usuário?")) {
+    return;
+  }
   console.log(typeof usuario);
   fetch("http://localhost:8080/users", {
     headers: {

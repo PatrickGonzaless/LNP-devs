@@ -12,25 +12,32 @@ function login() {
     senha: Ipassword.value,
   };
 
-  return fetch("http://localhost:8080/users/login", { 
+  return fetch("http://localhost:8080/users/login", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json", 
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(user), 
+    body: JSON.stringify(user),
   })
-    .then((res) => res.text()) 
+    .then((res) => res.text())
     .then((response) => {
       if (response === "Login successful") {
-        
-        fetch("http://localhost:8080/users") 
+        fetch("http://localhost:8080/users")
           .then((res) => res.json())
           .then((users) => {
-          
-            const loggedInUser = users.find((user) => user.email === Iemail.value);
+            const loggedInUser = users.find(
+              (user) => user.email === Iemail.value
+            );
 
             if (loggedInUser) {
-             if (loggedInUser.grupo === "Adm" || loggedInUser.grupo === "Administrador") {
+              if (
+                loggedInUser.grupo === "Adm" ||
+                loggedInUser.grupo === "Administrador"
+              ) {
+                localStorage.setItem(
+                  "loggedInUser",
+                  JSON.stringify(loggedInUser)
+                );
                 navigateTo("../pages/linkPage.html");
               } else {
                 navigateTo("../pages/emConstrucao.html");

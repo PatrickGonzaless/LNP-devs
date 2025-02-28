@@ -7,32 +7,54 @@ function navigateTo(page) {
 }
 
 function login() {
-  return fetch("http://localhost:8080/users", {
+  const user = {
+    email: Iemail.value,
+    senha: Ipassword.value,
+  };
+
+  return fetch("http://localhost:8080/users/login", { 
+    method: "POST",
     headers: {
-      Accept: "application/json",
+      "Content-Type": "application/json", 
     },
-    method: "GET",
+    body: JSON.stringify(user), 
   })
-    .then((res) => res.json())
-    .then((res) => {
-      for (let i = 0; i < res.length; i++) {
-        if (res[i].email === Iemail.value && res[i].senha === Ipassword.value) {
-          if (res[i].grupo === "Adm" || res[i].grupo === "Administrador") {
-            navigateTo("../pages/linkPage.html");
-            return;
-          }
-          navigateTo("../pages/emConstrucao.html");
-          return;
-        }
+    .then((res) => res.text()) 
+    .then((response) => {
+      if (response === "Login successful") {
+        
+        fetch("http://localhost:8080/users") 
+          .then((res) => res.json())
+          .then((users) => {
+          
+            const loggedInUser = users.find((user) => user.email === Iemail.value);
+
+            if (loggedInUser) {
+             if (loggedInUser.grupo === "Adm" || loggedInUser.grupo === "Administrador") {
+                navigateTo("../pages/linkPage.html");
+              } else {
+                navigateTo("../pages/emConstrucao.html");
+              }
+            } else {
+              alert("Usuário não encontrado");
+              clean();
+            }
+          })
+          .catch(() => {
+            alert("Erro ao buscar usuário");
+            clean();
+          });
+      } else if (response === "Senha incorreta") {
+        alert("Senha incorreta");
+        clean();
+      } else if (response === "Usuário não encontrado") {
+        alert("Usuário não encontrado");
+        clean();
       }
-      alert("Usuario ou senha incorretos");
-      clean();
-      return;
     })
     .catch(function () {
       alert("Não sei o que aconteceu");
       clean();
-      return;
     });
 }
 

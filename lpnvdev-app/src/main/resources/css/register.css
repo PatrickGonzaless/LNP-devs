@@ -39,6 +39,8 @@ body {
   align-items: center;
   width: 85%;
   height: 43vh;
+  position: relative;
+  flex-grow: 1;
 }
 
 .title-area {
@@ -110,11 +112,17 @@ input::placeholder {
   margin-top: 15px;
   font-size: 20px;
   width: 270px;
-  height: 6vh;
+  height: 50px;
+  padding: 0;
+  line-height: 40px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: white;
   border: 1px solid #5d1010;
   cursor: pointer;
+}
+
+.register-area:hover .register-btn {
+  background-color: #f0f0f0;
 }
 
 .pagetitle {
@@ -132,6 +140,34 @@ input::placeholder {
   font-size: 25px;
   font-family: "Arial Narrow", sans-serif;
 }
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 10px; 
+  left: 50vh; /* Posicionando os botões no canto inferior direito */
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid black;
+  color: black;
+  padding: 0;
+  width: 210px; /* Largura igual ao botão de registro */
+  height: 50px; /* Altura igual ao botão de registro */
+  font-size: 14px;
+  line-height: 40px; /* Alinha o texto no centro verticalmente */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: #f0f0f0;
+}
+
 
 @media screen and (min-width: 500px) and (max-width: 1426px) {
   #container {

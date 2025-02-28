@@ -17,7 +17,7 @@ function login() {
     .then((res) => {
       for (let i = 0; i < res.length; i++) {
         if (res[i].email === Iemail.value && res[i].senha === Ipassword.value) {
-          if (res[i].grupo === "Adm") {
+          if (res[i].grupo === "Adm" || res[i].grupo === "Administrador") {
             navigateTo("../pages/linkPage.html");
             return;
           }

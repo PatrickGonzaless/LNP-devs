@@ -73,10 +73,13 @@ function listarUsuarios(usuarios, searchTerm = "") {
 }
 
 function alteraStatus(usuario) {
+  if (usuario.email === loggedEmail) {
+    alert("Você não pode alterar o seu próprio status!");
+    return;
+  }
   if (!confirm("Deseja realmente alterar o status deste usuário?")) {
     return;
   }
-  console.log(typeof usuario);
   fetch("http://localhost:8080/users", {
     headers: {
       Accept: "application/json",
@@ -133,4 +136,5 @@ closeButton.addEventListener("click", closeUsersList);
 window.onload = () => {
   const searchTerm = searchInput.value.trim();
   listUser(searchTerm);
+  const loggedEmail = JSON.parse(localStorage.getItem("loggedInUser")).email;
 };

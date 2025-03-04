@@ -32,7 +32,8 @@ function login() {
             if (loggedInUser) {
               if (
                 loggedInUser.grupo === "Adm" ||
-                loggedInUser.grupo === "Administrador"
+                loggedInUser.grupo === "Administrador" ||
+                loggedInUser.grupo === "Estoquista"
               ) {
                 localStorage.setItem(
                   "loggedInUser",
@@ -56,6 +57,9 @@ function login() {
         clean();
       } else if (response === "Usuário não encontrado") {
         alert("Usuário não encontrado");
+        clean();
+      } else if (response === "Usuário desativado") {
+        alert("Usuário desativado");
         clean();
       }
     })

@@ -30,10 +30,14 @@ public class UserController {
         if (foundUser.isPresent()) {
             User existingUser = foundUser.get();
 
-            if (userService.checkPassword(existingUser, user.getSenha())) {
-                return "Login successful";
+            if (existingUser.isStats()) {
+                if (userService.checkPassword(existingUser, user.getSenha())) {
+                    return "Login successful";
+                } else {
+                    return "Senha incorreta";
+                }
             } else {
-                return "Senha incorreta";
+                return "Usuário desativado";
             }
         }
         return "Usuário não encontrado";
@@ -46,7 +50,7 @@ public class UserController {
 
     @PutMapping
     public User editUser(@RequestBody User user) {
-        return userService.saveUser(user);
+        return userService.alterUser(user);
     }
 
     @DeleteMapping("/{id}")

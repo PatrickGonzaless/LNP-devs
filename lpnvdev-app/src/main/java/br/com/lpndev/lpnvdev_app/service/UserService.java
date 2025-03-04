@@ -27,6 +27,10 @@ public class UserService {
         return dao.save(user);
     }
 
+    public User alterUser(User user) {
+        return dao.save(user);
+    }
+
     // Método para buscar todos os usuários
     public List<User> findAll() {
         return dao.findAll();

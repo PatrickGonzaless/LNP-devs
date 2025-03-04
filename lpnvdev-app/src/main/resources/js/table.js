@@ -130,3 +130,7 @@ searchButton.addEventListener("click", function (event) {
 });
 
 closeButton.addEventListener("click", closeUsersList);
+window.onload = () => {
+  const searchTerm = searchInput.value.trim();
+  listUser(searchTerm);
+};

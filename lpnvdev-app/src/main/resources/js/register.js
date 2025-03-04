@@ -65,8 +65,8 @@ function validateForm() {
   }
 
   // Validação da senha
-  if (Isenha.value.length < 6) {
-    alert("A senha deve ter pelo menos 6 caracteres.");
+  if (Isenha.value.length < 1) {
+    alert("A senha deve ter pelo menos 1 caracteres.");
     return false;
   }
 

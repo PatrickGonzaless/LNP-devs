@@ -5,6 +5,12 @@ const closeButton = document.getElementById("close-btn");
 const tabela = document.querySelector("table");
 const lupaIcon = document.getElementById("lupa");
 const estado = {};
+const loggedEmail = JSON.parse(localStorage.getItem("loggedInUser")).email;
+
+window.onload = () => {
+  const searchTerm = searchInput.value.trim();
+  listUser(searchTerm);
+};
 
 function listUser(searchTerm = "") {
   fetch(`http://localhost:8080/users`, {
@@ -55,9 +61,11 @@ function listarUsuarios(usuarios, searchTerm = "") {
   usuariosFiltrados.forEach((usuario) => {
     let linha = `
         <tr>
-          <td>${usuario.username}</td>
+          <td class="clickable" onclick='alterarUsuario(${JSON.stringify(
+            usuario
+          )})'>${usuario.username}</td>
           <td>${usuario.email}</td>
-          <td class="stats" value="${
+          <td class="clickable" value="${
             usuario.id
           }" onclick='alteraStatus(${JSON.stringify(usuario)})'>${
       usuario.stats ? "Ativo" : "Inativo"
@@ -73,6 +81,7 @@ function listarUsuarios(usuarios, searchTerm = "") {
 }
 
 function alteraStatus(usuario) {
+  console.log("teste");
   if (usuario.email === loggedEmail) {
     alert("Você não pode alterar o seu próprio status!");
     return;
@@ -113,6 +122,11 @@ function alteraStatus(usuario) {
     });
 }
 
+function alterarUsuario(user) {
+  localStorage.setItem("userToAlter", JSON.stringify(user));
+  window.location.href = "../pages/register.html";
+}
+
 function closeUsersList() {
   const tbody = tabela.querySelector("tbody");
   if (tbody) tbody.innerHTML = "";
@@ -133,8 +147,3 @@ searchButton.addEventListener("click", function (event) {
 });
 
 closeButton.addEventListener("click", closeUsersList);
-window.onload = () => {
-  const searchTerm = searchInput.value.trim();
-  listUser(searchTerm);
-  const loggedEmail = JSON.parse(localStorage.getItem("loggedInUser")).email;
-};

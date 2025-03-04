@@ -183,12 +183,9 @@ tbody {
 #close-btn b {
   margin: auto;
 }
-.stats {
+.clickable {
   cursor: pointer;
-}
-.stats ::after {
-  color: #6d2a2a;
-  background-color: #b0aeae;
+  color: blue;
 }
 
 @media screen and (min-width: 500px) and (max-width: 1600px) {

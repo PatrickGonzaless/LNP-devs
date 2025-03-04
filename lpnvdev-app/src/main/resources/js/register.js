@@ -6,6 +6,27 @@ const Sgrupo = document.querySelector(".grupo");
 const Isenha = document.querySelector(".senha");
 const Iconfpassword = document.querySelector(".confpassword");
 let stats = true;
+const userToAlter = JSON.parse(localStorage.getItem("userToAlter"));
+const loggedEmail = JSON.parse(localStorage.getItem("loggedInUser")).email;
+
+if (userToAlter !== null) {
+  Iusername.value = userToAlter.username;
+  Icpf.value = userToAlter.cpf;
+  Iemail.value = userToAlter.email;
+  Sgrupo.value = userToAlter.grupo;
+  Isenha.value = "";
+  Isenha.placeholder = "Nova senha(apenas caso queira)";
+  Iconfpassword.value = "";
+  Iconfpassword.placeholder = "Confirme a nova senha";
+  stats = userToAlter.stats;
+  localStorage.removeItem("userToAlter");
+
+  Iemail.disabled = true;
+  if (loggedEmail === userToAlter.email) {
+    Sgrupo.value = "Administrador";
+    Sgrupo.disabled = true;
+  }
+}
 
 function validateForm() {
   // Validação do nome de usuário
@@ -58,18 +79,6 @@ function validateForm() {
     return false;
   }
 
-  // Validação do grupo (pode ser um campo de seleção)
-  if (Sgrupo.value === "") {
-    alert("Selecione um grupo.");
-    return false;
-  }
-
-  // Validação da senha
-  if (Isenha.value.length < 1) {
-    alert("A senha deve ter pelo menos 1 caracteres.");
-    return false;
-  }
-
   // Validação de confirmação de senha
   if (Isenha.value !== Iconfpassword.value) {
     alert("As senhas não coincidem.");
@@ -81,35 +90,99 @@ function validateForm() {
 }
 
 function register() {
-  fetch("http://localhost:8080/users", {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify({
-      username: Iusername.value,
-      cpf: Icpf.value,
-      email: Iemail.value,
-      grupo: Sgrupo.value,
-      senha: Isenha.value,
-      stats: true,
-    }),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(
-          `Erro na requisição: ${res.status} - ${res.statusText}`
-        );
-      }
-      return res.json();
+  if (Isenha == "") {
+    fetch("http://localhost:8080/users", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify({
+        id: userToAlter.id,
+        username: Iusername.value,
+        cpf: Icpf.value,
+        email: Iemail.value,
+        grupo: Sgrupo.value,
+        senha: userToAlter.senha,
+        stats: stats,
+      }),
     })
-    .then((data) => {
-      alert("Usuário cadastrado com sucesso!", data);
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            `Erro na requisição: ${res.status} - ${res.statusText}`
+          );
+        }
+        return res.json();
+      })
+      .then((data) => {
+        alert("Usuário alterado com sucesso!", data);
+      })
+      .catch((err) => {
+        console.error("Erro ao alterar usuário!", err);
+      });
+  } else if (userToAlter !== null) {
+    fetch("http://localhost:8080/users", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        id: userToAlter.id,
+        username: Iusername.value,
+        cpf: Icpf.value,
+        email: Iemail.value,
+        grupo: Sgrupo.value,
+        senha: Isenha.value,
+        stats: stats,
+      }),
     })
-    .catch((err) => {
-      console.error("Erro ao cadastrar usuário!", err);
-    });
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            `Erro na requisição: ${res.status} - ${res.statusText}`
+          );
+        }
+        return res.json();
+      })
+      .then((data) => {
+        alert("Usuário alterado com sucesso!", data);
+      })
+      .catch((err) => {
+        console.error("Erro ao alterar usuário!", err);
+      });
+  } else {
+    fetch("http://localhost:8080/users", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        username: Iusername.value,
+        cpf: Icpf.value,
+        email: Iemail.value,
+        grupo: Sgrupo.value,
+        senha: Isenha.value,
+        stats: true,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            `Erro na requisição: ${res.status} - ${res.statusText}`
+          );
+        }
+        return res.json();
+      })
+      .then((data) => {
+        alert("Usuário cadastrado com sucesso!", data);
+      })
+      .catch((err) => {
+        console.error("Erro ao cadastrar usuário!", err);
+      });
+  }
 }
 
 function clean() {
@@ -126,11 +199,6 @@ form.addEventListener("submit", function (event) {
 
   if (validateForm()) {
     register();
-    console.log(Iusername.value);
-    console.log(Icpf.value);
-    console.log(Iemail.value);
-    console.log(Sgrupo.value);
-    console.log(Isenha.value);
     clean();
   }
 });

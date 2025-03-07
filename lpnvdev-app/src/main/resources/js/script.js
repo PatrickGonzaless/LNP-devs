@@ -41,7 +41,7 @@ function login() {
                 );
                 navigateTo("../pages/linkPage.html");
               } else {
-                navigateTo("../pages/emConstrucao.html");
+                navigateTo("../pages/tabelaProduto.html");
               }
             } else {
               alert("Usuário não encontrado");

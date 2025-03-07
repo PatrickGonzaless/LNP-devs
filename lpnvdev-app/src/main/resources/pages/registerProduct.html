@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/registerProduct.css" />
+  <title>Produtos - Cadastrar</title>
+</head>
+
+<body>
+  <section id="container">
+    <div class="registerprod-area-container">
+      <div class="pagetitle">
+        <h3>CADASTRAR PRODUTO</h3>
+      </div>
+    </div>
+
+    <form action="">
+      <div class="form-area">
+        <div class="input-container">
+          <label for="prodname">Nome do Produto:</label>
+          <input type="text" class="prodname" name="prodname" placeholder="Digite o nome do produto" />
+        </div>
+
+        <div class="input-container">
+          <label for="preco">Preço do Produto:</label>
+          <input type="text" class="preco" name="preco" placeholder="Digite o preço do produto" />
+        </div>
+
+        <div class="input-container">
+          <label for="qntd">Quantidade em estoque:</label>
+          <input type="text" class="qntd" name="qntd" placeholder="Digite a quantidade do produto em estoque" />
+        </div>
+
+        <div class="input-container">
+          <label for="descricao">Descrição detalhada do produto:</label>
+          <textarea class="descricao" name="descricao" placeholder="Descrição detalhada do produto"></textarea>
+        </div>
+
+        <div class="input-container">
+          <label for="avaliacao">Avaliação do Produto:</label>
+          <input type="text" class="avaliacao" name="avaliacao" placeholder="Avaliação do produto" />
+        </div>
+
+        <div class="btn-container">
+          <label for="imagem" class="custom-file-upload">Adicionar imagens do Produto</label>
+          <input type="file" name="imagem" id="imagem" accept="image/*">
+          <button>Cancelar</button>
+        </div>
+
+      </div>
+    </form>
+  </section>
+
+</body>
+<script src="../js/registerProduct.js" defer></script>
+
+</html>

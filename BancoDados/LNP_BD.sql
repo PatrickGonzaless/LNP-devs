@@ -12,9 +12,6 @@ senha text not null,
 stats boolean
 );
 
-alter table produto
-add column stats boolean not null;
-
 create table produto(
 id integer auto_increment primary key,
 cod integer not null unique,

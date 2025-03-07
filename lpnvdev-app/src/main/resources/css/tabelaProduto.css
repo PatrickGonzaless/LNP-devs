@@ -194,11 +194,11 @@
     width: 30vh;
     font-family: 'Arial Narrow', Arial, sans-serif;
     white-space: nowrap;
-    border: 2px solid #b18c8c;
+    border: 2px solid black;
   }
   
   th {
-    background-color: #b0aeae;
+    background-color: white;
     font-weight: bold;
     position: sticky;
     top: 0;

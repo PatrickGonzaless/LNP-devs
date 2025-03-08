@@ -1,18 +1,18 @@
 package br.com.lpndev.lpnvdev_app.model;
 
-import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "imgProd")
+@Table(name = "img_prod")
 public class ProductImg {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idImg")
+    @Column(name = "id_img")
     private Integer idImg;
-    
+
     @Column(name = "nome", length = 200, nullable = true)
     private String nome;
 
@@ -21,9 +21,10 @@ public class ProductImg {
 
     @Column(name = "padrao", nullable = true)
     private boolean padrao;
-    
+
     @ManyToOne
-    @JoinColumn(name = "produtoId", nullable = false)
+    @JsonIgnore
+    @JoinColumn(name = "produto_id", nullable = false)
     private Product produto;
 
     public Integer getIdImg() {

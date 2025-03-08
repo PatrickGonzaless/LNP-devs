@@ -4,7 +4,6 @@ const searchInput = document.getElementById("search");
 const closeButton = document.getElementById("close-btn");
 const tabela = document.querySelector("table");
 const lupaIcon = document.getElementById("lupa");
-const estado = {};
 const loggedEmail = JSON.parse(localStorage.getItem("loggedInUser")).email;
 
 window.onload = () => {
@@ -81,7 +80,6 @@ function listarUsuarios(usuarios, searchTerm = "") {
 }
 
 function alteraStatus(usuario) {
-  console.log("teste");
   if (usuario.email === loggedEmail) {
     alert("Você não pode alterar o seu próprio status!");
     return;

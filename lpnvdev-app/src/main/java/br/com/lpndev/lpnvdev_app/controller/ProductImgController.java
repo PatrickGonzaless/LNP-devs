@@ -1,6 +1,5 @@
 package br.com.lpndev.lpnvdev_app.controller;
 
-import br.com.lpndev.lpnvdev_app.model.Product;
 import br.com.lpndev.lpnvdev_app.model.ProductImg;
 import br.com.lpndev.lpnvdev_app.service.ProductImgService;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ public class ProductImgController {
     }
 
     @GetMapping
-    public List<ProductImg> productImgList(){
+    public List<ProductImg> productImgList() {
         return productImgService.findAll();
     }
 

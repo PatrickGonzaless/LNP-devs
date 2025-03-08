@@ -32,6 +32,9 @@ public class Product {
     @Column(name = "descricao", length = 2000)
     private String descricao;
 
+    @Column(name = "stats", nullable = true)
+    private boolean stats;
+
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductImg> imagens;
 
@@ -98,5 +101,12 @@ public class Product {
     public void setImagens(List<ProductImg> imagens) {
         this.imagens = imagens;
     }
-}
 
+    public boolean isStats() {
+        return stats;
+    }
+
+    public void setStats(boolean stats) {
+        this.stats = stats;
+    }
+}

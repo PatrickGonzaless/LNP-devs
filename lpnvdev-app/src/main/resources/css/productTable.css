@@ -1,218 +1,222 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  @font-face {
-    font-family: 'Inter';
-    src: url('../font/Inter/static/Inter_18pt-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  body {
-    background-color: #5d1010;
-    font-family: 'Inter', sans-serif;
-  }
-  
-  header {
-    background-color: #985D5D;
-    width: 100%;
-    height: 15vh;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 50%;
-    height: 15vh;
-    padding-left: 5vh;
-  }
-  
-  .logo h1 {
-    font-size: 35px;
-    font-family: 'Inter', sans-serif;
-    color: white;
-  }
-  
-  .userid {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    width: 50%;
-    height: 15vh;
-  }
-  
-  .userid_space {
-    display: flex;
-    width: 40%;
-    height: 8vh;
-    background-color: #D9D9D9;
-    margin-left: auto;
-    margin-right: 5vh;
-    border-radius: 13px;
-  }
-  
-  .user, .leave {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .leave a {
-    font-size: 25px;
-    text-decoration: none;
-    color: rgb(155, 0, 0);
-  }
-  
-  .prod_bar {
-    margin-top: 3vh;
-    width: 100%;
-    height: 15vh;
-    background-color: #985D5D;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 3vh;
-  }
-  
-  .prod_bar h1 {
-    font-size: 25px;
-    font-family: 'Inter', sans-serif;
-    color: black;
-    padding-top: 1vh;
-    color: white;
-    margin-bottom: 1.5vh;
-  }
-  
-  .prod-button-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-  #newprod-button {
-    border: 1px solid #FFFFFF;
-    background: transparent;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    border-radius: 5px;
-    margin-top: 1vh;
-    height: 6vh;
-    text-align: center;
-    font-size: 20px;
-  }
-  
-  #newprod-button a {
-    text-decoration: none;
-    color: #FFFFFF;
-  }
-  
-  #newprod-button img {
-    height: 16px;
-    width: auto;
-  }
-  
-  #newprod-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  
-  .search-area {
-    position: absolute;
-    right: 3vh;
-    top: 23vh; 
-    width: 40%;
-  }
-  
-  #search {
-    width: calc(100% - 40px);
-    height: 5vh;
-    background-color: #d9d9d9;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    padding: 0 10px;
-    box-shadow: 1px 1px 1px 1px grey;
-  }
-  
-  #search-button {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 100%;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  #search-button img {
-    width: 80%;
-    height: auto;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .table-area {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 43vh;
-  }
-  
-  .table-container {
-    width: 100%;
-    overflow-x: auto;
-    margin-top: 3vh;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;  
-  }
-  
-  th,
-  td {
-    padding: 15px;
-    text-align: center;
-    font-size: 17px;
-    width: 30vh;
-    font-family: 'Arial Narrow', Arial, sans-serif;
-    white-space: nowrap;
-    border: 2px solid black;
-  }
-  
-  th {
-    background-color: white;
-    font-weight: bold;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-  }
-  
-  tr {
-    background-color: #f9f9f9;
-  }
-  
-  tbody {
-    display: table-row-group;
-    max-height: 450px;
-    overflow-y: auto;
-  }
-  
-  
+@font-face {
+  font-family: "Inter";
+  src: url("../font/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #5d1010;
+  font-family: "Inter", sans-serif;
+}
+
+header {
+  background-color: #985d5d;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 50%;
+  height: 15vh;
+  padding-left: 5vh;
+}
+
+.logo h1 {
+  font-size: 35px;
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+
+.userid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+  height: 15vh;
+}
+
+.userid_space {
+  display: flex;
+  width: 40%;
+  height: 8vh;
+  background-color: #d9d9d9;
+  margin-left: auto;
+  margin-right: 5vh;
+  border-radius: 13px;
+}
+
+.user,
+.leave {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leave a {
+  font-size: 25px;
+  text-decoration: none;
+  color: rgb(155, 0, 0);
+}
+
+.prod_bar {
+  margin-top: 3vh;
+  width: 100%;
+  height: 15vh;
+  background-color: #985d5d;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 3vh;
+}
+
+.prod_bar h1 {
+  font-size: 25px;
+  font-family: "Inter", sans-serif;
+  color: black;
+  padding-top: 1vh;
+  color: white;
+  margin-bottom: 1.5vh;
+}
+
+.prod-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#newprod-button {
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 5px;
+  margin-top: 1vh;
+  height: 6vh;
+  text-align: center;
+  font-size: 20px;
+}
+
+#newprod-button a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+#newprod-button img {
+  height: 16px;
+  width: auto;
+}
+
+#newprod-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.search-area {
+  position: absolute;
+  right: 3vh;
+  top: 23vh;
+  width: 40%;
+}
+
+#search {
+  width: calc(100% - 40px);
+  height: 5vh;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  padding: 0 10px;
+  box-shadow: 1px 1px 1px 1px grey;
+}
+
+#search-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+#search-button img {
+  width: 80%;
+  height: auto;
+}
+
+.table-area {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 43vh;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 3vh;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: center;
+  font-size: 17px;
+  width: 30vh;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  white-space: nowrap;
+  border: 2px solid black;
+}
+
+th {
+  background-color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+tr {
+  background-color: #f9f9f9;
+}
+
+tbody {
+  display: table-row-group;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+#NextPrev {
+  display: flex;
+  flex-direction: row;
+}

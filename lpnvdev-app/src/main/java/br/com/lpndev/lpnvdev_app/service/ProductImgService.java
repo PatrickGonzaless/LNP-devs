@@ -1,7 +1,6 @@
 package br.com.lpndev.lpnvdev_app.service;
 
 import br.com.lpndev.lpnvdev_app.dao.IProductImg;
-import br.com.lpndev.lpnvdev_app.model.Product;
 import br.com.lpndev.lpnvdev_app.model.ProductImg;
 import org.springframework.stereotype.Service;
 

@@ -14,7 +14,6 @@ stats boolean
 
 create table produto(
 id integer auto_increment primary key,
-cod integer not null unique,
 nome varchar(200) not null,
 qtd integer not null,
 valor decimal(10,2) not null,

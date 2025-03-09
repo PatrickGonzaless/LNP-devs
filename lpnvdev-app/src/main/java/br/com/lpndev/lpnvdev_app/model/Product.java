@@ -14,9 +14,6 @@ public class Product {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "cod", nullable = true, unique = true)
-    private Integer cod;
-
     @Column(name = "nome", length = 200, nullable = true)
     private String nome;
 
@@ -44,14 +41,6 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getCod() {
-        return cod;
-    }
-
-    public void setCod(Integer cod) {
-        this.cod = cod;
     }
 
     public String getNome() {

@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
   const Inome = document.querySelector(".prodname");
@@ -7,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const Iavaliacao = document.querySelector(".avaliacao");
   let stats = true;
   const Ilinkimage = document.getElementById("imagem").files;
-  const file = null;
 
   function validateForm() {
+    console.log(Ilinkimage.files);
     file = Ilinkimage.files[0];
 
     if (Inome.value.trim() === "") {
@@ -69,17 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log(idteste);
 
           const formData = new FormData();
-          formData.append("nome", Inome);
+          formData.append("nome", Inome.value);
 
           for (let i = 0; i < Ilinkimage.length; i++) {
-            formData.append("images", Ilinkimage[i]);
+            formData.append("images", Ilinkimage[i].value);
           }
 
           fetch("http://localhost:8080/productImg", {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
             method: "POST",
             body: formData
           })
@@ -99,3 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
     registerProduct();
   })
 });
+
+function showFileName() {
+  var fileInput = document.getElementById("imagem");
+  var fileName = fileInput.files[0].name; 
+  console.log(fileName);
+}

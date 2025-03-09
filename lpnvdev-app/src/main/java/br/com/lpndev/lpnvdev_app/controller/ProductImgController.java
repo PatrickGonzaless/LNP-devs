@@ -9,6 +9,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +31,9 @@ public class ProductImgController {
     }
 
     @PostMapping
-    public String createProduct(@RequestParam("images") MultipartFile[] images) {
-        String productName = images.;
+    public String createProduct(@RequestParam("images") ArrayList<MultipartFile> images) {
+        String productName = String.valueOf(images.getFirst());
+        images.remove(0);
         try {
             String productDir = UPLOAD_DIR + productName.replaceAll("\\s+", "") + "/";
             Path productPath = Paths.get(productDir);

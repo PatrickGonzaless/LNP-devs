@@ -25,17 +25,18 @@ body {
   flex-direction: column;
   align-items: flex-start;
   padding: 20px;
-  width: 1000px;
-  height: 650px;
+  width: 110vh;
+  height: 83vh;
   border-radius: 42px 0 42px 42px;
-  background-position: 30%;
   background-color: #B18C8C;
 }
 
-.register-area-container {
+.content-wrapper {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
   height: 58.5vh;
 }
 
@@ -48,7 +49,7 @@ body {
   border: 1px solid black;
   padding: 10px;
   margin-left: 18vh;
-  margin-bottom: 1.5vh;
+  margin-bottom: 1vh;
 }
 
 .pagetitle h3 {
@@ -56,11 +57,21 @@ body {
   font-family: "Arial Narrow", sans-serif;
 }
 
+form {
+  width: 60%;
+}
+
+.form-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 4vh;
+}
+
 .input-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-left: 4vh;
 }
 
 .input-container label {
@@ -74,19 +85,19 @@ input {
   border: 1px solid white;
   background-color: black;
   padding-left: 20px;
-  margin-bottom: 5px;
+  margin-bottom: -1px;
   color: white;
 }
 
 textarea {
   width: 56vh;
-  height: 8vh; 
+  height: 8vh;
   border: 1px solid white;
   background-color: black;
   padding-left: 30px;
   margin-bottom: 5px;
   color: white;
-  resize: vertical; 
+  resize: vertical;
 }
 
 textarea::placeholder {
@@ -96,28 +107,40 @@ textarea::placeholder {
   line-height: 8vh;
 }
 
-
 input::placeholder {
   color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
   font-family: 'Inter';
 }
 
-.descricao{
+.descricao {
   height: 10vh;
 }
 
-.button-container {
+.btn-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   margin-top: 2vh;
-  width: 50%;
 }
 
 input[type="file"] {
   display: none;
+}
+
+button[type="submit"]{
+  display: inline-block;
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(104, 0, 0);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  margin-left: 20vh;
+  margin-top: -1vh;
 }
 
 .custom-file-upload {
@@ -130,13 +153,12 @@ input[type="file"] {
   font-size: 16px;
   text-align: center;
   width: 100%;
-  max-width: 300px;
-  margin-left: 15vh;
-  margin-top: 1vh;
+  margin-left: 20vh;
+  margin-top: -2vh;
 }
 
-.custom-file-upload:hover{
-  background-color:rgb(224, 224, 224) ;
+.custom-file-upload:hover {
+  background-color: rgb(224, 224, 224);
 }
 
 button {
@@ -146,12 +168,27 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  width: 30%;
-  max-width: 300px;
+  width: 25vh;
+  margin-top: 0vh;
   margin-left: 20vh;
-  margin-top: 2vh;
 }
 
-button:hover{
+button:hover {
   background-color: rgb(224, 224, 224);
+}
+
+#bootstrap-container {
+  width: 40%;
+  height: 70%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px dashed white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin: auto;
+  margin-left: 3vh;
 }

@@ -31,8 +31,7 @@
           <img
             id="plus"
             src="../img/productTable/plus.png"
-            alt="Novo Produto"
-          />
+            alt="Novo Produto" />
           Novo Produto
         </button>
       </div>
@@ -43,8 +42,7 @@
             type="text"
             name="search"
             id="search"
-            placeholder="Pesquisar"
-          />
+            placeholder="Pesquisar" />
           <button type="submit" id="search-button">
             <img src="../img/table/lupa.png" alt="Pesquisar" />
           </button>
@@ -69,11 +67,13 @@
             <tbody></tbody>
           </table>
         </div>
-        <div id="NextPrev">
-          <button id="prevbtn" onclick="previousPage()"><b><</b></button>
-          <button id="nextbtn" onclick="nextPage()"><b>></b></button>
-        </div>
       </div>
+    </div>
+    <div id="NextPrev">
+      <button id="prevbtn" onclick="previousPage()" style="display: none">
+        <b><</b>
+      </button>
+      <button id="nextbtn" onclick="nextPage()"><b>></b></button>
     </div>
   </body>
   <script src="../js/productTable.js" defer></script>

@@ -219,4 +219,10 @@ tbody {
 #NextPrev {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+#NextPrev button {
+  justify-content: center;
+  width: 50px;
+  margin: 10px;
 }

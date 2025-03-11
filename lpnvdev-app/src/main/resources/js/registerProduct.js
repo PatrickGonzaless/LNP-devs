@@ -1,5 +1,3 @@
-let Ilinkimage = null;
-let formData = new FormData();
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
   const Inome = document.querySelector(".prodname");
@@ -65,13 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((res) => {
           alert("Produto cadastrado com sucesso!");
-          fetch("http://localhost:8080/productImg", {
-            method: "POST",
-            body: formData,
-          })
-            .then((response) => response.json())
-            .then((data) => alert("SOU EUUUU"))
-            .catch((error) => console.error("Erro ao enviar produto:", error));
         })
         .catch((err) => {
           console.error("Erro ao cadastrar produto!", err);

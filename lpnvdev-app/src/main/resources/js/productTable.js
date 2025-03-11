@@ -80,7 +80,7 @@ function listarProdutos(produtos, searchTerm = "") {
     ) {
       let linha = `
         <tr>
-          <td>${produto.cod}</td>
+          <td>${produto.id}</td>
           <td>${produto.nome}</td>
           <td>${produto.qtd}</td>
           <td>${produto.valor}</td>
@@ -98,7 +98,7 @@ function listarProdutos(produtos, searchTerm = "") {
     } else {
       let linha = `
         <tr>
-          <td>${produto.cod}</td>
+          <td>${produto.id}</td>
           <td>${produto.nome}</td>
           <td>${produto.qtd}</td>
           <td>${produto.valor}</td>
@@ -154,16 +154,30 @@ function alteraStatus(produto) {
 
 // Função para navegar para a próxima página
 function nextPage() {
+  if (currentPage > 0) {
+    let btnPrev = document.getElementById("prevbtn");
+    btnPrev.style.display = "flex";
+  }
   if (currentPage * itemsPerPage < produtosFiltrados.length) {
     currentPage++;
     listProduct(searchTerm);
+  }
+  if (currentPage * itemsPerPage > produtosFiltrados.length) {
+    let btnProx = document.getElementById("nextbtn");
+    btnProx.style.display = "none";
   }
 }
 
 // Função para navegar para a página anterior
 function previousPage() {
+  let btnProx = document.getElementById("nextbtn");
+  btnProx.style.display = "flex";
   if (currentPage > 1) {
     currentPage--;
     listProduct(searchTerm);
+  }
+  if (currentPage === 1) {
+    let btnPrev = document.getElementById("prevbtn");
+    btnPrev.style.display = "none";
   }
 }

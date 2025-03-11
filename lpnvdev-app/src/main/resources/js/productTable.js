@@ -40,7 +40,6 @@ function listProduct(searchTerm = "") {
       return res.json();
     })
     .then((data) => {
-      console.log("Produtos carregados:", data);
       listarProdutos(data, searchTerm);
     })
     .catch((err) => {
@@ -88,9 +87,11 @@ function listarProdutos(produtos, searchTerm = "") {
           <td>
               <button>Alterar</button>
               <button>Visualizar</button>
-              <input type = "checkbox">${
-                produto.stats ? "Ativo" : "Inativo"
-              }</input>
+              <input onclick='alteraStatus(${JSON.stringify(
+                produto
+              )})' type = "checkbox" ${produto.stats ? "checked" : ""}>${
+        produto.stats ? "Ativo" : "Inativo"
+      }</input>
           </td>
         </tr>
       `;
@@ -115,6 +116,8 @@ function listarProdutos(produtos, searchTerm = "") {
 }
 
 function alteraStatus(produto) {
+  //produto = JSON.parse(input.getAttribute("data-produto"));
+  console.log(produto);
   if (!confirm("Deseja realmente alterar o status deste produto?")) {
     return;
   }
@@ -126,12 +129,11 @@ function alteraStatus(produto) {
     method: "PUT",
     body: JSON.stringify({
       id: produto.id,
-      cod: produto.username,
-      nome: produto.cpf,
-      qtd: produto.email,
-      valor: produto.grupo,
-      avaliacao: produto.senha,
-      descricao: produto.senha,
+      nome: produto.nome,
+      qtd: produto.qtd,
+      valor: produto.valor,
+      avaliacao: produto.avaliacao,
+      descricao: produto.descricao,
       stats: !produto.stats,
     }),
   })
@@ -181,3 +183,14 @@ function previousPage() {
     btnPrev.style.display = "none";
   }
 }
+
+searchButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  searchTerm = searchInput.value.trim();
+  listProduct(searchTerm);
+});
+searchInput.addEventListener("input", (event) => {
+  event.preventDefault();
+  searchTerm = searchInput.value.trim();
+  listProduct(searchTerm);
+});

@@ -143,5 +143,10 @@ searchButton.addEventListener("click", function (event) {
   const searchTerm = searchInput.value.trim();
   listUser(searchTerm);
 });
+searchInput.addEventListener("input", function (event) {
+  event.preventDefault();
+  const searchTerm = searchInput.value.trim();
+  listUser(searchTerm);
+});
 
 closeButton.addEventListener("click", closeUsersList);

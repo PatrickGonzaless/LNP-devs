@@ -2,6 +2,7 @@ const form = document.querySelector("form");
 const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search");
 const tabela = document.querySelector("table");
+const add = document.getElementById("newprod-button");
 let currentPage = 1;
 const itemsPerPage = 10;
 let produtosFiltrados = null;
@@ -16,12 +17,15 @@ window.onload = function () {
     !(loggedInUser.grupo === "Administrador") &&
     !(loggedInUser.grupo === "Adm")
   ) {
-    const add = document.getElementById("newprod-button");
     add.style.display = "none";
   }
   searchTerm = searchInput.value.trim();
   listProduct(searchTerm);
 };
+
+function addProduto() {
+  window.location.href = "../pages/registerProduct.html";
+}
 
 function listProduct(searchTerm = "") {
   fetch(`http://localhost:8080/product`, {
@@ -58,9 +62,9 @@ function listarProdutos(produtos, searchTerm = "") {
 
   produtosFiltrados = searchTerm
     ? produtos.filter((produto) => {
-      const nome = produto.nome.toLowerCase();
-      return nome.includes(searchTerm.toLowerCase());
-    })
+        const nome = produto.nome.toLowerCase();
+        return nome.includes(searchTerm.toLowerCase());
+      })
     : produtos;
 
   if (searchTerm && produtosFiltrados.length === 0) {
@@ -85,12 +89,17 @@ function listarProdutos(produtos, searchTerm = "") {
           <td>${produto.valor}</td>
           <td>${produto.stats}</td>
           <td>
-              <button class="alterarbtn">Alterar</button>
-              <button class="visualizarbtn" onclick='openModal(${JSON.stringify(produto)})'>Visualizar</button>
+              <button class="alterarbtn" onclick='alterarProduto(${JSON.stringify(
+                produto
+              )})'>Alterar</button>
+              <button class="visualizarbtn" onclick='openModal(${JSON.stringify(
+                produto
+              )})'>Visualizar</button>
               <input class="checkbtn" onclick='alteraStatus(${JSON.stringify(
-        produto
-      )})' type = "checkbox" ${produto.stats ? "checked" : ""}>${produto.stats ? "Ativo" : "Inativo"
-        }</input>
+                produto
+              )})' type = "checkbox" ${produto.stats ? "checked" : ""}>${
+        produto.stats ? "Ativo" : "Inativo"
+      }</input>
           </td>
         </tr>
       `;
@@ -104,19 +113,23 @@ function listarProdutos(produtos, searchTerm = "") {
           <td>${produto.valor}</td>
           <td>${produto.stats}</td>
           <td>
-              <button>Alterar</button>
+              <button class="alterarbtn" onclick='alterarProduto(${JSON.stringify(
+                produto
+              )})'>Alterar</button>
           </td>
         </tr>
       `;
-      tbody.insertAdjacentHTML("afterbegin", linha);
+      tbody.insertAdjacentHTML("beforeend", linha);
     }
   });
   tabela.style.display = "table";
 }
 
+function alterarProduto(produto) {
+  localStorage.setItem("alterProd", JSON.stringify(produto));
+  window.location.href = "../pages/registerProduct.html";
+}
 function alteraStatus(produto) {
-  //produto = JSON.parse(input.getAttribute("data-produto"));
-  console.log(produto);
   if (!confirm("Deseja realmente alterar o status deste produto?")) {
     return;
   }
@@ -195,17 +208,25 @@ searchInput.addEventListener("input", (event) => {
 
 function openModal(produto) {
   document.getElementById("modal").style.display = "block";
-  document.getElementById("modal-title").innerText = produto.nome || 'Nome não disponível';
-  document.getElementById("modal-description").innerText = produto.descricao || 'Sem descrição disponível';
+  document.getElementById("modal-title").innerText =
+    produto.nome || "Nome não disponível";
+  document.getElementById("modal-description").innerText =
+    produto.descricao || "Sem descrição disponível";
 
-  let precoFormatado = produto.valor ? produto.valor.toFixed(2) : 'Preço não disponível';
-  document.getElementById("modal-price").innerText = precoFormatado || 'Preço não disponível';
+  let precoFormatado = produto.valor
+    ? produto.valor.toFixed(2)
+    : "Preço não disponível";
+  document.getElementById("modal-price").innerText =
+    precoFormatado || "Preço não disponível";
 
-  document.getElementById("modal-quantity").innerText = produto.qtd || 'Quantidade não disponível';
+  document.getElementById("modal-quantity").innerText =
+    produto.qtd || "Quantidade não disponível";
 
-  let avaliacaoFormatada = produto.avaliacao ? produto.avaliacao.toFixed(1) : 'Preço não disponível';
-  document.getElementById("modal-rating").innerText = avaliacaoFormatada || 'Avaliação não disponível';
-
+  let avaliacaoFormatada = produto.avaliacao
+    ? produto.avaliacao.toFixed(1)
+    : "Preço não disponível";
+  document.getElementById("modal-rating").innerText =
+    avaliacaoFormatada || "Avaliação não disponível";
 
   // const imagePlaceholder = document.querySelector(".image-placeholder");
   // if (produto.imagem) {
@@ -216,13 +237,12 @@ function openModal(produto) {
   // }
 }
 
-
 function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == document.getElementById("modal")) {
     closeModal();
   }
-}
+};

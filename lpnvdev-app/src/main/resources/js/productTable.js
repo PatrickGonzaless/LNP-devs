@@ -58,9 +58,9 @@ function listarProdutos(produtos, searchTerm = "") {
 
   produtosFiltrados = searchTerm
     ? produtos.filter((produto) => {
-        const nome = produto.nome.toLowerCase();
-        return nome.includes(searchTerm.toLowerCase());
-      })
+      const nome = produto.nome.toLowerCase();
+      return nome.includes(searchTerm.toLowerCase());
+    })
     : produtos;
 
   if (searchTerm && produtosFiltrados.length === 0) {
@@ -85,13 +85,12 @@ function listarProdutos(produtos, searchTerm = "") {
           <td>${produto.valor}</td>
           <td>${produto.stats}</td>
           <td>
-              <button>Alterar</button>
-              <button>Visualizar</button>
-              <input onclick='alteraStatus(${JSON.stringify(
-                produto
-              )})' type = "checkbox" ${produto.stats ? "checked" : ""}>${
-        produto.stats ? "Ativo" : "Inativo"
-      }</input>
+              <button class="alterarbtn">Alterar</button>
+              <button class="visualizarbtn" onclick='openModal(${JSON.stringify(produto)})'>Visualizar</button>
+              <input class="checkbtn" onclick='alteraStatus(${JSON.stringify(
+        produto
+      )})' type = "checkbox" ${produto.stats ? "checked" : ""}>${produto.stats ? "Ativo" : "Inativo"
+        }</input>
           </td>
         </tr>
       `;
@@ -170,7 +169,6 @@ function nextPage() {
   }
 }
 
-// Função para navegar para a página anterior
 function previousPage() {
   let btnProx = document.getElementById("nextbtn");
   btnProx.style.display = "flex";
@@ -194,3 +192,32 @@ searchInput.addEventListener("input", (event) => {
   searchTerm = searchInput.value.trim();
   listProduct(searchTerm);
 });
+
+function openModal(produto) {
+  document.getElementById("modal").style.display = "block";
+  document.getElementById("modal-title").innerText = produto.nome || 'Nome não disponível';
+  document.getElementById("modal-description").innerText = produto.descricao || 'Sem descrição disponível';
+  document.getElementById("modal-price").innerText = produto.valor || 'Preço não disponível';
+  document.getElementById("modal-quantity").innerText = produto.qtd || 'Quantidade não disponível';
+  document.getElementById("modal-rating").innerText = produto.avaliacao || 'Avaliação não disponível';
+
+
+  // const imagePlaceholder = document.querySelector(".image-placeholder");
+  // if (produto.imagem) {
+  //   imagePlaceholder.style.backgroundImage = `url(${produto.imagem})`;
+  //   imagePlaceholder.style.backgroundSize = 'cover';
+  // } else {
+  //   imagePlaceholder.style.backgroundImage = 'none';
+  // }
+}
+
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById("modal")) {
+    closeModal();
+  }
+}

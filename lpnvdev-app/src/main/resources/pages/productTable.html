@@ -75,6 +75,30 @@
       </button>
       <button id="nextbtn" onclick="nextPage()"><b>></b></button>
     </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div class="modal-body">
+          <div class="image-left">
+            <div class="image-placeholder"></div>
+          </div>
+
+          <div class="info-right">
+            <h2 id="modal-title"></h2>
+            <p id="modal-description">Descrição do Produto...</p>
+            <p><strong>Preço:</strong> <span id="modal-price"></span></p>
+            <p><strong>Quantidade:</strong> <span id="modal-quantity"></span></p>
+            <p><strong>Avaliação:</strong> <span id="modal-rating"></span>/ 5</p>
+            <button id="buy-button" class="buy-button">Comprar</button>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    
+    
+
   </body>
   <script src="../js/productTable.js" defer></script>
 </html>

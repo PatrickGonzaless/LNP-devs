@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function showFileName() {
-  Ilinkimage = document.getElementById("imagem").files;
-  formData.append("file", Ilinkimage);
-  //let file = Ilinkimage[0].name;
-}
+// function showFileName() {
+//   Ilinkimage = document.getElementById("imagem").files;
+//   formData.append("file", Ilinkimage);
+//   //let file = Ilinkimage[0].name;
+// }

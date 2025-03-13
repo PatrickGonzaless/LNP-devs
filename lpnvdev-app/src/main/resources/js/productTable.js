@@ -3,6 +3,7 @@ const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search");
 const tabela = document.querySelector("table");
 const add = document.getElementById("newprod-button");
+let numPage = document.getElementById("numPage");
 let currentPage = 1;
 const itemsPerPage = 10;
 let produtosFiltrados = null;
@@ -71,6 +72,14 @@ function listarProdutos(produtos, searchTerm = "") {
     alert("Nenhum produto encontrado com esse nome.");
     return;
   }
+  let totalPages;
+  if (produtosFiltrados % 10 == 0) {
+    totalPages = parseInt(produtosFiltrados.length / 10);
+  } else {
+    totalPages = parseInt(produtosFiltrados.length / 10) + 1;
+  }
+  numPage.innerHTML = `${currentPage} ... ${totalPages}`;
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = currentPage * itemsPerPage;
   const itemsToDisplay = produtosFiltrados

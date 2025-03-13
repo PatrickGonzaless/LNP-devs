@@ -219,21 +219,29 @@ tbody {
 #NextPrev {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
 }
-#NextPrev button {
+
+#NextPrev button,
+p {
   justify-content: center;
   width: 50px;
   margin: 10px;
 }
-
-#perfil{
-  margin-left:30px ;
+#NextPrev button {
+  margin-right: 6vh;
+}
+#NextPrev p {
+  color: white;
+}
+#perfil {
+  margin-left: 30px;
   text-align: center;
   line-height: 25px;
 }
 
-.alterarbtn, .visualizarbtn{
+.alterarbtn,
+.visualizarbtn {
   background-color: #5d1010;
   color: white;
   width: 10vh;
@@ -244,7 +252,8 @@ tbody {
   cursor: pointer;
 }
 
-.alterarbtn:hover, .visualizarbtn:hover{
+.alterarbtn:hover,
+.visualizarbtn:hover {
   background-color: #811818;
 }
 
@@ -260,7 +269,7 @@ tbody {
   margin-right: 1vh;
   background-color: white;
   display: inline-block;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .checkbtn:checked {
@@ -275,7 +284,7 @@ tbody {
   height: 100%;
   border-radius: 5px;
   display: block;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .checkbtn:checked::after {
@@ -505,7 +514,8 @@ tbody {
   display: none;
 }
 
-.info-right h2, .info-right p {
+.info-right h2,
+.info-right p {
   margin-bottom: 10px;
 }
 

@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const Iqtd = document.querySelector(".qntd");
   const Idescricao = document.querySelector(".descricao");
   const Iavaliacao = document.querySelector(".avaliacao");
+  const BtnCancel = document.getElementById("cancel");
   let stats = true;
   const alterProd = JSON.parse(localStorage.getItem("alterProd"));
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -120,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((res) => {
           alert("Produto alterado com sucesso!");
+          localStorage.removeItem("alterProd");
           window.location.href = "../pages/productTable.html";
         })
         .catch((err) => {
@@ -135,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
       registerProduct();
     }
   });
-
   function limpar() {
     Inome.value = "";
     Ivalor.value = "";
@@ -143,6 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
     Idescricao.value = "";
     Iavaliacao.value = "";
   }
+  BtnCancel.addEventListener("click", () => {
+    limpar();
+    localStorage.removeItem("alterProd");
+    window.location.href = "../pages/productTable.html";
+  });
 });
 
 // function showFileName() {

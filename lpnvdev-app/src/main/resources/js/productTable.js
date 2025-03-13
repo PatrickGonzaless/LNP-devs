@@ -197,9 +197,14 @@ function openModal(produto) {
   document.getElementById("modal").style.display = "block";
   document.getElementById("modal-title").innerText = produto.nome || 'Nome não disponível';
   document.getElementById("modal-description").innerText = produto.descricao || 'Sem descrição disponível';
-  document.getElementById("modal-price").innerText = produto.valor || 'Preço não disponível';
+
+  let precoFormatado = produto.valor ? produto.valor.toFixed(2) : 'Preço não disponível';
+  document.getElementById("modal-price").innerText = precoFormatado || 'Preço não disponível';
+
   document.getElementById("modal-quantity").innerText = produto.qtd || 'Quantidade não disponível';
-  document.getElementById("modal-rating").innerText = produto.avaliacao || 'Avaliação não disponível';
+
+  let avaliacaoFormatada = produto.avaliacao ? produto.avaliacao.toFixed(1) : 'Preço não disponível';
+  document.getElementById("modal-rating").innerText = avaliacaoFormatada || 'Avaliação não disponível';
 
 
   // const imagePlaceholder = document.querySelector(".image-placeholder");

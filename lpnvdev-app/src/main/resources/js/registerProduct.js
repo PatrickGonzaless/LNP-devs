@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const Idescricao = document.querySelector(".descricao");
   const Iavaliacao = document.querySelector(".avaliacao");
   const BtnCancel = document.getElementById("cancel");
+  const input = document.getElementById("imagem");
+  let formData = new FormData();
+  let numImage = 0;
   let stats = true;
   const alterProd = JSON.parse(localStorage.getItem("alterProd"));
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -86,6 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((res) => {
           alert("Produto cadastrado com sucesso!");
+          sendFile(res);
+          numImage = 0;
         })
         .catch((err) => {
           console.error("Erro ao cadastrar produto!", err);
@@ -149,6 +154,51 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("alterProd");
     window.location.href = "../pages/productTable.html";
   });
+
+  input.addEventListener("change", () => {
+    let lista = document.getElementById("listaCarrossel");
+    let images = document.getElementById("imagesCarrosel");
+    for (let i = 0; i < input.files.length; i++) {
+      formData.append("arquivos", input.files[i]); // 'arquivos' é o nome que o backend vai esperar
+
+      // Indicadores
+      const li = `<li data-target="#carouselExampleIndicators" data-slide-to="${numImage}" ${
+        numImage === 0 ? 'class="active"' : ""
+      }></li>`;
+      lista.insertAdjacentHTML("beforeend", li);
+
+      // Imagens
+      const item = `
+      <div class="carousel-item ${numImage === 0 ? "active" : ""}">
+        <img class="d-block w-100" src="${URL.createObjectURL(
+          input.files[i]
+        )}" alt="Slide ${numImage + 1}" />
+      </div>`;
+      images.insertAdjacentHTML("beforeend", item);
+      numImage++;
+    }
+  });
+
+  function sendFile(res) {
+    formData.append("arquivos", res);
+    fetch("http://localhost:8080/productImg", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Deu ruim na requisição");
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Sucesso:", data);
+        alert("Imagem enviada com sucesso, mano!");
+        input.value = ""; // Limpa o input pra próxima imagem
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        alert("Deu erro ao enviar a imagem.");
+      });
+  }
 });
 
 // function showFileName() {

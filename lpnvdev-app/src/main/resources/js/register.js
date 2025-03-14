@@ -178,6 +178,7 @@ function register() {
       })
       .then((data) => {
         alert("Usuário cadastrado com sucesso!", data);
+        window.location.href = "../pages/index.html";
       })
       .catch((err) => {
         console.error("Erro ao cadastrar usuário!", err);

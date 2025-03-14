@@ -145,8 +145,8 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom: 10px; 
-  left: 50vh; /* Posicionando os botões no canto inferior direito */
+  bottom: 17vh; 
+  left: 50vh; 
   display: flex;
   gap: 10px;
 }
@@ -156,10 +156,10 @@ input::placeholder {
   border: 1px solid black;
   color: black;
   padding: 0;
-  width: 210px; /* Largura igual ao botão de registro */
-  height: 50px; /* Altura igual ao botão de registro */
+  width: 210px; 
+  height: 50px; 
   font-size: 14px;
-  line-height: 40px; /* Alinha o texto no centro verticalmente */
+  line-height: 40px; 
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   cursor: pointer;
 }

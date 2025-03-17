@@ -89,7 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((res) => {
           alert("Produto cadastrado com sucesso!");
-          sendFile(res);
+          createDirectory(res);
+          sendFile();
           numImage = 0;
         })
         .catch((err) => {
@@ -179,8 +180,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  function sendFile(res) {
-    formData.append("arquivos", res);
+  function createDirectory(res) {
+    fetch("http://localhost:8080/productImg/directory", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: res.id,
+        nome: res.nome,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok)
+          throw new Error("Deu ruim na requisição do diretorio");
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Sucesso:", data);
+        alert("Diretorio criado com suscesso");
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        alert("Erro ao criar Diretorio");
+      });
+  }
+
+  function sendFile() {
     fetch("http://localhost:8080/productImg", {
       method: "POST",
       body: formData,

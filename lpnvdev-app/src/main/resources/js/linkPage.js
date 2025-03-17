@@ -11,4 +11,7 @@ window.onload = function () {
   if (loggedInUser.grupo === "Adm" || loggedInUser.grupo === "Administrador") {
     document.getElementById("pedido").style.display = "none";
   }
+  if (loggedInUser.grupo === "Estoquista") {
+    document.getElementById("usuario").style.display = "none";
+  }
 };

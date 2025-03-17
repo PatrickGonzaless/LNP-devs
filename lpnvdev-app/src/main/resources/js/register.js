@@ -13,7 +13,7 @@ if (userToAlter !== null) {
   Iusername.value = userToAlter.username;
   Icpf.value = userToAlter.cpf;
   Iemail.value = userToAlter.email;
-  Sgrupo.value = userToAlter.grupo;
+  Sgrupo.selectedIndex = userToAlter.grupo == "Administrador" ? 1 : 2;
   Isenha.value = "";
   Isenha.placeholder = "Nova senha(apenas caso queira)";
   Iconfpassword.value = "";

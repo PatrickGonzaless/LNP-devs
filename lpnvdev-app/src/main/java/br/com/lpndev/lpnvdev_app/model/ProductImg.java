@@ -27,6 +27,16 @@ public class ProductImg {
     @JoinColumn(name = "produto_id", nullable = false)
     private Product produto;
 
+    public ProductImg() {
+    }
+
+    public ProductImg(String nome, String linkimg, boolean padrao, Product produto) {
+        this.nome = nome;
+        this.linkimg = linkimg;
+        this.padrao = padrao;
+        this.produto = produto;
+    }
+
     public Integer getIdImg() {
         return idImg;
     }

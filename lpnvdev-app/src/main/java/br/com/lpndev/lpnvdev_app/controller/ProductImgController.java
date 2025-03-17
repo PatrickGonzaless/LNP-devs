@@ -1,7 +1,10 @@
 package br.com.lpndev.lpnvdev_app.controller;
 
+import br.com.lpndev.lpnvdev_app.model.Directory;
+import br.com.lpndev.lpnvdev_app.model.Product;
 import br.com.lpndev.lpnvdev_app.model.ProductImg;
 import br.com.lpndev.lpnvdev_app.service.ProductImgService;
+import br.com.lpndev.lpnvdev_app.service.ProductService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +26,10 @@ import java.nio.file.Path;
 public class ProductImgController {
 
     private final ProductImgService productImgService;
-    private static final String UPLOAD_DIR = "../../resources/img/uploads/";
+    private ProductService productService;
+    private String UPLOAD_DIR = "../../resources/img/uploads/";
+    private String caminho;
+    private int id;
 
     public ProductImgController(ProductImgService productImgService, Builder webClientBuilder) {
         this.productImgService = productImgService;
@@ -37,21 +43,23 @@ public class ProductImgController {
     @PostMapping
     public ResponseEntity<String> uploadArquivos(@RequestParam("arquivos") MultipartFile[] arquivos) {
         try {
-            // Cria o diretório se não existir
-            File directory = new File(UPLOAD_DIR);
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
-
             List<String> caminhos = new ArrayList<>();
 
             // Salva cada arquivo
             for (MultipartFile arquivo : arquivos) {
                 if (!arquivo.isEmpty()) {
-                    String fileName = System.currentTimeMillis() + "-" + arquivo.getOriginalFilename();
-                    Path filePath = Paths.get(UPLOAD_DIR + fileName);
+                    String fileName = arquivo.getOriginalFilename();
+                    Path filePath = Paths.get(caminho + fileName);
                     Files.write(filePath, arquivo.getBytes());
                     caminhos.add(filePath.toString());
+                    List<Product> prod = productService.findAll();
+                    ProductImg img = null;
+                    for (Product product : prod) {
+                        if (product.getId() == id) {
+                            img = new ProductImg(fileName, filePath.toString(), false, product);
+                        }
+                    }
+                    productImgService.saveProductImg(img);
                 }
             }
 
@@ -63,6 +71,25 @@ public class ProductImgController {
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Erro ao salvar os arquivos: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/directory")
+    public ResponseEntity<String> criaDiretorio(@RequestBody Directory prod) {
+        caminho = UPLOAD_DIR + prod.getNome();
+        id = prod.getId();
+        try {
+            // Cria o diretório se não existir
+            File directory = new File(caminho);
+            if (!directory.exists()) {
+                directory.mkdirs(); // Cria o diretório e subdiretórios se necessário
+                return ResponseEntity.ok("Diretório criado: " + caminho);
+            } else {
+                return ResponseEntity.ok("Diretório já existe: " + caminho);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Erro ao criar diretório: " + e.getMessage());
         }
     }
 

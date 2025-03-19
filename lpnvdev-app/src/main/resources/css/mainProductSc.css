@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  @font-face {
+    font-family: "Inter";
+    src: url("../font/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    background-color: #5d1010;
+    font-family: "Inter", sans-serif;
+  }
+  
+  header {
+    background-color: #985d5d;
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5vh;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+    height: 15vh;
+}
+  
+  .logo h1 {
+    font-size: 35px;
+    font-family: "Inter", sans-serif;
+    color: white;
+  }
+  
+  .cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 2vh; 
+}
+
+.cart img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+  .userid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: auto;
+    width: 50%;
+    height: 15vh;
+  }
+  
+  .userid_space {
+    display: flex;
+    width: 25vh;
+    height: 8vh;
+    margin-left: auto;
+    margin-right: 10vh;
+    border-radius: 13px;
+  }
+
+  .user img{
+    width: 4.5vh;
+    height: 4.5vh;
+    align-items: center;
+    margin-right: 2vh;
+  }
+  
+  .user {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sigin{
+    width: 60vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    align-items: left;
+    justify-content: center;
+    line-height: 3.5vh;
+  }
+
+  .sigin a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .sigin a:hover{
+    color: #5d1010;
+  } 
+
+  .sgsu span{
+    cursor:default;
+    font-weight: 500;
+    color: white;
+  }
+
+  #mainProducts{
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+
+  #mainProducts h1 {
+    margin: auto;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    font-size: 35px;
+  }
+
+  .cardEx{
+    width: 45vh;
+    height: 65vh;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 4vh;
+  }
+
+  .img_space{
+    position: relative;
+    width: 37vh;
+    height: 24vh;
+    border: 1px dotted black;
+  }
+
+  #cardContainer{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .productName, .productPrice {
+    display: flex;
+    justify-content: left; 
+    align-items: center; 
+    width: 100%; 
+    padding-left: 2vh; 
+    font-size: 22px;
+    margin-left: 4vh;
+}
+
+.productName{
+    margin-top:3vh ;
+}
+
+.productPrice{
+    margin-top: 7vh;
+}
+
+.btnCont {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    margin-top: auto; 
+    padding-bottom: 2vh; 
+}
+
+.btnCont button {
+    width: 70%;
+    background-color: #5D1010;
+    color: white;
+    border: 3px solid black;
+    border-radius: 10px; 
+    padding: 10px; 
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btnCont button:hover {
+    background-color: #842020;
+}

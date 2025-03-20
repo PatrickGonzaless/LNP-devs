@@ -132,13 +132,14 @@
 
   .cardEx{
     width: 45vh;
-    height: 65vh;
+    height: 60vh;
     background-color: aliceblue;
     display: flex;
     flex-direction: column; 
     align-items: center;
     justify-content: flex-start;
     padding-top: 4vh;
+    margin-bottom: 2vh;
   }
 
   .img_space{
@@ -148,13 +149,14 @@
     border: 1px dotted black;
   }
 
-  #cardContainer{
+  #cardContainer {
     width: 80%;
     margin: auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    gap: 2vh; 
+}
 
   .productName, .productPrice {
     display: flex;
@@ -162,7 +164,7 @@
     align-items: center; 
     width: 100%; 
     padding-left: 2vh; 
-    font-size: 22px;
+    font-size: 20px;
     margin-left: 4vh;
 }
 
@@ -196,4 +198,16 @@
 
 .btnCont button:hover {
     background-color: #842020;
+}
+
+@media (max-width: 900px) {
+  .cardExCont {
+      width: calc(50% - 2vh);
+  }
+}
+
+@media (max-width: 600px) {
+  .cardExCont {
+      width: 100%; 
+  }
 }

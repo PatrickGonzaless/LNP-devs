@@ -517,6 +517,7 @@ p {
 .info-right h2,
 .info-right p {
   margin-bottom: 10px;
+  width: 22vh;
 }
 
 .info-right button {

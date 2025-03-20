@@ -198,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         input.value = ""; // Limpa o input pra próxima imagem
       })
       .catch((error) => {
+        //mesmo funcionando o erro cai
         console.error("Erro:", error);
         alert("Deu erro ao enviar a imagem.");
       });

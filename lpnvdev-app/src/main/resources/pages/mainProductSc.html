@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela Principal - Produtos</title>
     <link rel="stylesheet" href="../css/mainProductSc.css" />
 </head>
-
 <body>
     <header>
         <div class="logo">
@@ -20,11 +18,15 @@
                     <img src="../img/login/username.png" />
                     <h4 id="perfil"></h4>
                 </div>
-                <div class="sigin">
-                    <a class="sgsu" href="./index.html">ENTRE <span> ou </span></a><a>CADASTRA-SE</a>
+                <div class="sigin" id="userLogin">
+                    <a class="sgsu" href="./index.html">ENTRE <span> ou </span></a><a>CADASTRE-SE</a>
+                </div>
+                <div class="leave" id="userLogout" style="display: none;">
+                    <a href="./index.html">Sair</a>
                 </div>
             </div>
         </div>
+        
         <div class="cart">
             <img src="../img/mainProductSc/cart.png" alt="Carrinho de compras">
         </div>
@@ -38,5 +40,4 @@
 
 </body>
 <script src="../js/mainProductSc.js"></script>
-
 </html>

@@ -1,18 +1,38 @@
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 function verifUser() {
-    if (
-        !(loggedInUser.grupo === "Administrador") &&
-        !(loggedInUser.grupo === "Adm") &&
-        !(loggedInUser.grupo === "Estoquista") &&
-        !(loggedInUser.grupo === "none")
-    ) {
-        alert("Você não tem permissão para visualizar esta página.");
-        window.location.href = "/pagina-nao-autorizada.html";
-        return;
+
+    if (loggedInUser) {
+        const perfil = document.getElementById("perfil");
+        const userLogin = document.getElementById("userLogin");
+        const userLogout = document.getElementById("userLogout");
+
+        if (perfil) {
+            perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
+        }
+
+        if (userLogin) userLogin.style.display = "none";
+        if (userLogout) userLogout.style.display = "block";
+
+        const logoutButton = document.getElementById("userLogout");
+        if (logoutButton) {
+            logoutButton.addEventListener("click", logout);
+        }
+    } else {
+        const userLogin = document.getElementById("userLogin");
+        const userLogout = document.getElementById("userLogout");
+
+        if (userLogin) userLogin.style.display = "block";
+        if (userLogout) userLogout.style.display = "none";
     }
 
     listProduct();
+}
+
+function logout() {
+    localStorage.removeItem("loggedInUser");
+
+    window.location.href = "./index.html";
 }
 
 function listProduct() {
@@ -75,3 +95,4 @@ function listarProdutos(produtos) {
 document.addEventListener("DOMContentLoaded", () => {
     verifUser();
 });
+ 

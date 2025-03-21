@@ -82,7 +82,7 @@ function listarProdutos(produtos) {
                     <p>Valor do produto: R$ <span class="price">${produto.valor ? produto.valor.toFixed(2) : "0.00"}</span></p>
                 </div>
                 <div class="btnCont">
-                    <button>Detalhes</button>
+                    <a href="../pages/productDetails.html"><button>Detalhes</button></a>
                 </div>
             </div>
         </div>

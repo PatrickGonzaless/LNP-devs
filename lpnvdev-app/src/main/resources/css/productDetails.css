@@ -124,7 +124,6 @@ header {
 
 #ProductsDetailstitle {
     display: flex;
-    background-color: darkblue;
     align-items: center;
     color: white;
 }
@@ -132,49 +131,143 @@ header {
 #ProductsDetailstitle h1 {
     margin: auto;
     margin-top: 3vh;
-    margin-bottom: 3vh;
+    margin-bottom: 1vh;
     font-size: 35px;
 }
 
-.container {
-    width: 195vh;
-    height: 74vh;
-    margin: auto;
-    background-color: rebeccapurple;
+#containerSides {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.leftArea{
     display: flex;
     flex-direction: column;
-    /* Mantém a direção dos elementos em coluna */
-    padding: 2vh;
+    width: 80vh;
+    height: 50vh;
 }
 
-.prodName {
-    font-size: 24px;
-    color: white;
-    margin-bottom: 2vh;
-}
-
-.img_space {
-
-    width: 70vh;
-    height: 40vh;
-    background-color: lightgray;
-    background-color: lightgray;
+.rightArea{
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    width: 80vh;
+    height: 50vh;
 }
 
-.valuearea {
-    width: 30%;
-    height: 10vh;
-    background-color: red;
-    font-size: 25px;
+.imgArea {
+    display: flex;
+    width: 60vh;
+    height: 40vh;
+    margin-left: 12vh;
+    border: 1px solid black;
+    position: relative; 
+}
+
+.rateArea {
+    width: 8vh; 
+    height: 3vh; 
+    color: black;
+    background-color: white;
+    border:1px solid black;
+    display: flex;
+    align-items: flex-start;
+    position: absolute; 
+    top: 0;
+    right: 0; 
+}
+
+#productName{
+    width: 50vh;
+    font-size: 30px;
+    margin-top: 2vh;
+    margin-left: 12vh;
     color: white;
+}
+
+.priceAndButton {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    width: 100%;
+}
+
+.priceArea {
+    display: flex;
+    justify-content: center;
+    width: 50vh;
+    justify-content: flex-start;
+    font-size: 30px;
+    height: 7vh;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5vh; 
+}
+
+.priceArea h3{
+    line-height: 7vh;  
+}
+
+.btnContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
+    width: 50vh;
 }
 
-.valuearea p {
-    margin: 0;
+#buyButton{
+    width: 50vh;
+    height: 5vh;
+    background-color: white;
+    color: #5d1010;
+    font-size: 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+#buyButton:hover{
+    background-color: #b1b1b1;
+}
+
+#containerBottom {
+    width: 160vh;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background-color: #8D5757; 
+}
+
+.descriptionTitleArea{
+    width: 160vh;
+    height: 6vh;
+    display: flex;
+    align-items: center; 
+    padding-left: 3vh;
+    padding-top: 1vh;
+    color: white;
+}
+
+.descriptionArea{
+    width: 160vh;
+    height: 24vh;
+    display: flex;
+    align-items: center;
+    padding-left: 3vh;
+    padding-top: 1vh;
+}
+
+#carouselExampleIndicators {
+    width: 100%;
+    height: 100%; 
+}
+
+.carousel-inner .carousel-item img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
 }

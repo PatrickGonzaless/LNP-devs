@@ -237,13 +237,7 @@ function openModal(produto) {
   document.getElementById("modal-rating").innerText =
     avaliacaoFormatada || "Avaliação não disponível";
 
-  // const imagePlaceholder = document.querySelector(".image-placeholder");
-  // if (produto.imagem) {
-  //   imagePlaceholder.style.backgroundImage = `url(${produto.imagem})`;
-  //   imagePlaceholder.style.backgroundSize = 'cover';
-  // } else {
-  //   imagePlaceholder.style.backgroundImage = 'none';
-  // }
+
 }
 
 function closeModal() {

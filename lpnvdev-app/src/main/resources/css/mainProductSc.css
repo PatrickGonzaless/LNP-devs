@@ -192,7 +192,7 @@ header {
 }
 
 .btnCont button {
-  width: 70%;
+  width: 100%;
   background-color: #5d1010;
   color: white;
   border: 3px solid black;

@@ -43,7 +43,6 @@ public class ProductImgController {
         try {
             produto = mapper.readValue(produtoJson, Product.class);
         } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -54,10 +53,8 @@ public class ProductImgController {
             if (!directory.exists()) {
                 directory.mkdirs(); // Cria o diretório e subdiretórios se necessário
                 System.out.println("Diretório criado: " + caminho);
-                // return ResponseEntity.ok("Diretório criado: " + caminho);
             } else {
                 System.out.println("Diretório já existe: " + caminho);
-                // return ResponseEntity.ok("Diretório já existe: " + caminho);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,13 +63,15 @@ public class ProductImgController {
 
         try {
             // Salva cada arquivo
+            int i = 1;
             for (MultipartFile arquivo : arquivos) {
                 if (!arquivo.isEmpty()) {
-                    Path filePath = Paths.get(caminho + produto.getNome() + "_" + arquivo.getOriginalFilename());
+                    Path filePath = Paths.get(caminho + produto.getNome() + "_" + i + ".png");
                     Files.write(filePath, arquivo.getBytes());
                     ProductImg img = new ProductImg(arquivo.getOriginalFilename(), filePath.toString(), false,
                             produto);
                     productImgService.saveProductImg(img);
+                    i++;
                 }
             }
 
@@ -80,8 +79,6 @@ public class ProductImgController {
                 return ResponseEntity.status(400).body("Nenhum arquivo válido enviado, mano!");
             }
 
-            // return ResponseEntity.ok("Arquivos salvos com sucesso: " + String.join(", ",
-            // caminhos));
             System.out.println("Arquivos salvos com sucesso:");
             return null;
         } catch (IOException e) {

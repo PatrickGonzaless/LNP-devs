@@ -89,9 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((res) => {
           alert("Produto cadastrado com sucesso!");
-          console.log(res.id);
-          console.log(res.nome);
-          console.log(typeof res);
           sendFile(res);
           numImage = 0;
         })
@@ -190,23 +187,15 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((response) => {
         if (!response.ok) throw new Error("Deu ruim na requisição");
-        return response.json();
+        return response;
       })
       .then((data) => {
-        console.log("Sucesso:", data);
-        alert("Imagem enviada com sucesso, mano!");
         input.value = ""; // Limpa o input pra próxima imagem
+        window.location.href = "../pages/productTable.html";
       })
       .catch((error) => {
-        //mesmo funcionando o erro cai
         console.error("Erro:", error);
         alert("Deu erro ao enviar a imagem.");
       });
   }
 });
-
-// function showFileName() {
-//   Ilinkimage = document.getElementById("imagem").files;
-//   formData.append("file", Ilinkimage);
-//   //let file = Ilinkimage[0].name;
-// }

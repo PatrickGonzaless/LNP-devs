@@ -66,7 +66,7 @@ header {
 
 .userid_space {
     display: flex;
-    width: 25vh;
+    width: 38vh;
     height: 8vh;
     margin-left: auto;
     margin-right: 10vh;
@@ -116,6 +116,11 @@ header {
     cursor: default;
     font-weight: 500;
     color: white;
+}
+
+h4{
+    width: 20vh;
+    font-size: 17px;
 }
 
 .leave {
@@ -179,6 +184,10 @@ header {
     right: 0; 
 }
 
+.rateArea p{
+    margin: auto;
+}
+
 #productName{
     width: 50vh;
     font-size: 30px;
@@ -235,7 +244,7 @@ header {
 
 #containerBottom {
     width: 160vh;
-    height: 30vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -254,10 +263,11 @@ header {
 
 .descriptionArea{
     width: 160vh;
-    height: 24vh;
+    height: 10vh;
     display: flex;
     align-items: center;
     padding-left: 3vh;
+    font-size: 20px;
     padding-top: 1vh;
 }
 

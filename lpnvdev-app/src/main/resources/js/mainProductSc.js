@@ -82,7 +82,7 @@ function listarProdutos(produtos) {
                     <p>Valor do produto: R$ <span class="price">${produto.valor ? produto.valor.toFixed(2) : "0.00"}</span></p>
                 </div>
                 <div class="btnCont">
-                    <a href="../pages/productDetails.html"><button>Detalhes</button></a>
+                    <button onclick="goDetails(${produto.id})">Detalhes</button>
                 </div>
             </div>
         </div>
@@ -90,6 +90,12 @@ function listarProdutos(produtos) {
 
         cardContainer.insertAdjacentHTML("beforeend", card);
     });
+}
+
+function goDetails(id){
+    localStorage.setItem("productId", id);
+    window.location.href = `./productDetails.html`;
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {

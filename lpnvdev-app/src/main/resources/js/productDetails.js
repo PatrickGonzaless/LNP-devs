@@ -1,3 +1,4 @@
+let id = localStorage.getItem("productId");
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 function verifUser() {
@@ -51,8 +52,9 @@ function listProduct() {
             }
             return res.json();
         })
-        .then((data) => {
-            fillInformation(data); 
+        .then((produto) => {
+            console.log(produto);
+            fillInformation(produto); 
         })
         .catch((err) => {
             alert("Erro ao buscar produtos: " + err.message);
@@ -60,24 +62,30 @@ function listProduct() {
 }
 
 function fillInformation(produto) {
-    
-    document.getElementById("productName").innerText =
-      produto.nome || "Nome não disponível";
-    document.getElementById("descriptionArea").innerText =
-      produto.descricao || "Sem descrição disponível";
-  
-    let precoFormatado = produto.valor
-      ? produto.valor.toFixed(2)
-      : "Preço não disponível";
-    document.getElementById("priceArea").innerText =
-      precoFormatado || "Preço não disponível";
-  
-    let avaliacaoFormatada = produto.avaliacao
-      ? produto.avaliacao.toFixed(1)
-      : "Preço não disponível";
-    document.getElementById("rateArea").innerText =
-      avaliacaoFormatada || "Avaliação não disponível";
-  
+    produto.forEach(element => {
+        console.log(element.nome);
+        console.log(id);
+        if(element.id == id){
+            console.log(element);
+            document.getElementById("productName").innerText =
+            element.nome || "Nome não disponível";
+          document.getElementById("descriptionArea").innerText =
+          element.descricao || "Sem descrição disponível";
+        
+          let precoFormatado = element.valor
+            ? element.valor.toFixed(2)
+            : "Preço não disponível";
+          document.getElementById("priceArea").innerText =
+            precoFormatado || "Preço não disponível";
+        
+          let avaliacaoFormatada = element.avaliacao
+            ? element.avaliacao.toFixed(1)
+            : "Preço não disponível";
+          document.getElementById("rateArea").innerText =
+            avaliacaoFormatada || "Avaliação não disponível";
+        }     
+    });
+   
   }
 
 document.addEventListener("DOMContentLoaded", () => {

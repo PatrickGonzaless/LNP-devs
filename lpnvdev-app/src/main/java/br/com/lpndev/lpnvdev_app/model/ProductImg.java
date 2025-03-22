@@ -37,6 +37,14 @@ public class ProductImg {
         this.produto = produto;
     }
 
+    public ProductImg(int id, String nome, String linkimg, boolean padrao, Product produto) {
+        this.idImg = id;
+        this.nome = nome;
+        this.linkimg = linkimg;
+        this.padrao = padrao;
+        this.produto = produto;
+    }
+
     public Integer getIdImg() {
         return idImg;
     }

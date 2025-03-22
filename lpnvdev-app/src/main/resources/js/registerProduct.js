@@ -5,8 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const Iqtd = document.querySelector(".qntd");
   const Idescricao = document.querySelector(".descricao");
   const Iavaliacao = document.querySelector(".avaliacao");
+  const BtnAddImg = document.getElementById("btn-container");
   const BtnCancel = document.getElementById("cancel");
   const input = document.getElementById("imagem");
+  let alterImg;
+  let imgs = new Array();
   const select = document.getElementById("PrincipalImage");
   select.parentNode.style.display = "none";
   select.style.display = "none";
@@ -22,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Iqtd.value = alterProd.qtd;
     Idescricao.value = alterProd.descricao;
     Iavaliacao.value = alterProd.avaliacao;
+    addImagens();
     if (
       !(loggedInUser.grupo === "Administrador") &&
       !(loggedInUser.grupo === "Adm")
@@ -34,8 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
       Idescricao.style.backgroundColor = "gray";
       Iavaliacao.disabled = true;
       Iavaliacao.style.backgroundColor = "gray";
+      BtnAddImg.style.display = "none";
     }
   }
+
   function validateForm() {
     if (Inome.value.trim() === "") {
       alert("Nome do produto é obrigatório.");
@@ -127,9 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
           return res.json();
         })
         .then((res) => {
+          numImage = 0;
           alert("Produto alterado com sucesso!");
-          localStorage.removeItem("alterProd");
-          window.location.href = "../pages/productTable.html";
+          alterFile(res);
         })
         .catch((err) => {
           console.error("Erro ao alterar produto!", err);
@@ -164,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
     select.style.display = "block";
     for (let i = 0; i < input.files.length; i++) {
       formData.append("arquivos", input.files[i]); // 'arquivos' é o nome que o backend vai esperar
-
       // Indicadores
       const li = `<li data-target="#carouselExampleIndicators" data-slide-to="${numImage}" ${
         numImage === 0 ? 'class="active"' : ""
@@ -188,12 +193,76 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  function addImagens() {
+    let lista = document.getElementById("listaCarrossel");
+    let images = document.getElementById("imagesCarrosel");
+    if (
+      loggedInUser.grupo === "Administrador" ||
+      loggedInUser.grupo === "Adm"
+    ) {
+      select.parentNode.style.display = "block";
+      select.style.display = "block";
+    }
+    for (let i = 0; i < alterProd.imagens.length; i++) {
+      imgs.push(alterProd.imagens[i]);
+
+      // Indicadores
+      const li = `<li data-target="#carouselExampleIndicators" data-slide-to="${numImage}" ${
+        numImage === 0 ? 'class="active"' : ""
+      }></li>`;
+      lista.insertAdjacentHTML("beforeend", li);
+
+      // Imagens
+      const item = `
+      <div class="carousel-item ${alterProd.imagens[i].padrao ? "active" : ""}">
+        <img class="d-block w-100" src="../../../../../${
+          alterProd.imagens[i].linkimg
+        }" alt="Slide ${numImage + 1}" />
+      </div>`;
+      images.insertAdjacentHTML("afterbegin", item);
+
+      select.insertAdjacentHTML(
+        "beforeend",
+        `<option value="${numImage}">${alterProd.imagens[i].nome}</option>`
+      );
+      numImage++;
+    }
+  }
   function sendFile(res) {
     formData.append("produto", JSON.stringify(res));
     formData.append("principal", select.value);
     fetch("http://localhost:8080/productImg", {
       method: "POST",
       body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Deu ruim na requisição");
+        return response;
+      })
+      .then((data) => {
+        input.value = ""; // Limpa o input pra próxima imagem
+        window.location.href = "../pages/productTable.html";
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        alert("Deu erro ao enviar a imagem.");
+      });
+  }
+
+  function alterFile(res) {
+    //formData.append("produto", JSON.stringify(res));
+    //formData.append("principal", select.value);
+    alterImg = {
+      produto: alterProd,
+      principal: select.value,
+      arquivos: imgs,
+    };
+    fetch("http://localhost:8080/api/productImg", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(alterImg),
     })
       .then((response) => {
         if (!response.ok) throw new Error("Deu ruim na requisição");

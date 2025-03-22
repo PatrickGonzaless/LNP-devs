@@ -1,5 +1,6 @@
 package br.com.lpndev.lpnvdev_app.controller;
 
+import br.com.lpndev.lpnvdev_app.model.AlterImgDto;
 import br.com.lpndev.lpnvdev_app.model.Product;
 import br.com.lpndev.lpnvdev_app.model.ProductImg;
 import br.com.lpndev.lpnvdev_app.service.ProductImgService;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.nio.file.Path;
@@ -38,6 +40,11 @@ public class ProductImgController {
     public ResponseEntity<String> uploadArquivos(@RequestParam("produto") String produtoJson,
             @RequestParam("arquivos") MultipartFile[] arquivos, @RequestParam("principal") int principal) {
 
+        System.out.println("Produto: " + produtoJson);
+        System.out.println("Principal: " + principal);
+        for (MultipartFile arquivo : arquivos) {
+            System.out.println("Arquivo: " + arquivo.getOriginalFilename());
+        }
         ObjectMapper mapper = new ObjectMapper();
         Product produto = null;
         try {
@@ -89,8 +96,50 @@ public class ProductImgController {
     }
 
     @PutMapping
-    public ProductImg editProductImg(@RequestBody ProductImg productImg) {
-        return productImgService.alterProductImg(productImg);
+    public ResponseEntity<String> editProductImg(@RequestBody AlterImgDto alterImgDto) {
+        Product produto = alterImgDto.getProduct();
+        int principal = alterImgDto.getPrincipal();
+        ArrayList<ProductImg> arquivos = alterImgDto.getArquivos();
+
+        String caminho = UPLOAD_DIR + produto.getNome() + "/";
+        try {
+            // Cria o diretório se não existir
+            File directory = new File(caminho);
+            if (!directory.exists()) {
+                directory.mkdirs(); // Cria o diretório e subdiretórios se necessário
+                System.out.println("Diretório criado: " + caminho);
+            } else {
+                System.out.println("Diretório já existe: " + caminho);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Erro ao criar diretório: " + e.getMessage());
+        }
+
+        try {
+            // Salva cada arquivo
+            int i = 1;
+            for (ProductImg arquivo : arquivos) {
+                if (arquivo != null) {
+                    Path fileNewPath = Paths.get(caminho + produto.getNome() + "_" + i + ".png");
+                    Path fileOldPath = Paths.get(arquivo.getLinkimg());
+                    Files.move(fileOldPath, fileNewPath);
+                    ProductImg img = new ProductImg(produto.getImagens().get(i - 1).getIdImg(),
+                            produto.getNome() + "_" + i,
+                            fileNewPath.toString(),
+                            ((i - 1) == principal),
+                            produto);
+                    productImgService.alterProductImg(img);
+                    i++;
+                }
+            }
+
+            System.out.println("Arquivos salvos com sucesso:");
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Erro ao salvar os arquivos: " + e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

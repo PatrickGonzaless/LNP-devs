@@ -216,6 +216,7 @@ searchInput.addEventListener("input", (event) => {
 });
 
 function openModal(produto) {
+  console.log(produto.imagens);
   document.getElementById("modal").style.display = "block";
   document.getElementById("modal-title").innerText =
     produto.nome || "Nome não disponível";
@@ -236,6 +237,31 @@ function openModal(produto) {
     : "Preço não disponível";
   document.getElementById("modal-rating").innerText =
     avaliacaoFormatada || "Avaliação não disponível";
+
+  console.log("teste1");
+  let lista = document.getElementById("listaCarrossel");
+  let images = document.getElementById("imagesCarrosel");
+  let i = 0;
+  console.log("teste2");
+
+  produto.imagens.forEach((imagem) => {
+    // Indicadores
+    const li = `<li data-target="#carouselExampleIndicators" data-slide-to="${i}" ${
+      i === 0 ? 'class="active"' : ""
+    }></li>`;
+    lista.insertAdjacentHTML("beforeend", li);
+    console.log(typeof imagem.linkimg);
+
+    // Imagens
+    const item = `
+    <div class="carousel-item ${imagem.padrao ? "active" : ""}">
+      <img class="d-block w-100" src="../../../../../${
+        imagem.linkimg
+      }" alt="Slide ${i + 1}" />
+    </div>`;
+    images.insertAdjacentHTML("beforeend", item);
+    i++;
+  });
 }
 
 function closeModal() {

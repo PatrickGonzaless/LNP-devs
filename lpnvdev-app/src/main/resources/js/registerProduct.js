@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const Iavaliacao = document.querySelector(".avaliacao");
   const BtnCancel = document.getElementById("cancel");
   const input = document.getElementById("imagem");
+  const select = document.getElementById("PrincipalImage");
+  select.parentNode.style.display = "none";
+  select.style.display = "none";
   let formData = new FormData();
   let numImage = 0;
   let stats = true;
@@ -54,11 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Avaliação do produto é obrigatória.");
       return false;
     }
-    // console.log(Ilinkimage);
-    // if (!Ilinkimage) {
-    //   alert("Imagem do produto é obrigatória.");
-    //   return false;
-    // }
+    if (!formData) {
+      alert("Imagem do produto é obrigatória.");
+      return false;
+    }
     return true;
   }
 
@@ -158,6 +160,8 @@ document.addEventListener("DOMContentLoaded", () => {
   input.addEventListener("change", () => {
     let lista = document.getElementById("listaCarrossel");
     let images = document.getElementById("imagesCarrosel");
+    select.parentNode.style.display = "block";
+    select.style.display = "block";
     for (let i = 0; i < input.files.length; i++) {
       formData.append("arquivos", input.files[i]); // 'arquivos' é o nome que o backend vai esperar
 
@@ -175,12 +179,18 @@ document.addEventListener("DOMContentLoaded", () => {
         )}" alt="Slide ${numImage + 1}" />
       </div>`;
       images.insertAdjacentHTML("beforeend", item);
+
+      select.insertAdjacentHTML(
+        "beforeend",
+        `<option value="${numImage}">${input.files[i].name}</option>`
+      );
       numImage++;
     }
   });
 
   function sendFile(res) {
     formData.append("produto", JSON.stringify(res));
+    formData.append("principal", select.value);
     fetch("http://localhost:8080/productImg", {
       method: "POST",
       body: formData,

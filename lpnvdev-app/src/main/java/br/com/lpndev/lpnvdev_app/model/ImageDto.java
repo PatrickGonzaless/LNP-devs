@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImageDto {
     Product product;
     ArrayList<MultipartFile> arquivos = new ArrayList<>();
+    int principal;
 
     public ImageDto() {
     }
@@ -25,5 +26,13 @@ public class ImageDto {
 
     public void setArquivos(ArrayList<MultipartFile> arquivos) {
         this.arquivos = arquivos;
+    }
+
+    public int getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(int principal) {
+        this.principal = principal;
     }
 }

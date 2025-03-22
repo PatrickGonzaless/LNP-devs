@@ -36,7 +36,7 @@ public class ProductImgController {
 
     @PostMapping
     public ResponseEntity<String> uploadArquivos(@RequestParam("produto") String produtoJson,
-            @RequestParam("arquivos") MultipartFile[] arquivos) {
+            @RequestParam("arquivos") MultipartFile[] arquivos, @RequestParam("principal") int principal) {
 
         ObjectMapper mapper = new ObjectMapper();
         Product produto = null;
@@ -68,7 +68,8 @@ public class ProductImgController {
                 if (!arquivo.isEmpty()) {
                     Path filePath = Paths.get(caminho + produto.getNome() + "_" + i + ".png");
                     Files.write(filePath, arquivo.getBytes());
-                    ProductImg img = new ProductImg(arquivo.getOriginalFilename(), filePath.toString(), false,
+                    ProductImg img = new ProductImg(arquivo.getOriginalFilename(), filePath.toString(),
+                            ((i - 1) == principal),
                             produto);
                     productImgService.saveProductImg(img);
                     i++;

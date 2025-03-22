@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Inter';
-  src: url('../font/Inter/static/Inter_18pt-Regular.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("../font/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body {
@@ -28,7 +28,7 @@ body {
   width: 110vh;
   height: 83vh;
   border-radius: 42px 0 42px 42px;
-  background-color: #B18C8C;
+  background-color: #b18c8c;
 }
 
 .content-wrapper {
@@ -103,14 +103,14 @@ textarea {
 textarea::placeholder {
   color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
-  font-family: 'Inter';
+  font-family: "Inter";
   line-height: 8vh;
 }
 
 input::placeholder {
   color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
-  font-family: 'Inter';
+  font-family: "Inter";
 }
 
 .descricao {
@@ -129,7 +129,7 @@ input[type="file"] {
   display: none;
 }
 
-button[type="submit"]{
+button[type="submit"] {
   display: inline-block;
   background-color: white;
   color: black;
@@ -191,4 +191,6 @@ button:hover {
   margin-left: 3vh;
 }
 
-
+/* .carousel-indicators .active {
+  background-color: yellow;
+} */

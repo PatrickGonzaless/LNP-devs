@@ -236,8 +236,6 @@ function openModal(produto) {
     : "Preço não disponível";
   document.getElementById("modal-rating").innerText =
     avaliacaoFormatada || "Avaliação não disponível";
-
-
 }
 
 function closeModal() {

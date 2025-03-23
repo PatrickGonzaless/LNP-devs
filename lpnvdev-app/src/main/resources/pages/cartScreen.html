@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Principal - Produtos</title>
+    <link rel="stylesheet" href="../css/cartScreen.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../img/productTable/logo.png" alt="Logo" />
+            <h1>LnpDevs</h1>
+        </div>
+        <div class="userid">
+            <div class="userid_space">
+                <div class="user">
+                    <img src="../img/login/username.png" />
+                    <h4 id="perfil"></h4>
+                </div>
+                <div class="sigin" id="userLogin">
+                    <a class="sgsu" href="./index.html">ENTRE <span> ou </span></a><a>CADASTRE-SE</a>
+                </div>
+                <div class="leave" id="userLogout" style="display: none;">
+                    <a href="./index.html">Sair</a>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="cartTitle">
+        <img src="../img/cartScreen/cart.png" alt="Carrinho de compras" />
+        <h3>Carrinho de Compras</h3>
+    </div>
+
+    <div id="cartContent">
+        <div class="imgArea"></div>
+        <div class="productNamePrice">
+            <h4 id="prodName"><span>Produto</span></h4>
+            <h4 id="prodPrice">R$ <span>0</span></h4>
+        </div>
+        <div class="quantity">
+            <h4>Quant.</h4>
+            <div class="qntNumber">
+                <p>
+                    <</p><span id="qntNumber"></span>
+                        <p>></p>
+            </div>
+        </div>
+        <div class="removeItembtn">
+            <div class="border">
+                <img src="../img/cartScreen/lixo.png" alt="Remover" />
+                <button id="removeItem">Remover Item</button>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+<script src="../js/cartScreen.js"></script>
+
+</html>

@@ -28,89 +28,26 @@
                 </div>
             </div>
         </div>
-
     </header>
 
     <div class="divider">
-    <div class="cartTitle">
-        <img src="../img/cartScreen/cart.png" alt="Carrinho de compras" />
-        <h3>Carrinho de Compras</h3>
-        <div id="removeAllcontainer" class="removeAllcontainer">
-            <img src="../img/cartScreen/lixo.png" alt="Remover" /><button id="removeAll">Remover todos os itens</button>
-        </div>
-    </div>
-</div>
-
-<div class="cartAndSummary">
-    <div id="cartContent">
-        <div class="imgArea"></div>
-        <div class="productNamePrice">
-            <h4 id="prodName"><span>Produto</span></h4>
-            <h4 id="prodPrice">R$ <span>0</span></h4>
-        </div>
-        <div class="quantity">
-            <h4>Quant.</h4>
-            <div class="qntNumber">
-                <p><</p><span id="qntNumber"></span><p>></p>
-            </div>
-        </div>
-        <div class="removeItembtn">
-            <div class="border">
-                <img src="../img/cartScreen/lixo.png" alt="Remover" />
-                <button id="removeItem">Remover Item</button>
+        <div class="cartTitle">
+            <img src="../img/cartScreen/cart.png" alt="Carrinho de compras" />
+            <h3>Carrinho de Compras</h3>
+            <div id="removeAllcontainer" class="removeAllcontainer">
+                <img src="../img/cartScreen/lixo.png" alt="Remover" /><button id="removeAll">Remover todos os itens</button>
             </div>
         </div>
     </div>
 
-    <div id="summaryCepContainer">
-        <div class="summaryArea">
-            <div class="summaryTitle">
-                <h3>Resumo do Pedido</h3>
-            </div>
-            <div class="summaryContent">
-                <div class="subTotal">
-                    <h4>Valor dos produtos:  R$ <span id="subTotal"></span></h4>
-                </div>
-                <div class="frete">
-                    <h4>Frete:  R$ <span id="frete"></span></h4>
-                </div>
-                <div class="total">
-                    <h4>Total:  R$ <span id="total"></span></h4>
-                </div>
+    <h1 id="noItem"> SEM ITENS NO CARRINHO</h1>
 
-            </div>
-        </div>
-
-        <div class="cepArea">
-            <div class="cepTitle">
-                <h3>CEP</h3>
-            </div>
-            <div class="cepContent">
-                <input type="text" id="cep"/>
-                <button id="cepButton">OK</button>
-                    <div class="frete-options">
-                        <label>
-                          <input type="radio" name="frete" value="15.99">
-                          <span>R$15,99 - SEDEX - 3 dias úteis</span>
-                        </label>
-                      
-                        <label>
-                          <input type="radio" name="frete" value="5.99">
-                          <span>R$5,99 - SENAC - 10 dias úteis</span>
-                        </label>
-                      
-                        <label>
-                          <input type="radio" name="frete" value="56.90">
-                          <span>R$56,90 - FAST - Em até duas horas</span>
-                        </label>
-                      </div>
-            </div>
-        </div>
+        <div id="cartAndSummary" class="cartAndSummary"></div>
+       
     </div>
-</div>
-
 
 </body>
+
 <script src="../js/cartScreen.js"></script>
 
 </html>

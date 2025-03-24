@@ -159,6 +159,7 @@ h4{
     height: 30vh;
     border: 1px solid white;
     margin-left: 3vh;
+    margin-bottom: 3vh;
 }
 
 .imgArea {
@@ -277,17 +278,21 @@ h4{
 
 .cartAndSummary {
     display: flex;
-    gap: 2vh; 
-    margin-top: 2vh; 
+    flex-direction: column;
+    margin-bottom: 2vh;
+    gap: 2vh;
+    margin-top: 2vh;
 }
 
 #summaryCepContainer {
     display: flex;
+    position: absolute;
+    right: 3vh;
     flex-direction: column;
     justify-content: space-between;
     gap: 3vh;
-    width: 40%;
-    height: 35vh;
+    width: 35%;
+    height: auto;
 }
 
 .summaryArea, .cepArea{
@@ -353,14 +358,13 @@ h4{
     margin-top: 2vh;
     margin-left: 2vh;
     color: white; 
-    padding-left: 1vh;
-    
+    padding-left: 5px;
 }
 
 #cep::placeholder{
     color: white;
-    font-size: 15px;
-    padding-left: 2px;
+    font-size: 20px;
+    text-align: center;
 }
 
 #cepButton{
@@ -369,7 +373,6 @@ h4{
     margin-left: 1vh;
     color: #5d1010;
     font-size: 15px;
-    cursor: pointer;
 }
 
 .frete-options label {
@@ -384,3 +387,5 @@ h4{
   .frete-options input[type="radio"] {
     margin-right: 10px; 
   }
+
+  

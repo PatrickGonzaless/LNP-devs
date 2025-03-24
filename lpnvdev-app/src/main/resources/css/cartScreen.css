@@ -124,10 +124,16 @@ h4{
 }
 
 .leave {
-    font-size: 22px
+    font-size: 22px;
 }
 
-.cartTitle{
+.divider{
+    width: 100%;
+    height: 10vh;
+}
+
+.cartTitle {
+    width: 130vh;
     display: flex;
     font-size: 20px;
     align-items: center;
@@ -135,6 +141,8 @@ h4{
     margin-bottom: 5vh;
     margin-left: 3vh;
     color: white;
+    justify-content: space-between;
+    padding: 1vh 2vh;
 }
 
 .cartTitle img{
@@ -147,7 +155,7 @@ h4{
     display: flex;
     align-items: center;  
     justify-content: flex-start; 
-    width: 130vh;
+    width: 60%;
     height: 30vh;
     border: 1px solid white;
     margin-left: 3vh;
@@ -204,7 +212,8 @@ h4{
     justify-content: space-between;
     gap: 20px;
 }
-.removeItembtn {
+
+.removeItembtn, .removeAllcontainer {
     width: 25vh;
     display: flex;
     flex-direction: column;
@@ -215,18 +224,25 @@ h4{
     position: relative; 
 }
 
-.removeItembtn img {
+.removeAllcontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1vh;
+    width: auto;
+}
+
+.removeItembtn img, .removeAllcontainer img {
     width: 4vh;
     height: auto;
     cursor: pointer;
 }
 
 .border {
-    border: 1px solid white;
     display: flex;
 }
 
-.removeItembtn button {
+.removeItembtn button, #removeAll {
     background-color: #5d1010;
     color: white;
     border: none;
@@ -236,6 +252,7 @@ h4{
     font-size: 18px;
     margin-top: auto;
 }
+
 
 #removeItem {
     color: white;
@@ -249,4 +266,121 @@ h4{
     display: flex;
     align-items: center;
     gap: 1vh;
+    
 }
+
+.removeAllcontainer img {
+    width: 4vh;
+    height: auto;
+    cursor: pointer;
+}
+
+.cartAndSummary {
+    display: flex;
+    gap: 2vh; 
+    margin-top: 2vh; 
+}
+
+#summaryCepContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3vh;
+    width: 40%;
+    height: 35vh;
+}
+
+.summaryArea, .cepArea{
+    width: 70%;
+    height: 25vh;
+    margin: auto; 
+    border: 1px solid white;
+}
+
+.summaryArea {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.summaryTitle,.cepTitle{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    height: 5vh;
+    background-color: #5d1010;
+    color: white;
+    font-size: 20px;
+    border-bottom: 1px solid white;
+}
+
+.summaryTitle h3, .cepTitle h3 {
+    margin-left: 2vh;
+}
+
+.summaryContent {
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    flex-grow: 1;
+    color: white;
+    justify-content: space-between;
+    padding: 3vh; 
+}
+
+.subTotal, .frete, .total {
+    font-size: 22px;
+    font-weight: normal;
+    display: flex;
+    justify-content: space-between; 
+}
+
+.subTotal h4, .frete h4, .total h4 {
+    margin: 0;
+}
+
+.cepContent{
+    height: 30vh;
+}
+
+#cep{
+    border: 1px solid white;
+    background-color: #5d1010;
+    width: 35vh;
+    height: 5vh;
+    margin-top: 2vh;
+    margin-left: 2vh;
+    color: white; 
+    padding-left: 1vh;
+    
+}
+
+#cep::placeholder{
+    color: white;
+    font-size: 15px;
+    padding-left: 2px;
+}
+
+#cepButton{
+    width: 8vh;
+    height: 5vh;
+    margin-left: 1vh;
+    color: #5d1010;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.frete-options label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh; 
+    color: white; 
+    margin-left: 2vh;
+    margin-top: 1vh;
+  }
+  
+  .frete-options input[type="radio"] {
+    margin-right: 10px; 
+  }

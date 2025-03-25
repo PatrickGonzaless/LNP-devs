@@ -1,23 +1,17 @@
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 function verifUser() {
-
     if (loggedInUser) {
         const perfil = document.getElementById("perfil");
         const userLogin = document.getElementById("userLogin");
         const userLogout = document.getElementById("userLogout");
 
-        if (perfil) {
-            perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
-        }
-
+        if (perfil) perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
         if (userLogin) userLogin.style.display = "none";
         if (userLogout) userLogout.style.display = "block";
 
         const logoutButton = document.getElementById("userLogout");
-        if (logoutButton) {
-            logoutButton.addEventListener("click", logout);
-        }
+        if (logoutButton) logoutButton.addEventListener("click", logout);
     } else {
         const userLogin = document.getElementById("userLogin");
         const userLogout = document.getElementById("userLogout");
@@ -25,67 +19,48 @@ function verifUser() {
         if (userLogin) userLogin.style.display = "block";
         if (userLogout) userLogout.style.display = "none";
     }
-    listProduct();
+
+    listarProdutos();
 }
 
-function listProduct() {
-    fetch(`http://localhost:8080/product`, {
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        method: "GET",
-    })
-        .then((res) => {
-            if (!res.ok) {
-                throw new Error(
-                    `Erro na requisição: ${res.status} - ${res.statusText}`
-                );
-            }
-            return res.json();
-        })
-        .then((data) => {
-            listarProdutos(data);
-            let verifItem = document.getElementById("noItem");
-            verifItem.style.display = "none";
-        })
-        .catch((err) => {
-            alert("Erro ao buscar produtos: " + err.message);
-        });
-}
-
-function listarProdutos(produtos) {
+function listarProdutos() {
     let cartContent = document.getElementById("cartAndSummary");
-    if (!cartContent) {
-        console.error("Elemento cartAndSummary não encontrado!");
+    if (!cartContent) return;
+
+    let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    if (produtos.length === 0) {
+        document.getElementById("noItem").style.display = "block";
         return;
+    } else {
+        document.getElementById("noItem").style.display = "none";
     }
 
     cartContent.innerHTML = "";
 
-    produtos.forEach((produto) => {
+    produtos.forEach((produto, index) => {
         let cart = `
        <div id="cartContent">
-        <div class="imgArea"></div>
+        <div class="imgArea">
+            <img src="${produto.imagem}" alt="${produto.nome}" width="100%" height="100%"/>
+        </div>
         <div class="productNamePrice">
             <h4 id="prodName"><span>${produto.nome}</span></h4>
-            <h4 id="prodPrice">R$ <span>${produto.valor ? produto.valor.toFixed(2) : "0.00"}</span></h4>
+            <h4 id="prodPrice">R$ <span>${produto.valor.toFixed(2)}</span></h4>
         </div>
         <div class="quantity">
             <h4>Quant.</h4>
             <div class="qntNumber">
-                <p><</p><span id="qntNumber"></span><p>></p>
+                <p><</p><span id="qntNumber">1</span><p>></p>
             </div>
         </div>
         <div class="removeItembtn">
             <div class="border">
-                <img src="../img/cartScreen/lixo.png" alt="Remover" />
-                <button id="removeItem">Remover Item</button>
+                <img src="../img/cartScreen/lixo.png" alt="Remover" onclick="removerProduto(${index})" />
+                <button id="removeItem" onclick="removerProduto(${index})">Remover Item</button>
             </div>
         </div>
-    </div>
-    </div>
-        `;
+    </div>`;
 
         cartContent.insertAdjacentHTML("beforeend", cart);
     });
@@ -136,10 +111,30 @@ function listarProdutos(produtos) {
 
     cartContent.insertAdjacentHTML("beforeend", summaryCepContainer);
 
-   
+    adicionarResumoPedido();
+}
+
+function removerProduto(index) {
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    carrinho.splice(index, 1);
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    listarProdutos();
+}
+
+document.getElementById("removeAll").addEventListener("click", () => {
+    localStorage.removeItem("carrinho");
+    listarProdutos();
+});
+
+function adicionarResumoPedido() {
+    let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
+    let subTotal = produtos.reduce((acc, produto) => acc + produto.valor, 0);
+
+    document.getElementById("subTotal").innerText = subTotal.toFixed(2);
+    document.getElementById("frete").innerText = "0.00";
+    document.getElementById("total").innerText = subTotal.toFixed(2);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     verifUser();
 });
- 

@@ -2,23 +2,17 @@ let id = localStorage.getItem("productId");
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 function verifUser() {
-
     if (loggedInUser) {
         const perfil = document.getElementById("perfil");
         const userLogin = document.getElementById("userLogin");
         const userLogout = document.getElementById("userLogout");
 
-        if (perfil) {
-            perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
-        }
-
+        if (perfil) perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
         if (userLogin) userLogin.style.display = "none";
         if (userLogout) userLogout.style.display = "block";
 
         const logoutButton = document.getElementById("userLogout");
-        if (logoutButton) {
-            logoutButton.addEventListener("click", logout);
-        }
+        if (logoutButton) logoutButton.addEventListener("click", logout);
     } else {
         const userLogin = document.getElementById("userLogin");
         const userLogout = document.getElementById("userLogout");
@@ -32,7 +26,6 @@ function verifUser() {
 
 function logout() {
     localStorage.removeItem("loggedInUser");
-
     window.location.href = "./index.html";
 }
 
@@ -46,49 +39,64 @@ function listProduct() {
     })
         .then((res) => {
             if (!res.ok) {
-                throw new Error(
-                    `Erro na requisição: ${res.status} - ${res.statusText}`
-                );
+                throw new Error(`Erro na requisição: ${res.status} - ${res.statusText}`);
             }
             return res.json();
         })
-        .then((produto) => {
-            console.log(produto);
-            fillInformation(produto); 
+        .then((produtos) => {
+            fillInformation(produtos);
         })
         .catch((err) => {
             alert("Erro ao buscar produtos: " + err.message);
         });
 }
 
-function fillInformation(produto) {
-    produto.forEach(element => {
-        console.log(element.nome);
-        console.log(id);
-        if(element.id == id){
-            console.log(element);
-            document.getElementById("productName").innerText =
-            element.nome || "Nome não disponível";
-          document.getElementById("descriptionArea").innerText =
-          element.descricao || "Sem descrição disponível";
-        
-          let precoFormatado = element.valor
-            ? element.valor.toFixed(2)
-            : "Preço não disponível";
-          document.getElementById("priceArea").innerText =
-            precoFormatado || "Preço não disponível";
-        
-          let avaliacaoFormatada = element.avaliacao
-            ? element.avaliacao.toFixed(1)
-            : "Preço não disponível";
-          document.getElementById("rateArea").innerText =
-            avaliacaoFormatada || "Avaliação não disponível";
-        }     
+function fillInformation(produtos) {
+    produtos.forEach((element) => {
+        if (element.id == id) {
+            console.log("Produto encontrado:", element);
+            
+            document.getElementById("productName").innerText = element.nome || "Nome não disponível";
+            document.getElementById("descriptionArea").innerText = element.descricao || "Sem descrição disponível";
+
+            let precoFormatado = element.valor ? ` ${element.valor.toFixed(2)}` : "Preço não disponível";
+            document.getElementById("priceArea").innerText = precoFormatado;
+
+            let avaliacaoFormatada = element.avaliacao ? element.avaliacao.toFixed(1) : "Sem avaliação";
+            document.getElementById("rateArea").innerText = avaliacaoFormatada;
+
+            document.getElementById("produtoImagem").src = element.imagem || "";
+            document.getElementById("produtoImagem").alt = element.nome || "Imagem do produto";
+
+            const comprarBtn = document.getElementById("buyButton");
+            if (comprarBtn) {
+                comprarBtn.addEventListener("click", () => adicionarAoCarrinho(element));
+            }
+        }
     });
-   
-  }
+}
+
+function adicionarAoCarrinho(produto) {
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    const produtoExiste = carrinho.find((item) => item.id === produto.id);
+    if (!produtoExiste) {
+        carrinho.push({
+            id: produto.id,
+            nome: produto.nome,
+            valor: produto.valor,
+            imagem: produto.imagem,
+        });
+
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        alert("Produto adicionado ao carrinho!");
+    } else {
+        alert("Este produto já está no carrinho.");
+    }
+
+    window.location.href = "../pages/cartScreen.html";
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     verifUser();
 });
- 

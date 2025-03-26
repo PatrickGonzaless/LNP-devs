@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const BtnCancel = document.getElementById("cancel");
   const input = document.getElementById("imagem");
   let alterImg;
-  let imgs = new Array();
   const select = document.getElementById("PrincipalImage");
   select.parentNode.style.display = "none";
   select.style.display = "none";
@@ -133,9 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
           return res.json();
         })
         .then((res) => {
-          numImage = 0;
           alert("Produto alterado com sucesso!");
-          alterFile(res);
+          sendFile(res);
+          numImage = 0;
         })
         .catch((err) => {
           console.error("Erro ao alterar produto!", err);
@@ -193,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  function addImagens() {
+  async function addImagens() {
     let lista = document.getElementById("listaCarrossel");
     let images = document.getElementById("imagesCarrosel");
     if (
@@ -204,7 +203,10 @@ document.addEventListener("DOMContentLoaded", () => {
       select.style.display = "block";
     }
     for (let i = 0; i < alterProd.imagens.length; i++) {
-      imgs.push(alterProd.imagens[i]);
+      const resposta = await fetch(alterProd.imagens[i].linkimg);
+      const blob = await resposta.blob();
+      const nomeArquivo = caminho.split("/").pop();
+      formData.append("arquivos", blob, nomeArquivo);
 
       // Indicadores
       const li = `<li data-target="#carouselExampleIndicators" data-slide-to="${numImage}" ${
@@ -232,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("produto", JSON.stringify(res));
     formData.append("principal", select.value);
     fetch("http://localhost:8080/productImg", {
-      method: "POST",
+      method: alterProd ? "PUT" : "POST",
       body: formData,
     })
       .then((response) => {
@@ -248,33 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Deu erro ao enviar a imagem.");
       });
   }
-
-  function alterFile(res) {
-    //formData.append("produto", JSON.stringify(res));
-    //formData.append("principal", select.value);
-    alterImg = {
-      produto: alterProd,
-      principal: select.value,
-      arquivos: imgs,
-    };
-    fetch("http://localhost:8080/api/productImg", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(alterImg),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error("Deu ruim na requisição");
-        return response;
-      })
-      .then((data) => {
-        input.value = ""; // Limpa o input pra próxima imagem
-        window.location.href = "../pages/productTable.html";
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
-        alert("Deu erro ao enviar a imagem.");
-      });
-  }
 });
+
+//incluir multipart para novas imagens no DTO de alteração
+//verificar os erros restantes

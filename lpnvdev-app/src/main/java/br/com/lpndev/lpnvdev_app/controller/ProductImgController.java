@@ -1,6 +1,5 @@
 package br.com.lpndev.lpnvdev_app.controller;
 
-import br.com.lpndev.lpnvdev_app.model.AlterImgDto;
 import br.com.lpndev.lpnvdev_app.model.ImageDto;
 import br.com.lpndev.lpnvdev_app.model.Product;
 import br.com.lpndev.lpnvdev_app.model.ProductImg;
@@ -9,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient.Builder;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

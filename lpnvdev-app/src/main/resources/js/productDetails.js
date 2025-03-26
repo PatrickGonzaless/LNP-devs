@@ -75,8 +75,24 @@ function fillInformation(produtos) {
         : "Sem avaliação";
       document.getElementById("rateArea").innerText = avaliacaoFormatada;
 
-      // document.getElementById("produtoImagem").src = produto.imagem || "";
-      // document.getElementById("produtoImagem").alt = produto.nome || "Imagem do produto";
+      let i = 0;
+      produto.imagens.forEach((imagem) => {
+        // Indicadores
+        const li = `<li data-target="#carouselExampleIndicators" data-slide-to="${i}" ${
+          i === 0 ? 'class="active"' : ""
+        }></li>`;
+        lista.insertAdjacentHTML("beforeend", li);
+
+        // Imagens
+        const item = `
+        <div class="carousel-item ${imagem.padrao ? "active" : ""}">
+          <img class="d-block w-100" src="../../../../../${
+            imagem.linkimg
+          }" alt="Slide ${i + 1}" />
+        </div>`;
+        images.insertAdjacentHTML("beforeend", item);
+        i++;
+      });
 
       comprarBtn.addEventListener("click", () => adicionarAoCarrinho(produto));
     }

@@ -30,10 +30,10 @@ function listarProdutos() {
     let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
 
     if (produtos.length === 0) {
-        document.getElementById("noItem").style.display = "none";
+        document.getElementById("noItem").style.display = "block";
         return;
     } else {
-        document.getElementById("noItem").style.display = "block";
+        document.getElementById("noItem").style.display = "none";
     }
 
     cartContent.innerHTML = "";
@@ -128,11 +128,16 @@ function removerProduto(index) {
     carrinho.splice(index, 1);
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
     listarProdutos();
+    document.getElementById("noItem").style.display = "block";  
 }
 
+//Remoper todos os itens
 document.getElementById("removeAll").addEventListener("click", () => {
     localStorage.removeItem("carrinho");
     listarProdutos();
+    window.location.reload();
+    document.getElementById("noItem").style.display = "block";  
+    
 });
 
 function adicionarResumoPedido() {

@@ -382,11 +382,16 @@ h4{
     color: white; 
     margin-left: 2vh;
     margin-top: 1vh;
-    
   }
   
   .frete-options input[type="radio"] {
     margin-right: 10px; 
   }
 
-  
+#noItem{
+    margin: auto;
+    font-size: 30px;
+    color: white;
+    margin-top: 10vh;
+}
+

@@ -148,10 +148,23 @@ header {
 }
 
 .img_space {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  width: 37vh;
+  width: 80%;
   height: 24vh;
   border: 1px dotted black;
+  overflow: hidden; 
+}
+
+.img_space img{
+  max-width: 100%;  /* Garante que a imagem nunca ultrapasse a largura do contêiner */
+  max-height: 24vh; /* Garante que a imagem nunca ultrapasse a altura do contêiner */
+  width: auto;  /* Mantém a largura original proporcionalmente */
+  height: auto; 
+  object-fit: cover;
+
 }
 
 #cardContainer {

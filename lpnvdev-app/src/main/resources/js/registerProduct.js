@@ -133,8 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((res) => {
           alert("Produto alterado com sucesso!");
-          sendFile(res);
+          localStorage.removeItem("alterProd");
+          alterFile(res);
           numImage = 0;
+          window.location.href = "../pages/productTable.html";
         })
         .catch((err) => {
           console.error("Erro ao alterar produto!", err);
@@ -169,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     select.style.display = "block";
     for (let i = 0; i < input.files.length; i++) {
       formData.append("arquivos", input.files[i]); // 'arquivos' é o nome que o backend vai esperar
+
       // Indicadores
       const li = `<li data-target="#carouselExampleIndicators" data-slide-to="${numImage}" ${
         numImage === 0 ? 'class="active"' : ""
@@ -234,7 +237,28 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("produto", JSON.stringify(res));
     formData.append("principal", select.value);
     fetch("http://localhost:8080/productImg", {
-      method: alterProd ? "PUT" : "POST",
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Deu ruim na requisição");
+        return response;
+      })
+      .then((data) => {
+        input.value = ""; // Limpa o input pra próxima imagem
+        window.location.href = "../pages/productTable.html";
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        alert("Deu erro ao enviar a imagem.");
+      });
+  }
+
+  function alterFile(res) {
+    formData.append("produto", JSON.stringify(res));
+    formData.append("principal", select.value);
+    fetch("http://localhost:8080/productImg", {
+      method: "PUT",
       body: formData,
     })
       .then((response) => {

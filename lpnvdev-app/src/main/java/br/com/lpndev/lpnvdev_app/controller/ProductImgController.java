@@ -1,6 +1,5 @@
 package br.com.lpndev.lpnvdev_app.controller;
 
-import br.com.lpndev.lpnvdev_app.model.ImageDto;
 import br.com.lpndev.lpnvdev_app.model.Product;
 import br.com.lpndev.lpnvdev_app.model.ProductImg;
 import br.com.lpndev.lpnvdev_app.service.ProductImgService;
@@ -8,11 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient.Builder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.nio.file.Path;
@@ -35,11 +35,16 @@ public class ProductImgController {
     }
 
     @PostMapping
-    public ResponseEntity<String> uploadArquivos(@RequestBody ImageDto imageDto) {
+    public ResponseEntity<String> uploadArquivos(@RequestParam("produto") String produtoJson,
+            @RequestParam("arquivos") MultipartFile[] arquivos, @RequestParam("principal") int principal) {
 
-        Product produto = imageDto.getProduct();
-        int principal = imageDto.getPrincipal();
-        ArrayList<MultipartFile> arquivos = imageDto.getArquivos();
+        ObjectMapper mapper = new ObjectMapper();
+        Product produto = null;
+        try {
+            produto = mapper.readValue(produtoJson, Product.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
         String caminho = UPLOAD_DIR + produto.getNome() + "/";
         try {
@@ -71,10 +76,11 @@ public class ProductImgController {
                 }
             }
 
-            if (arquivos.size() == 0) {
+            if (arquivos.length == 0) {
                 return ResponseEntity.status(400).body("Nenhum arquivo válido enviado, mano!");
             }
 
+            System.out.println("Arquivos salvos com sucesso:");
             return null;
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,64 +89,14 @@ public class ProductImgController {
     }
 
     @PutMapping
-    public ResponseEntity<String> editProductImg(@RequestBody ImageDto imageDto) {
-        Product produto = imageDto.getProduct();
-        int principal = imageDto.getPrincipal();
-        ArrayList<MultipartFile> arquivos = imageDto.getArquivos();
-        deleteProductImg(produto);
-
-        String caminho = UPLOAD_DIR + produto.getNome() + "/";
-        try {
-            // Cria o diretório se não existir
-            File directory = new File(caminho);
-            if (!directory.exists()) {
-                directory.mkdirs(); // Cria o diretório e subdiretórios se necessário
-                System.out.println("Diretório criado: " + caminho);
-            } else {
-                System.out.println("Diretório já existe: " + caminho);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Erro ao criar diretório: " + e.getMessage());
-        }
-
-        try {
-            // Salva cada arquivo
-            int i = 1;
-            for (MultipartFile arquivo : arquivos) {
-                if (!arquivo.isEmpty()) {
-                    Path filePath = Paths.get(caminho + produto.getNome() + "_" + i + ".png");
-                    Files.write(filePath, arquivo.getBytes());
-                    ProductImg img = new ProductImg(arquivo.getOriginalFilename(), filePath.toString(),
-                            ((i - 1) == principal),
-                            produto);
-                    productImgService.saveProductImg(img);
-                    i++;
-                }
-            }
-            if (arquivos.size() == 0) {
-                return ResponseEntity.status(400).body("Nenhum arquivo válido enviado, mano!");
-            }
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Erro ao salvar os arquivos: " + e.getMessage());
-        }
+    public ProductImg editProductImg(@RequestBody ProductImg productImg) {
+        return productImgService.alterProductImg(productImg);
     }
 
     @DeleteMapping("/{id}")
-    public Optional<ProductImg> deleteProductImg(Product produto) {
-        for (ProductImg img : produto.getImagens()) {
-            File diretorio = new File(img.getLinkimg());
-            if (diretorio.exists() && diretorio.isDirectory()) {
-                diretorio.delete();
-            }
-            productImgService.deleteProduct(img.getIdImg());
-        }
-        File diretorio = new File(UPLOAD_DIR + produto.getNome() + "/");
-        if (diretorio.exists() && diretorio.isDirectory()) {
-            diretorio.delete();
-        }
-        return null;
+    public Optional<ProductImg> deleteProductImg(@PathVariable Integer id) {
+        Optional<ProductImg> productImg = productImgService.findById(id);
+        productImgService.deleteProduct(id);
+        return productImg;
     }
 }

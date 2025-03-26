@@ -1,5 +1,8 @@
 let id = localStorage.getItem("productId");
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+const comprarBtn = document.getElementById("buyButton");           
+
+       
 
 function verifUser() {
     if (loggedInUser) {
@@ -52,26 +55,23 @@ function listProduct() {
 }
 
 function fillInformation(produtos) {
-    produtos.forEach((element) => {
-        if (element.id == id) {
-            console.log("Produto encontrado:", element);
+    produtos.forEach((produto) => {
+        if (produto.id == id) {
+            console.log("Produto encontrado:", produto);
             
-            document.getElementById("productName").innerText = element.nome || "Nome não disponível";
-            document.getElementById("descriptionArea").innerText = element.descricao || "Sem descrição disponível";
+            document.getElementById("productName").innerText = produto.nome || "Nome não disponível";
+            document.getElementById("descriptionArea").innerText = produto.descricao || "Sem descrição disponível";
 
-            let precoFormatado = element.valor ? ` ${element.valor.toFixed(2)}` : "Preço não disponível";
+            let precoFormatado = produto.valor ? ` ${produto.valor.toFixed(2)}` : "Preço não disponível";
             document.getElementById("priceArea").innerText = precoFormatado;
 
-            let avaliacaoFormatada = element.avaliacao ? element.avaliacao.toFixed(1) : "Sem avaliação";
+            let avaliacaoFormatada = produto.avaliacao ? produto.avaliacao.toFixed(1) : "Sem avaliação";
             document.getElementById("rateArea").innerText = avaliacaoFormatada;
 
-            document.getElementById("produtoImagem").src = element.imagem || "";
-            document.getElementById("produtoImagem").alt = element.nome || "Imagem do produto";
+            // document.getElementById("produtoImagem").src = produto.imagem || "";
+            // document.getElementById("produtoImagem").alt = produto.nome || "Imagem do produto";
 
-            const comprarBtn = document.getElementById("buyButton");
-            if (comprarBtn) {
-                comprarBtn.addEventListener("click", () => adicionarAoCarrinho(element));
-            }
+            comprarBtn.addEventListener("click", () => adicionarAoCarrinho(produto));
         }
     });
 }
@@ -89,9 +89,9 @@ function adicionarAoCarrinho(produto) {
         });
 
         localStorage.setItem("carrinho", JSON.stringify(carrinho));
-        alert("Produto adicionado ao carrinho!");
+        // alert("Produto adicionado ao carrinho!");
     } else {
-        alert("Este produto já está no carrinho.");
+        // alert("Este produto já está no carrinho.");
     }
 
     window.location.href = "../pages/cartScreen.html";

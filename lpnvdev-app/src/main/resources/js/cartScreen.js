@@ -30,10 +30,10 @@ function listarProdutos() {
     let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
 
     if (produtos.length === 0) {
-        document.getElementById("noItem").style.display = "block";
+        document.getElementById("noItem").style.display = "none";
         return;
     } else {
-        document.getElementById("noItem").style.display = "none";
+        document.getElementById("noItem").style.display = "block";
     }
 
     cartContent.innerHTML = "";
@@ -90,8 +90,8 @@ function listarProdutos() {
             </div>
             <div class="cepContent">
                 <input type="text" id="cep"/>
-                <button id="cepButton">OK</button>
-                <div class="frete-options">
+                <button onclick="checkOK()" id="cepButton">OK</button>
+                <div class="frete-options" style="display: none;">
                     <label>
                       <input type="radio" name="frete" value="15.99">
                       <span>R$15,99 - SEDEX - 3 dias úteis</span>
@@ -112,6 +112,15 @@ function listarProdutos() {
     cartContent.insertAdjacentHTML("beforeend", summaryCepContainer);
 
     adicionarResumoPedido();
+}
+
+function checkOK(){
+        let cep = document.getElementById("cep").value;
+        if(cep.length != 8){
+            alert("CEP inválido");
+        }else{
+            document.querySelector(".frete-options").style.display = "block";
+        }
 }
 
 function removerProduto(index) {

@@ -10,5 +10,4 @@ public class LpnvdevAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LpnvdevAppApplication.class, args);
 	}
-
 }

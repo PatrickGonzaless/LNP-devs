@@ -119,7 +119,7 @@ header {
 }
 
 .leave {
-  font-size: 22px
+  font-size: 22px;
 }
 
 #mainProducts {
@@ -208,12 +208,12 @@ header {
 
 @media (max-width: 900px) {
   .cardExCont {
-      width: calc(50% - 2vh);
+    width: calc(50% - 2vh);
   }
 }
 
 @media (max-width: 600px) {
   .cardExCont {
-      width: 100%;
+    width: 100%;
   }
 }

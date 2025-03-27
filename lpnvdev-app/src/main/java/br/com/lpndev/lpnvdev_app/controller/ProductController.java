@@ -48,4 +48,11 @@ public class ProductController {
         productService.deleteProduct(id);
         return product;
     }
+
+    @DeleteMapping("/all")
+    public void deleteAll() {
+        for (int i = 11; i < 130; i++) {
+            productService.deleteProduct(i);
+        }
+    }
 }

@@ -75,6 +75,8 @@ function fillInformation(produtos) {
         : "Sem avaliação";
       document.getElementById("rateArea").innerText = avaliacaoFormatada;
 
+      let lista = document.getElementById("listaCarrossel");
+      let images = document.getElementById("imagesCarrosel");
       let i = 0;
       produto.imagens.forEach((imagem) => {
         // Indicadores
@@ -94,6 +96,7 @@ function fillInformation(produtos) {
         i++;
       });
 
+      console.log("testesser");
       comprarBtn.addEventListener("click", () => adicionarAoCarrinho(produto));
     }
   });

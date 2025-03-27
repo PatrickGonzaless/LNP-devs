@@ -1,48 +1,59 @@
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 function verifUser() {
-    if (loggedInUser) {
-        const perfil = document.getElementById("perfil");
-        const userLogin = document.getElementById("userLogin");
-        const userLogout = document.getElementById("userLogout");
+  if (loggedInUser) {
+    const perfil = document.getElementById("perfil");
+    const userLogin = document.getElementById("userLogin");
+    const userLogout = document.getElementById("userLogout");
 
-        if (perfil) perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
-        if (userLogin) userLogin.style.display = "none";
-        if (userLogout) userLogout.style.display = "block";
+    if (perfil)
+      perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
+    if (userLogin) userLogin.style.display = "none";
+    if (userLogout) userLogout.style.display = "block";
 
-        const logoutButton = document.getElementById("userLogout");
-        if (logoutButton) logoutButton.addEventListener("click", logout);
-    } else {
-        const userLogin = document.getElementById("userLogin");
-        const userLogout = document.getElementById("userLogout");
+    const logoutButton = document.getElementById("userLogout");
+    if (logoutButton) logoutButton.addEventListener("click", logout);
+  } else {
+    const userLogin = document.getElementById("userLogin");
+    const userLogout = document.getElementById("userLogout");
 
-        if (userLogin) userLogin.style.display = "block";
-        if (userLogout) userLogout.style.display = "none";
-    }
+    if (userLogin) userLogin.style.display = "block";
+    if (userLogout) userLogout.style.display = "none";
+  }
 
-    listarProdutos();
+  listarProdutos();
 }
 
 function listarProdutos() {
-    let cartContent = document.getElementById("cartAndSummary");
-    if (!cartContent) return;
+  let cartContent = document.getElementById("cartAndSummary");
+  if (!cartContent) return;
 
-    let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
+  let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-    if (produtos.length === 0) {
-        document.getElementById("noItem").style.display = "block";
-        return;
-    } else {
-        document.getElementById("noItem").style.display = "none";
-    }
+  if (produtos.length === 0) {
+    document.getElementById("noItem").style.display = "block";
+    return;
+  } else {
+    document.getElementById("noItem").style.display = "none";
+  }
 
-    cartContent.innerHTML = "";
+  cartContent.innerHTML = "";
 
-    produtos.forEach((produto, index) => {
-        let cart = `
+  produtos.forEach((produto, index) => {
+    let image;
+    console.log(produto);
+    console.log(produto.imagens);
+    produto.imagem.forEach((img) => {
+      if (img.padrao) {
+        image = img.linkimg;
+      }
+    });
+    let cart = `
        <div id="cartContent">
         <div class="imgArea">
-            <img src="${produto.imagem}" alt="${produto.nome}" width="100%" height="100%"/>
+            <img src="../../../../../../${image}" alt="${
+      produto.nome
+    }" width="100%" height="100%"/>
         </div>
         <div class="productNamePrice">
             <h4 id="prodName"><span>${produto.nome}</span></h4>
@@ -62,10 +73,10 @@ function listarProdutos() {
         </div>
     </div>`;
 
-        cartContent.insertAdjacentHTML("beforeend", cart);
-    });
+    cartContent.insertAdjacentHTML("beforeend", cart);
+  });
 
-    let summaryCepContainer = `
+  let summaryCepContainer = `
     <div id="summaryCepContainer">
         <div class="summaryArea">
             <div class="summaryTitle">
@@ -109,46 +120,45 @@ function listarProdutos() {
         </div>
     </div>`;
 
-    cartContent.insertAdjacentHTML("beforeend", summaryCepContainer);
+  cartContent.insertAdjacentHTML("beforeend", summaryCepContainer);
 
-    adicionarResumoPedido();
+  adicionarResumoPedido();
 }
 
-function checkOK(){
-        let cep = document.getElementById("cep").value;
-        if(cep.length != 8){
-            alert("CEP inválido");
-        }else{
-            document.querySelector(".frete-options").style.display = "block";
-        }
+function checkOK() {
+  let cep = document.getElementById("cep").value;
+  if (cep.length != 8) {
+    alert("CEP inválido");
+  } else {
+    document.querySelector(".frete-options").style.display = "block";
+  }
 }
 
 function removerProduto(index) {
-    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    carrinho.splice(index, 1);
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    listarProdutos();
-    document.getElementById("noItem").style.display = "block";  
+  let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  carrinho.splice(index, 1);
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  listarProdutos();
+  document.getElementById("noItem").style.display = "block";
 }
 
 //Remoper todos os itens
 document.getElementById("removeAll").addEventListener("click", () => {
-    localStorage.removeItem("carrinho");
-    listarProdutos();
-    window.location.reload();
-    document.getElementById("noItem").style.display = "block";  
-    
+  localStorage.removeItem("carrinho");
+  listarProdutos();
+  window.location.reload();
+  document.getElementById("noItem").style.display = "block";
 });
 
 function adicionarResumoPedido() {
-    let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
-    let subTotal = produtos.reduce((acc, produto) => acc + produto.valor, 0);
+  let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
+  let subTotal = produtos.reduce((acc, produto) => acc + produto.valor, 0);
 
-    document.getElementById("subTotal").innerText = subTotal.toFixed(2);
-    document.getElementById("frete").innerText = "0.00";
-    document.getElementById("total").innerText = subTotal.toFixed(2);
+  document.getElementById("subTotal").innerText = subTotal.toFixed(2);
+  document.getElementById("frete").innerText = "0.00";
+  document.getElementById("total").innerText = subTotal.toFixed(2);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    verifUser();
+  verifUser();
 });

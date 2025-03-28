@@ -142,7 +142,7 @@ function removerProduto(index) {
   document.getElementById("noItem").style.display = "block";
 }
 
-//Remoper todos os itens
+//Remover todos os itens
 document.getElementById("removeAll").addEventListener("click", () => {
   localStorage.removeItem("carrinho");
   listarProdutos();

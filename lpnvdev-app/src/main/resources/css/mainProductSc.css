@@ -159,12 +159,11 @@ header {
 }
 
 .img_space img{
-  max-width: 100%;  /* Garante que a imagem nunca ultrapasse a largura do contêiner */
-  max-height: 24vh; /* Garante que a imagem nunca ultrapasse a altura do contêiner */
-  width: auto;  /* Mantém a largura original proporcionalmente */
+  max-width: 100%;  
+  max-height: 24vh;
+  width: auto;  
   height: auto; 
   object-fit: cover;
-
 }
 
 #cardContainer {

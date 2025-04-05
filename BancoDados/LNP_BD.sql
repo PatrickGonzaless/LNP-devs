@@ -39,6 +39,34 @@ foreign key (produto_id) references produto(id)
 );
 
 
+create table cliente(
+id integer auto_increment primary key,
+email varchar (50) not null,
+cpf char (11) not null unique,
+nomecompleto varchar (100) not null,
+datanascimento datetime,
+genero boolean,
+senha text not null
+);
+
+create table enderecos(
+id_endereco integer auto_increment primary key,
+logradouro varchar (100) not null,
+cep varchar(9) not null,
+bairro varchar (100) not null,
+uf char(2) not null,
+cidade varchar (100) not null,
+numero char (4) not null,
+complemento varchar(20) not null,
+tipoendereco boolean,
+principal boolean,
+id_cliente integer not null,
+foreign key (id_cliente) references cliente(id)
+);
+
+select * from cliente;
+
+
 INSERT INTO img_prod (nome, linkimg, padrao, produto_id)
 VALUES ('Imagem Produto 1', 'https://exemplo.com/imagem1.jpg', true, 1);
 

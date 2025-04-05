@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../font/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #5d1010;
+    font-family: "Inter", sans-serif;
+}
+
+header {
+    background-color: #985d5d;
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5vh;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+    height: 15vh;
+}
+
+.logo h1 {
+    font-size: 35px;
+    font-family: "Inter", sans-serif;
+    color: white;
+}
+
+.userid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: auto;
+    width: 50%;
+    height: 15vh;
+}
+
+.userid_space {
+    display: flex;
+    width: 38vh;
+    height: 8vh;
+    margin-left: auto;
+    margin-right: 10vh;
+    border-radius: 13px;
+}
+
+.user img {
+    width: 4.5vh;
+    height: 4.5vh;
+    align-items: center;
+    margin-right: 2vh;
+}
+
+.user {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.sigin {
+    width: 60vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    align-items: left;
+    justify-content: center;
+    line-height: 3.5vh;
+}
+
+.sigin a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sigin a:hover {
+    color: #5d1010;
+}
+
+.sgsu span {
+    cursor: default;
+    font-weight: 500;
+    color: white;
+}
+
+h4{
+    width: 20vh;
+    font-size: 17px;
+}
+
+.leave {
+    font-size: 22px;
+}
+
+.title{
+    display: flex;
+    width: 100%;
+    height: 12vh;  
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#registerContainer {
+    display: block;
+    flex-direction: column;
+    margin: auto;
+    width: 90%;
+    height: auto;
+    padding-bottom: 10vh;
+}
+
+.personalData, .taxAdress, .delAdress {
+    margin: auto;
+    width: 110vh;
+    height: auto;
+}
+
+.personalDataTitle, .taxAdressTitle, .delAdressTitle {
+    display: flex;
+    width: 100%;
+    height: 10vh;  
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.personalDataContent, .taxAdressContent, .delAdressContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.taxAdressTitle, .delAdressTitle{
+    margin-top: 5vh;
+}
+
+.personalDataContent input, .taxAdressContent input, .delAdressContent input {
+    width: 100%;
+    max-width: 120vh;
+    height: 8vh; 
+    margin: 1vh 0;
+    padding: 0 2vh;
+    border: 1.5px solid white;
+    background-color: #5D1010;
+    color: white;
+    font-size: 2vh; 
+}
+
+input::placeholder {
+    color: white;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 120vh;
+    gap: 3vh; 
+}
+
+.input-group input {
+    width: 49%; 
+}
+
+#registerForm, #taxAdressForm, #delAdressForm {
+    width: 100%;
+    max-width: 120vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.personalDataTitle hr , .taxAdressTitle hr, .delAdressTitle hr {
+    flex-grow: 2; 
+    height: 1px; 
+    margin: 0 2vh;
+    border: none;
+    background-color: white;
+}
+
+#copyBtn{
+    width: 100%;
+    height: 8vh;
+    font-size: 1.3rem;
+    border: 1px solid white;
+    background-color: #4b0505;
+    color: white;
+    cursor: pointer;
+}
+
+#copyBtn:hover{
+    background-color: #ffffff;
+    color: black;
+}

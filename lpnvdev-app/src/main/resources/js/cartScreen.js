@@ -102,7 +102,7 @@ function listarProdutos() {
                     </label>
                     <label>
                       <input type="radio" name="frete" value="56.90">
-                      <span>R$56,90 - FAST - Em até duas horas</span>
+                      <span>R$10,90 - FAST - Em até duas horas</span>
                     </label>
                 </div>
             </div>

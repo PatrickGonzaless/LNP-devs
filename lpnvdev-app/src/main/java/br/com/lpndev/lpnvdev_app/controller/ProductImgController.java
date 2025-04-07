@@ -46,6 +46,7 @@ public class ProductImgController {
             e.printStackTrace();
         }
 
+        @SuppressWarnings("null")
         String caminho = UPLOAD_DIR + produto.getNome() + "/";
         try {
             // Cria o diretório se não existir

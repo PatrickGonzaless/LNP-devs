@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -28,6 +29,12 @@ public class Costumer {
 
     @Column(name = "senha", length = 100, nullable = true)
     private String senha;
+
+    @OneToMany(mappedBy = "idCostumer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Adress> enderecos; // FK para a tabela de endereços
+
+    public Costumer() {
+    }
 
     public Integer getId() {
         return id;

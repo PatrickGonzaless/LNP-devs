@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -47,7 +47,7 @@ public class Adress {
     @Column(name = "principal", nullable = true)
     public boolean principal; // 0 = não, 1 = sim
 
-    @OneToMany
+    @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "id_cliente", nullable = false)
     public Costumer idCostumer; // FK para a tabela de clientes

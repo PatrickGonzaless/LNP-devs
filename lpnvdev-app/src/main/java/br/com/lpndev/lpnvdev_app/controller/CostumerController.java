@@ -24,7 +24,7 @@ public class CostumerController {
 
     @PostMapping
     public Costumer createUser(@RequestBody Costumer costumer) {
-        return costumerService.saveCostumer (costumer);
+        return costumerService.saveCostumer(costumer);
     }
 
     @PutMapping

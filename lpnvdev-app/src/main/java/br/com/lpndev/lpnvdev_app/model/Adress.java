@@ -56,7 +56,7 @@ public class Adress {
     }
 
     public Adress(String logradouro, String cep, String bairro, String uf, String cidade, String numero,
-                  String complemento, boolean tipoEndereco, boolean principal, Costumer idCliente) {
+            String complemento, boolean tipoEndereco, boolean principal, Costumer idCliente) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.bairro = bairro;
@@ -70,7 +70,7 @@ public class Adress {
     }
 
     public Adress(int id, String logradouro, String cep, String bairro, String uf, String cidade, String numero,
-                  String complemento, boolean tipoEndereco, boolean principal, Costumer idCliente) {
+            String complemento, boolean tipoEndereco, boolean principal, Costumer idCliente) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
@@ -164,12 +164,12 @@ public class Adress {
         this.principal = principal;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    public Costumer getIdCliente() {
+        return idCostumer;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setIdCliente(Costumer idCliente) {
+        this.idCostumer = idCliente;
     }
 
 }

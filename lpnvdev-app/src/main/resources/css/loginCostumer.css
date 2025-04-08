@@ -1,0 +1,178 @@
+@font-face {
+    font-family: "Inter";
+    src: url("../font/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #5D1010;
+    align-items: center;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+}
+
+header {
+    background-color: #985d5d;
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5vh;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+    height: 15vh;
+}
+
+.logo h1 {
+    font-size: 35px;
+    font-family: "Inter", sans-serif;
+    color: white;
+}
+
+.userid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: auto;
+    width: 50%;
+    height: 15vh;
+}
+
+.userid_space {
+    display: flex;
+    width: 38vh;
+    height: 8vh;
+    margin-left: auto;
+    margin-right: 10vh;
+    border-radius: 13px;
+}
+
+.user img {
+    width: 4.5vh;
+    height: 4.5vh;
+    align-items: center;
+    margin-right: 2vh;
+}
+
+.user {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.sigin {
+    width: 60vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    align-items: left;
+    justify-content: center;
+    line-height: 3.5vh;
+}
+
+.sigin a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sigin a:hover {
+    color: #5d1010;
+}
+
+.sgsu span {
+    cursor: default;
+    font-weight: 500;
+    color: white;
+}
+
+h4{
+    width: 20vh;
+    font-size: 17px;
+}
+
+.leave {
+    font-size: 22px;
+}
+
+.login-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-container {
+    background-color: #5D1010;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.hr-line {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    margin: 20px 0;
+}
+
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 15vh);
+    width: 100%;
+}
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1.5px solid white;
+    background-color: #5D1010;
+    border-radius: 4px;
+    color: white;
+}
+
+.login-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    color: #5D1010;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.login-container button:hover {
+    background-color: #ccc;
+}
+

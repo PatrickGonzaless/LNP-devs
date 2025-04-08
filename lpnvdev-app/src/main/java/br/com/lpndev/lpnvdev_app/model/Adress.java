@@ -8,13 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "enderecos")
-public class Endereco {
+public class Adress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,13 +50,13 @@ public class Endereco {
     @OneToMany
     @JsonIgnore
     @JoinColumn(name = "id_cliente", nullable = false)
-    public Cliente idCliente; // FK para a tabela de clientes
+    public Costumer idCostumer; // FK para a tabela de clientes
 
-    public Endereco() {
+    public Adress() {
     }
 
-    public Endereco(String logradouro, String cep, String bairro, String uf, String cidade, String numero,
-            String complemento, boolean tipoEndereco, boolean principal, Cliente idCliente) {
+    public Adress(String logradouro, String cep, String bairro, String uf, String cidade, String numero,
+                  String complemento, boolean tipoEndereco, boolean principal, Costumer idCliente) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.bairro = bairro;
@@ -67,11 +66,11 @@ public class Endereco {
         this.complemento = complemento;
         this.tipoEndereco = tipoEndereco;
         this.principal = principal;
-        this.idCliente = idCliente;
+        this.idCostumer = idCliente;
     }
 
-    public Endereco(int id, String logradouro, String cep, String bairro, String uf, String cidade, String numero,
-            String complemento, boolean tipoEndereco, boolean principal, Cliente idCliente) {
+    public Adress(int id, String logradouro, String cep, String bairro, String uf, String cidade, String numero,
+                  String complemento, boolean tipoEndereco, boolean principal, Costumer idCliente) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
@@ -82,7 +81,7 @@ public class Endereco {
         this.complemento = complemento;
         this.tipoEndereco = tipoEndereco;
         this.principal = principal;
-        this.idCliente = idCliente;
+        this.idCostumer = idCliente;
     }
 
     public Integer getId() {

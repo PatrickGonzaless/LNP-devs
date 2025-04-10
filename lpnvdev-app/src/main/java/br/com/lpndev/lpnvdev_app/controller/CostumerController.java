@@ -18,22 +18,22 @@ public class CostumerController {
     }
 
     @GetMapping
-    public List<Costumer> userList() {
+    public List<Costumer> costumerList() {
         return costumerService.findAll();
     }
 
     @PostMapping
-    public Costumer createUser(@RequestBody Costumer costumer) {
+    public Costumer createCostumer(@RequestBody Costumer costumer) {
         return costumerService.saveCostumer(costumer);
     }
 
     @PutMapping
-    public Costumer editUser(@RequestBody Costumer costumer) {
+    public Costumer editCostumer(@RequestBody Costumer costumer) {
         return costumerService.alterCostumer(costumer);
     }
 
     @DeleteMapping("/{id}")
-    public Optional<Costumer> deleteUser(@PathVariable Integer id) {
+    public Optional<Costumer> deleteCostumer(@PathVariable Integer id) {
         Optional<Costumer> costumer = costumerService.findById(id);
         costumerService.deleteCostumer(id);
         return costumer;

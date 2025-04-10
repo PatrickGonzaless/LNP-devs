@@ -17,7 +17,7 @@ public class Adress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_endereco")
     public Integer id;
 
     @Column(name = "logradouro", length = 100, nullable = true)

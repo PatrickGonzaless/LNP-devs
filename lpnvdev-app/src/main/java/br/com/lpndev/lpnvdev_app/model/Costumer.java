@@ -2,6 +2,7 @@ package br.com.lpndev.lpnvdev_app.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "cliente")
 public class Costumer {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,6 +21,9 @@ public class Costumer {
 
     @Column(name = "nomecompleto", length = 100, nullable = true)
     private String nomecompleto;
+
+    @Column(name = "cpf", length = 11, nullable = true)
+    private String cpf;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "datanascimento", nullable = true)
@@ -36,12 +41,12 @@ public class Costumer {
     public Costumer() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getEmail() {
@@ -58,6 +63,14 @@ public class Costumer {
 
     public void setNomecompleto(String nomecompleto) {
         this.nomecompleto = nomecompleto;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public LocalDate getDatanascimento() {

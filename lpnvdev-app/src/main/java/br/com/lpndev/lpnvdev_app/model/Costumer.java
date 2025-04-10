@@ -2,7 +2,6 @@ package br.com.lpndev.lpnvdev_app.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "cliente")
 public class Costumer {
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

@@ -17,10 +17,12 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
       }
       return res.text();
     })
-    .then((mensagem) => {
-      if (response === "Login successful") {
+    .then((response) => {
+      console.log(response); // Log the response for debugging
+      if (response) {
         alert("Login realizado com sucesso!");
-        window.location.href = "home.html";
+        localStorage.setItem("cliente", response);
+        window.location.href = "../pages/mainProductSc.html";
       } else {
         alert("Email ou senha inválidos.");
       }

@@ -171,7 +171,7 @@ h4{
 }
 
 input::placeholder {
-    color: white;
+    color: rgb(163, 163, 163);
 }
 
 .input-group {

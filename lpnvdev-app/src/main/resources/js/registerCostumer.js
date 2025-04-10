@@ -1,18 +1,40 @@
-const formC = document.querySelector("#registerForm");
-const formTA = document.querySelector("#taxAdressForm");
-const formDA = document.querySelector("#delAdressForm");
+const Iform = document.querySelector("#registerForm");
 const Ifullname = document.querySelector("#name");
 const Icpf = document.querySelector("#cpf");
 const Iemail = document.querySelector("#email");
 const Idob = document.querySelector("#dob");
 const genero = true;
 const Isenha = document.querySelector("#password");
-const Iconfpassword = document.querySelector("#confpassword");
+const Iconfpassword = document.querySelector("#confirmPassword");
+const IlogradouroT = document.querySelector("#logradouroT");
+const IlogradouroD = document.querySelector("#logradouroD");
+const IcepT = document.querySelector("#cepT");
+const IcepD = document.querySelector("#cepD");
+const IbairroT = document.querySelector("#bairroT");
+const IbairroD = document.querySelector("#bairroD");
+const IUfT = document.querySelector("#ufT");
+const IUfD = document.querySelector("#ufD");
+const IcidadeT = document.querySelector("#cidadeT");
+const IcidadeD = document.querySelector("#cidadeD");
+const InumeroT = document.querySelector("#numeroT");
+const InumeroD = document.querySelector("#numeroD");
+const IcomplementoT = document.querySelector("#complementoT");
+const IcomplementoD = document.querySelector("#complementoD");
+
 const userToAlter = JSON.parse(localStorage.getItem("userToAlter"));
-const loggedEmail = JSON.parse(localStorage.getItem("loggedInUser")).email;
+const AdressToAlter = JSON.parse(localStorage.getItem("AdressToAlter"));
+let loggedEmail = null;
+const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+if (loggedUser) {
+  const parsedUser = JSON.parse(loggedUser);
+  if (parsedUser && parsedUser.email) {
+    loggedEmail = parsedUser.email;
+  }
+}
 
 function validateForm() {
-  if (Iusername.value.trim() === "") {
+  if (Ifullname.value.trim() === "") {
     alert("Nome de usuário é obrigatório.");
     return false;
   }
@@ -64,12 +86,11 @@ function validateForm() {
     return false;
   }
 
-  // Se todas as validações passaram, retorna true
   return true;
 }
 
-function register() {
-  if (Isenha == "") {
+function registerUser() {
+  if (userToAlter !== null) {
     fetch("http://localhost:8080/costumer", {
       headers: {
         Accept: "application/json",
@@ -114,7 +135,7 @@ function register() {
         cpf: Icpf.value,
         email: Iemail.value,
         senha: Isenha.value,
-        genero: genero,
+        genero: genero,       
       }),
     })
       .then((res) => {
@@ -165,19 +186,160 @@ function register() {
   }
 }
 
+function registerAdress() {
+  if (Isenha.value == "") {
+    fetch("http://localhost:8080/adress", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify({
+        id: AdressToAlter.id,
+        logradouroT: IlogradouroT.value,
+        logradouroD: IlogradouroD.value,
+        cepT: IcepT.value,
+        cepD: IcepD.value,
+        bairroT: IbairroT.value,
+        bairroD: IbairroD.value,
+        ufT: IUfT.value,
+        ufD: IUfD.value,
+        cidadeT: IcidadeT.value,
+        cidadeD: IcidadeD.value,
+        numeroT: InumeroT.value,
+        numeroD: InumeroD.value,
+        complementoT: IcomplementoT.value,
+        complementoD: IcomplementoD.value,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            `Erro na requisição: ${res.status} - ${res.statusText}`
+          );
+        }
+        return res.json();
+      })
+      .then((dataAdress) => {
+        alert("Endereço alterado com sucesso!", dataAdress);
+      })
+      .catch((err) => {
+        console.error("Erro ao alterar endereço!", err);
+      });
+  } else if (AdressToAlter !== null) {
+    fetch("http://localhost:8080/adress", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        id: AdressToAlter.id,
+        logradouroT: IlogradouroT.value,
+        logradouroD: IlogradouroD.value,
+        cepT: IcepT.value,
+        cepD: IcepD.value,
+        bairroT: IbairroT.value,
+        bairroD: IbairroD.value,
+        ufT: IUfT.value,
+        ufD: IUfD.value,
+        cidadeT: IcidadeT.value,
+        cidadeD: IcidadeD.value,
+        numeroT: InumeroT.value,
+        numeroD: InumeroD.value,
+        complementoT: IcomplementoT.value,
+        complementoD: IcomplementoD.value,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            `Erro na requisição: ${res.status} - ${res.statusText}`
+          );
+        }
+        return res.json();
+      })
+      .then((data) => {
+        alert("Endereço alterado com sucesso!", data);
+      })
+      .catch((err) => {
+        console.error("Erro ao alterar endereço!", err);
+      });
+  } else {
+    fetch("http://localhost:8080/adress", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        id: AdressToAlter.id,
+        logradouroT: IlogradouroT.value,
+        logradouroD: IlogradouroD.value,
+        cepT: IcepT.value,
+        cepD: IcepD.value,
+        bairroT: IbairroT.value,
+        bairroD: IbairroD.value,
+        ufT: IUfT.value,
+        ufD: IUfD.value,
+        cidadeT: IcidadeT.value,
+        cidadeD: IcidadeD.value,
+        numeroT: InumeroT.value,
+        numeroD: InumeroD.value,
+        complementoT: IcomplementoT.value,
+        complementoD: IcomplementoD.value,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            `Erro na requisição: ${res.status} - ${res.statusText}`
+          );
+        }
+        return res.json();
+      })
+      .then((data) => {
+        alert("Usuário cadastrado com sucesso!", data);
+        window.location.href = "../pages/index.html";
+      })
+      .catch((err) => {
+        console.error("Erro ao cadastrar usuário!", err);
+      });
+  }
+}
+
 function clean() {
   Ifullname.value = "";
   Icpf.value = "";
+  Idob.value = "";
+  IlogradouroT.value = "";
+  IlogradouroD.value = "";
+  IcepT.value = "";
+  IcepD.value = "";
+  IbairroT.value = "";
+  IbairroD.value = "";
+  IUfT.value = "";
+  IUfD.value = "";
+  IcidadeT.value = "";
+  IcidadeD.value = "";
+  InumeroT.value = "";
+  InumeroD.value = "";
+  IcomplementoT.value = "";
+  IcomplementoD.value = "";
+  IcepT.value = "";
+  IcepD.value = "";
   Iemail.value = "";
   Isenha.value = "";
   Iconfpassword.value = "";
 }
 
-form.addEventListener("submit", function (event) {
+Iform.addEventListener("submit", function (event) {
   event.preventDefault();
 
   if (validateForm()) {
-    register();
+    registerUser();
+    registerAdress();
     clean();
   }
 });
+

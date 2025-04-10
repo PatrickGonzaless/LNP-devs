@@ -59,7 +59,7 @@
                         <input type="password" id="password" placeholder="Senha" required />
                         <input type="password" id="confirmPassword" placeholder="Confirmar Senha" required />
                     </div>
-                </form>
+
             </div>
         </div>
 
@@ -70,26 +70,26 @@
                 <hr>
             </div>
             <div class="taxAdressContent">
-                <form action="" id="taxAdressForm">
+                
                     <div class="input-group">
-                        <input type="text" id="logradouro" placeholder="Logradouro" required />
-                        <input type="text" id="cep" placeholder="CEP" required />
+                        <input type="text" id="logradouroT" placeholder="Logradouro" required />
+                        <input type="text" id="cepT" placeholder="CEP" required />
                     </div>
 
                     <div class="input-group">
-                        <input type="text" id="Bairro" placeholder="Bairro" required />
-                        <input type="text" id="uf" placeholder="UF" required />
+                        <input type="text" id="bairroT" placeholder="Bairro" required />
+                        <input type="text" id="ufT" placeholder="UF" required />
                     </div>
 
                     <div class="input-group">
-                        <input type="text" id="cidade" placeholder="Cidade" required />
-                        <input type="text" id="numero" placeholder="Número" required />
+                        <input type="text" id="cidadeT" placeholder="Cidade" required />
+                        <input type="text" id="numeroT" placeholder="Número" required />
                     </div>
 
                     <div class="input-group">
-                        <input type="text" id="complemento" placeholder="Complemento" required />
+                        <input type="text" id="complementoT" placeholder="Complemento" required />
                     </div>
-                </form>
+                
             </div>
         </div>
 
@@ -103,35 +103,36 @@
                 <button id="copyBtn">Copiar Endereço Fiscal</button>
             </div>
             <div class="delAdressContent">
-                <form action="" id="delAdressForm">
+                
                     <div class="input-group">
-                        <input type="text" id="logradouro" placeholder="Logradouro" required />
-                        <input type="text" id="cep" placeholder="CEP" required />
+                        <input type="text" id="logradouroD" placeholder="Logradouro" required />
+                        <input type="text" id="cepD" placeholder="CEP" required />
                     </div>
 
                     <div class="input-group">
-                        <input type="text" id="Bairro" placeholder="Bairro" required />
-                        <input type="text" id="uf" placeholder="UF" required />
+                        <input type="text" id="bairroD" placeholder="Bairro" required />
+                        <input type="text" id="ufD" placeholder="UF" required />
                     </div>
 
                     <div class="input-group">
-                        <input type="text" id="cidade" placeholder="Cidade" required />
-                        <input type="text" id="numero" placeholder="Número" required />
+                        <input type="text" id="cidadeD" placeholder="Cidade" required />
+                        <input type="text" id="numeroD" placeholder="Número" required />
                     </div>
 
                     <div class="input-group">
-                        <input type="text" id="complemento" placeholder="Complemento" required />
+                        <input type="text" id="complementoD" placeholder="Complemento" required />
                     </div>
-                </form>
+
             </div>
         </div>
 
     </section>
 
     <div class="btnRegister">
-        <button type="submit" id="registerBtn">Cadastrar</button>
+        <button onclick="registerUser(), registerAdress()" type="submit" id="registerBtn">Cadastrar</button>
     </div>
 
+    </form>
 </body>
 
 <script src="../js/registerCostumer.js"></script>

@@ -85,9 +85,7 @@ function listarProdutos(produtos) {
                 </div>
                 <div class="rating">
                     <span>${
-                      produto.avaliacao
-                        ? produto.avaliacao.toFixed(1)
-                        : "N/A"
+                      produto.avaliacao ? produto.avaliacao.toFixed(1) : "N/A"
                     }</span> /5.0
                 </div>
                 <div class="productName"><p>${produto.nome}</p></div>

@@ -1,27 +1,31 @@
 document.getElementById("loginForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-  
-    const email = document.getElementById("email").value;
-    const senha = document.getElementById("senha").value;
-  
-    fetch("http://localhost:8080/costumer/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, senha }),
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
+
+  fetch("http://localhost:8080/costumer/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, senha }),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Falha no login");
+      }
+      return res.text();
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Falha no login");
-        }
-        return res.text(); 
-      })
-      .then((mensagem) => {
+    .then((mensagem) => {
+      if (response === "Login successful") {
         alert("Login realizado com sucesso!");
-        window.location.href = "home.html"; 
-      })
-      .catch((err) => {
+        window.location.href = "home.html";
+      } else {
         alert("Email ou senha inválidos.");
-      });
-  });
+      }
+    })
+    .catch((err) => {
+      alert("Email ou senha inválidos.");
+    });
+});

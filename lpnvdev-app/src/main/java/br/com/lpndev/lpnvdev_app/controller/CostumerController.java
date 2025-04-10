@@ -23,8 +23,18 @@ public class CostumerController {
     }
 
     @PostMapping("/login")
-    public Costumer createCostumer(@RequestBody Costumer costumer) {
-        return costumerService.saveCostumer(costumer);
+    public String createCostumer(@RequestBody Costumer costumer) {
+        Optional<Costumer> foundUser = costumerService.findByEmail(costumer.getEmail());
+
+        if (foundUser.isPresent()) {
+            Costumer existingUser = foundUser.get();
+            if (costumerService.checkPassword(existingUser, costumer.getSenha())) {
+                return "Login successful";
+            } else {
+                return "Senha incorreta";
+            }
+        }
+        return "Usuário não encontrado";
     }
 
     @PutMapping

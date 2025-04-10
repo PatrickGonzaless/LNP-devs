@@ -2,6 +2,7 @@ package br.com.lpndev.lpnvdev_app.service;
 
 import br.com.lpndev.lpnvdev_app.dao.ICostumer;
 import br.com.lpndev.lpnvdev_app.model.Costumer;
+import br.com.lpndev.lpnvdev_app.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +44,13 @@ public class CostumerService {
     }
 
     public boolean checkPassword(Costumer costumer, String rawPassword) {
-        return passwordEncoder.matches(rawPassword, costumer.getSenha()); 
+        return passwordEncoder.matches(rawPassword, costumer.getSenha());
+    }
+
+    // Método para encontrar um usuário pelo email
+    public Optional<Costumer> findByEmail(String email) {
+        return daoC.findAll().stream()
+                .filter(costumer -> costumer.getEmail().equals(email))
+                .findFirst();
     }
 }

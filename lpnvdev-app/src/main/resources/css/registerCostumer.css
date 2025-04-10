@@ -239,3 +239,20 @@ input::placeholder {
     background-color: #5d1010;
     color: white;
 } 
+
+select {
+    width: 100%;
+    max-width: 120vh;
+    height: 8vh;
+    margin: 1vh 0;
+    padding: 0 2vh;
+    border: 1.5px solid white;
+    background-color: #5D1010;
+    color: white;
+    font-size: 2vh;
+    appearance: none;
+}
+
+select:invalid {
+    color: rgb(163, 163, 163);
+}

@@ -39,6 +39,16 @@ function validateForm() {
     return false;
   }
 
+  const nomeValido = Ifullname.value
+  .trim()
+  .split(" ")
+  .filter(palavra => palavra.length >= 3);
+
+if (nomeValido.length < 2) {
+  alert("O nome completo deve conter pelo menos duas palavras com no mínimo 3 letras cada.");
+  return false;
+}
+
   function validateCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, "");
     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
@@ -195,7 +205,7 @@ function registerAdress() {
       },
       method: "PUT",
       body: JSON.stringify({
-        id: AdressToAlter.id,
+        id: AdressToAlter ? AdressToAlter.id : undefined,
         logradouroT: IlogradouroT.value,
         logradouroD: IlogradouroD.value,
         cepT: IcepT.value,
@@ -343,3 +353,33 @@ Iform.addEventListener("submit", function (event) {
   }
 });
 
+document.querySelector("#copyBtn").addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const camposFiscais = [
+    IlogradouroT.value,
+    IcepT.value,
+    IbairroT.value,
+    IUfT.value,
+    IcidadeT.value,
+    InumeroT.value,
+    IcomplementoT.value
+  ];
+
+  const todosPreenchidos = camposFiscais.every((campo) => campo.trim() !== "");
+
+  if (!todosPreenchidos) {
+    alert("Por favor, preencha todos os campos do Endereço Fiscal antes de copiar.");
+    return;
+  }
+
+  IlogradouroD.value = IlogradouroT.value;
+  IcepD.value = IcepT.value;
+  IbairroD.value = IbairroT.value;
+  IUfD.value = IUfT.value;
+  IcidadeD.value = IcidadeT.value;
+  InumeroD.value = InumeroT.value;
+  IcomplementoD.value = IcomplementoT.value;
+
+  console.log("Endereço Fiscal copiado para Endereço de Entrega!");
+});

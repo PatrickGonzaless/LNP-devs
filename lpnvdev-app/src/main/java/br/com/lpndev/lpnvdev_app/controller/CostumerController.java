@@ -22,7 +22,7 @@ public class CostumerController {
         return costumerService.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public Costumer createCostumer(@RequestBody Costumer costumer) {
         return costumerService.saveCostumer(costumer);
     }

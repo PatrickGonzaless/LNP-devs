@@ -40,14 +40,16 @@ function validateForm() {
   }
 
   const nomeValido = Ifullname.value
-  .trim()
-  .split(" ")
-  .filter(palavra => palavra.length >= 3);
+    .trim()
+    .split(" ")
+    .filter((palavra) => palavra.length >= 3);
 
-if (nomeValido.length < 2) {
-  alert("O nome completo deve conter pelo menos duas palavras com no mínimo 3 letras cada.");
-  return false;
-}
+  if (nomeValido.length < 2) {
+    alert(
+      "O nome completo deve conter pelo menos duas palavras com no mínimo 3 letras cada."
+    );
+    return false;
+  }
 
   function validateCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, "");
@@ -145,7 +147,7 @@ function registerUser() {
         cpf: Icpf.value,
         email: Iemail.value,
         senha: Isenha.value,
-        genero: genero,       
+        genero: genero,
       }),
     })
       .then((res) => {
@@ -363,13 +365,15 @@ document.querySelector("#copyBtn").addEventListener("click", function (event) {
     IUfT.value,
     IcidadeT.value,
     InumeroT.value,
-    IcomplementoT.value
+    IcomplementoT.value,
   ];
 
   const todosPreenchidos = camposFiscais.every((campo) => campo.trim() !== "");
 
   if (!todosPreenchidos) {
-    alert("Por favor, preencha todos os campos do Endereço Fiscal antes de copiar.");
+    alert(
+      "Por favor, preencha todos os campos do Endereço Fiscal antes de copiar."
+    );
     return;
   }
 
@@ -382,4 +386,50 @@ document.querySelector("#copyBtn").addEventListener("click", function (event) {
   IcomplementoD.value = IcomplementoT.value;
 
   console.log("Endereço Fiscal copiado para Endereço de Entrega!");
+});
+
+IcepT.addEventListener("blur", function () {
+  let cep = IcepT.value.replace(/\D/g, "");
+  if (cep.length === 8) {
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.erro) {
+          IlogradouroT.value = data.logradouro;
+          IbairroT.value = data.bairro;
+          IUfT.value = data.uf;
+          IcidadeT.value = data.localidade;
+        } else {
+          alert("CEP não encontrado.");
+        }
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o CEP:", error);
+      });
+  } else {
+    alert("Formato de CEP inválido.");
+  }
+});
+
+IcepD.addEventListener("blur", function () {
+  let cep = IcepD.value.replace(/\D/g, "");
+  if (cep.length === 8) {
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.erro) {
+          IlogradouroD.value = data.logradouro;
+          IbairroD.value = data.bairro;
+          IUfD.value = data.uf;
+          IcidadeD.value = data.localidade;
+        } else {
+          alert("CEP não encontrado.");
+        }
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o CEP:", error);
+      });
+  } else {
+    alert("Formato de CEP inválido.");
+  }
 });

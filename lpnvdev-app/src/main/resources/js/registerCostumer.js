@@ -198,10 +198,10 @@ function registerAdress(costumer) {
         })
         .then((dataAdress) => {
           alert("Endereço salvo com sucesso!", dataAdress);
-          //window.location.href = "../pages/loginCostumer.html";
+          window.location.href = "../pages/loginCostumer.html";
         })
         .catch((err) => {
-          console.error("Erro ao alterar endereço!", err);
+          console.error("Erro ao alterar endereço!", err);   
         });
     })
     .catch((err) => {

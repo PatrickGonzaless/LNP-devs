@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tela Principal - Produtos</title>
-    <link rel="stylesheet" href="../css/mainProductSc.css" />
-  </head>
-  <body>
-    <header>
-      <div class="logo">
-        <img src="../img/productTable/logo.png" alt="Logo" />
-        <h1>LnpDevs</h1>
-      </div>
-      <div class="userid">
-        <div class="userid_space">
-          <div class="user">
-            <img src="../img/login/username.png" />
-            <h4 id="perfil"></h4>
-          </div>
-          <div class="sigin" id="userLogin">
-            <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a
-            ><a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
-          </div>
-          <div class="leave" id="userLogout" style="display: none">
-            <a href="loginCostumer.html">Sair</a>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tela Principal - Produtos</title>
+  <link rel="stylesheet" href="../css/mainProductSc.css" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="../img/productTable/logo.png" alt="Logo" />
+      <h1>LnpDevs</h1>
+    </div>
+    <div class="userid">
+      <div class="userid_space">
+        <div class="user">
+          <img src="../img/login/username.png" />
+          <h4 id="perfil"></h4>
+        </div>
+        <!-- Para USUÁRIO -->
+        <div class="sigin" id="userLogin" style="display: none"> 
+          <a class="sgsu" href="loginUser.html">ENTRE <span> ou </span></a>
+          <a class="sgsu" href="registerUser.html">CADASTRE-SE</a>
+        </div>
+        <div class="leave" id="userLogout" style="display: none">
+          <a href="#">Sair</a>
+        </div>
+
+        <!-- Para CLIENTE -->
+        <div class="sigin" id="costumerLogin">
+          <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a>
+          <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
+        </div>
+        <div class="leave" id="costumerLogout" style="display: none">
+          <a href="#">Sair</a>
         </div>
       </div>
-
-      <div class="cart">
-        <img src="../img/mainProductSc/cart.png" alt="Carrinho de compras" />
-      </div>
-    </header>
-
-    <div id="mainProducts">
-      <h1>Produtos</h1>
     </div>
 
-    <div id="cardContainer"></div>
-  </body>
-  <script src="../js/mainProductSc.js"></script>
+    <div class="cart">
+      <img src="../img/mainProductSc/cart.png" alt="Carrinho de compras" />
+    </div>
+  </header>
+
+  <div id="mainProducts">
+    <h1>Produtos</h1>
+  </div>
+
+  <div id="cardContainer"></div>
+</body>
+<script src="../js/mainProductSc.js"></script>
+
 </html>

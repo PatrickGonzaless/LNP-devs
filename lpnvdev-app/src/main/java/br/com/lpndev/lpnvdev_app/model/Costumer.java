@@ -23,7 +23,8 @@ public class Costumer {
     @Column(name = "cpf", length = 11, nullable = true)
     private String cpf;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "datanascimento", nullable = true)
     private LocalDate datanascimento;
 

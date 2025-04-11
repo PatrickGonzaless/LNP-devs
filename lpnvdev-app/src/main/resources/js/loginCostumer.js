@@ -18,7 +18,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
       return res.text();
     })
     .then((response) => {
-      console.log(response); // Log the response for debugging
       if (response) {
         alert("Login realizado com sucesso!");
         localStorage.setItem("cliente", response);

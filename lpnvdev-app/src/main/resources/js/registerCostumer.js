@@ -104,9 +104,9 @@ function registerUser() {
       email: Iemail.value,
       cpf: Icpf.value,
       nomecompleto: Ifullname.value,
-      dob: Idob.value,
-      genero: document.getElementById("genero").value,
-      senha: userToAlter.senha,
+      datanascimento: Idob.value,
+      genero: (document.getElementById("genero").value=="M" ? true : false),
+      senha: Isenha.value,
     }),
   })
     .then((res) => {
@@ -118,36 +118,67 @@ function registerUser() {
       return res.json();
     })
     .then((data) => {
-      alert("Usuário Cadastrado com sucesso!", data);
+      console.log(data);
+      alert("Usuário Cadastrado com sucesso!");
     })
     .catch((err) => {
       console.error("Erro ao cadastrar usuário!", err);
     });
 }
 
-function registerAdress() {
+function registerAdress(id) {
+  console.log(id);
+  console.log(id.id);
   fetch("http://localhost:8080/adress", {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    method: "PUT",
+    method: "POST",
     body: JSON.stringify({
-      id: AdressToAlter ? AdressToAlter.id : undefined,
       logradouroT: IlogradouroT.value,
-      logradouroD: IlogradouroD.value,
       cepT: IcepT.value,
-      cepD: IcepD.value,
       bairroT: IbairroT.value,
-      bairroD: IbairroD.value,
       ufT: IUfT.value,
-      ufD: IUfD.value,
       cidadeT: IcidadeT.value,
-      cidadeD: IcidadeD.value,
       numeroT: InumeroT.value,
-      numeroD: InumeroD.value,
       complementoT: IcomplementoT.value,
+      tipoendereco: true,
+      principal: false,
+      id_cliente: id.id,
+    }),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(
+          `Erro na requisição: ${res.status} - ${res.statusText}`
+        );
+      }
+      return res.json();
+    })
+    .then((dataAdress) => {
+      alert("Endereço alterado com sucesso!", dataAdress);
+    })
+    .catch((err) => {
+      console.error("Erro ao alterar endereço!", err);
+    });
+    fetch("http://localhost:8080/adress", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      logradouroD: IlogradouroD.value,
+      cepD: IcepD.value,
+      bairroD: IbairroD.value,
+      ufD: IUfD.value,
+      cidadeD: IcidadeD.value,
+      numeroD: InumeroD.value,
       complementoD: IcomplementoD.value,
+      tipoendereco: false,
+      principal: true,
+      id_cliente: id.id,
     }),
   })
     .then((res) => {
@@ -196,7 +227,6 @@ Iform.addEventListener("submit", function (event) {
 
   if (validateForm()) {
     registerUser();
-    registerAdress();
     clean();
   }
 });

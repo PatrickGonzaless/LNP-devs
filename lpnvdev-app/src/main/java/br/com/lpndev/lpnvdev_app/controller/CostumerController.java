@@ -37,7 +37,11 @@ public class CostumerController {
 
     @PostMapping
     public Costumer createCostumer(@RequestBody Costumer costumer) {
-        System.out.println("Creating costumer: " + costumer);
+        Optional<Costumer> foundUser = costumerService.findByEmail(costumer.getEmail());
+        Optional<Costumer> foundUserByCpf = costumerService.findByCpf(costumer.getCpf());
+        if (foundUser.isPresent() || foundUserByCpf.isPresent()) {
+            return null; // User already exists
+        }
         return costumerService.saveCostumer(costumer);
     }
 

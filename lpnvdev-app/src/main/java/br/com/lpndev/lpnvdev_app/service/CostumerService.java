@@ -53,4 +53,11 @@ public class CostumerService {
                 .filter(costumer -> costumer.getEmail().equals(email))
                 .findFirst();
     }
+
+    // Método para encontrar um usuário pelo CPF
+    public Optional<Costumer> findByCpf(String cpf) {
+        return daoC.findAll().stream()
+                .filter(costumer -> costumer.getCpf().equals(cpf))
+                .findFirst();
+    }
 }

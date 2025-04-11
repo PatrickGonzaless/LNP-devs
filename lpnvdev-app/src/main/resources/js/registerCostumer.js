@@ -105,7 +105,7 @@ function registerUser() {
       cpf: Icpf.value,
       nomecompleto: Ifullname.value,
       datanascimento: Idob.value,
-      genero: (document.getElementById("genero").value=="M" ? true : false),
+      genero: document.getElementById("genero").value == "M" ? true : false,
       senha: Isenha.value,
     }),
   })
@@ -118,17 +118,15 @@ function registerUser() {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
       alert("Usuário Cadastrado com sucesso!");
+      registerAdress(data);
     })
     .catch((err) => {
-      console.error("Erro ao cadastrar usuário!", err);
+      alert("Usuário já cadastrado!");
     });
 }
 
-function registerAdress(id) {
-  console.log(id);
-  console.log(id.id);
+function registerAdress(costumer) {
   fetch("http://localhost:8080/adress", {
     headers: {
       Accept: "application/json",
@@ -136,16 +134,16 @@ function registerAdress(id) {
     },
     method: "POST",
     body: JSON.stringify({
-      logradouroT: IlogradouroT.value,
-      cepT: IcepT.value,
-      bairroT: IbairroT.value,
-      ufT: IUfT.value,
-      cidadeT: IcidadeT.value,
-      numeroT: InumeroT.value,
-      complementoT: IcomplementoT.value,
+      costumerId: costumer.id,
+      logradouro: IlogradouroT.value,
+      cep: IcepT.value,
+      bairro: IbairroT.value,
+      uf: IUfT.value,
+      cidade: IcidadeT.value,
+      numero: InumeroT.value,
+      complemento: IcomplementoT.value,
       tipoendereco: true,
       principal: false,
-      id_cliente: id.id,
     }),
   })
     .then((res) => {
@@ -157,40 +155,40 @@ function registerAdress(id) {
       return res.json();
     })
     .then((dataAdress) => {
-      alert("Endereço alterado com sucesso!", dataAdress);
-    })
-    .catch((err) => {
-      console.error("Erro ao alterar endereço!", err);
-    });
-    fetch("http://localhost:8080/adress", {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify({
-      logradouroD: IlogradouroD.value,
-      cepD: IcepD.value,
-      bairroD: IbairroD.value,
-      ufD: IUfD.value,
-      cidadeD: IcidadeD.value,
-      numeroD: InumeroD.value,
-      complementoD: IcomplementoD.value,
-      tipoendereco: false,
-      principal: true,
-      id_cliente: id.id,
-    }),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(
-          `Erro na requisição: ${res.status} - ${res.statusText}`
-        );
-      }
-      return res.json();
-    })
-    .then((dataAdress) => {
-      alert("Endereço alterado com sucesso!", dataAdress);
+      fetch("http://localhost:8080/adress", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          costumerId: costumer.id,
+          logradouro: IlogradouroD.value,
+          cep: IcepD.value,
+          bairro: IbairroD.value,
+          uf: IUfD.value,
+          cidade: IcidadeD.value,
+          numero: InumeroD.value,
+          complemento: IcomplementoD.value,
+          tipoendereco: false,
+          principal: true,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              `Erro na requisição: ${res.status} - ${res.statusText}`
+            );
+          }
+          return res.json();
+        })
+        .then((dataAdress) => {
+          alert("Endereço salvo com sucesso!", dataAdress);
+          //window.location.href = "../pages/loginCostumer.html";
+        })
+        .catch((err) => {
+          console.error("Erro ao alterar endereço!", err);
+        });
     })
     .catch((err) => {
       console.error("Erro ao alterar endereço!", err);

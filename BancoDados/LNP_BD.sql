@@ -42,7 +42,9 @@ datanascimento date,
 genero boolean,
 senha text not null
 );
+
 ALTER TABLE cliente MODIFY COLUMN datanascimento DATE;
+
 create table enderecos(
 id_endereco integer auto_increment primary key,
 logradouro varchar (100) not null,

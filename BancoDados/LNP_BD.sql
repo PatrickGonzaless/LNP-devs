@@ -38,7 +38,7 @@ id integer auto_increment primary key,
 email varchar (50) not null,
 cpf char (11) not null unique,
 nomecompleto varchar (100) not null,
-datanascimento datetime,
+datanascimento date,
 genero boolean,
 senha text not null
 );

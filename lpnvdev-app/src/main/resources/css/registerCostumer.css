@@ -202,8 +202,16 @@ input::placeholder {
     background-color: white;
 }
 
-#copyBtn{
+.copyBtnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    height: 10vh; 
+}
+
+#copyBtn{
+    width: 70%;
     height: 8vh;
     font-size: 1.3rem;
     border: 1px solid white;
@@ -255,4 +263,20 @@ select {
 
 select:invalid {
     color: rgb(163, 163, 163);
+}
+
+#addNewAdress {
+    width: 30%;
+    height: 8vh;
+    font-size: 1.3rem;
+    border: 1px solid white;
+    background-color: #4b0505;
+    color: white;
+    cursor: pointer;
+    margin-left: 3vh;
+}
+
+#addNewAdress:hover {
+    background-color: #ffffff;
+    color: black;
 }

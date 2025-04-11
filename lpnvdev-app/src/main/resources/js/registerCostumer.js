@@ -1,24 +1,24 @@
-const Iform = document.querySelector("#registerForm");
-const Ifullname = document.querySelector("#name");
-const Icpf = document.querySelector("#cpf");
-const Iemail = document.querySelector("#email");
-const Idob = document.querySelector("#dob");
-const Isenha = document.querySelector("#password");
-const Iconfpassword = document.querySelector("#confirmPassword");
-const IlogradouroT = document.querySelector("#logradouroT");
-const IlogradouroD = document.querySelector("#logradouroD");
-const IcepT = document.querySelector("#cepT");
-const IcepD = document.querySelector("#cepD");
-const IbairroT = document.querySelector("#bairroT");
-const IbairroD = document.querySelector("#bairroD");
-const IUfT = document.querySelector("#ufT");
-const IUfD = document.querySelector("#ufD");
-const IcidadeT = document.querySelector("#cidadeT");
-const IcidadeD = document.querySelector("#cidadeD");
-const InumeroT = document.querySelector("#numeroT");
-const InumeroD = document.querySelector("#numeroD");
-const IcomplementoT = document.querySelector("#complementoT");
-const IcomplementoD = document.querySelector("#complementoD");
+const Iform = document.getElementById("registerForm");
+const Ifullname = document.getElementById("name");
+const Icpf = document.getElementById("cpf");
+const Iemail = document.getElementById("email");
+const Idob = document.getElementById("dob");
+const Isenha = document.getElementById("password");
+const Iconfpassword = document.getElementById("confirmPassword");
+const IlogradouroT = document.getElementById("logradouroT");
+const IlogradouroD = document.getElementById("logradouroD");
+const IcepT = document.getElementById("cepT");
+const IcepD = document.getElementById("cepD");
+const IbairroT = document.getElementById("bairroT");
+const IbairroD = document.getElementById("bairroD");
+const IUfT = document.getElementById("ufT");
+const IUfD = document.getElementById("ufD");
+const IcidadeT = document.getElementById("cidadeT");
+const IcidadeD = document.getElementById("cidadeD");
+const InumeroT = document.getElementById("numeroT");
+const InumeroD = document.getElementById("numeroD");
+const IcomplementoT = document.getElementById("complementoT");
+const IcomplementoD = document.getElementById("complementoD");
 
 const userToAlter = JSON.parse(localStorage.getItem("userToAlter"));
 const AdressToAlter = JSON.parse(localStorage.getItem("AdressToAlter"));
@@ -120,6 +120,7 @@ function registerUser() {
     .then((data) => {
       alert("Usuário Cadastrado com sucesso!");
       registerAdress(data);
+      clean();
     })
     .catch((err) => {
       alert("Usuário já cadastrado!");
@@ -144,6 +145,7 @@ function registerAdress(costumer) {
       complemento: IcomplementoT.value,
       tipoendereco: true,
       principal: false,
+      
     }),
   })
     .then((res) => {
@@ -155,6 +157,18 @@ function registerAdress(costumer) {
       return res.json();
     })
     .then((dataAdress) => {
+      console.log("Dados enviados para o endereço fiscal:", {
+        costumerId: costumer.id,
+        logradouro: IlogradouroT.value,
+        cep: IcepT.value,
+        bairro: IbairroT.value,
+        uf: IUfT.value,
+        cidade: IcidadeT.value,
+        numero: InumeroT.value,
+        complemento: IcomplementoT.value,
+        tipoendereco: true,
+        principal: false,
+      });
       fetch("http://localhost:8080/adress", {
         headers: {
           Accept: "application/json",
@@ -225,7 +239,6 @@ Iform.addEventListener("submit", function (event) {
 
   if (validateForm()) {
     registerUser();
-    clean();
   }
 });
 

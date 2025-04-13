@@ -23,7 +23,6 @@ public class Costumer {
     @Column(name = "cpf", length = 11, nullable = true)
     private String cpf;
 
-    
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "datanascimento", nullable = true)
     private LocalDate datanascimento;
@@ -95,4 +94,13 @@ public class Costumer {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public List<Adress> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Adress> enderecos) {
+        this.enderecos = enderecos;
+    }
+
 }

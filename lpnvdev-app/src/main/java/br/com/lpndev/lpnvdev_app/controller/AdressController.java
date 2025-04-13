@@ -50,7 +50,7 @@ public class AdressController {
 
             // Monta o Adress
             Adress adress = new Adress();
-            adress.setIdCliente(costumerOpt.get());
+            adress.setIdCostumer(costumerOpt.get());
             adress.setLogradouro(adressDTO.getLogradouro());
             adress.setCep(adressDTO.getCep());
             adress.setBairro(adressDTO.getBairro());

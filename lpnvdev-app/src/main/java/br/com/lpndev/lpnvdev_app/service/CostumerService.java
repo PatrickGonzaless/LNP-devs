@@ -2,7 +2,6 @@ package br.com.lpndev.lpnvdev_app.service;
 
 import br.com.lpndev.lpnvdev_app.dao.ICostumer;
 import br.com.lpndev.lpnvdev_app.model.Costumer;
-import br.com.lpndev.lpnvdev_app.model.User;
 
 import java.util.List;
 import java.util.Optional;

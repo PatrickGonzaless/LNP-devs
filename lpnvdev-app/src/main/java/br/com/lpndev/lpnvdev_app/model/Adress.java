@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,39 +19,39 @@ public class Adress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_endereco")
-    public Integer id;
+    private Integer id;
 
     @Column(name = "logradouro", length = 100, nullable = true)
-    public String logradouro;
+    private String logradouro;
 
     @Column(name = "cep", length = 9, nullable = true)
-    public String cep;
+    private String cep;
 
     @Column(name = "bairro", length = 100, nullable = true)
-    public String bairro;
+    private String bairro;
 
     @Column(name = "uf", length = 2, nullable = true)
-    public String uf;
+    private String uf;
 
     @Column(name = "cidade", length = 100, nullable = true)
-    public String cidade;
+    private String cidade;
 
     @Column(name = "numero", length = 4, nullable = true)
-    public String numero;
+    private String numero;
 
     @Column(name = "complemento", length = 20, nullable = true)
-    public String complemento;
+    private String complemento;
 
     @Column(name = "tipoendereco", nullable = true)
-    public boolean tipoEndereco; // 0 = entrega, 1 = cobrança
+    private boolean tipoEndereco; // 0 = entrega, 1 = cobrança
 
     @Column(name = "principal", nullable = true)
-    public boolean principal; // 0 = não, 1 = sim
+    private boolean principal; // 0 = não, 1 = sim
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente", nullable = false)
-    public Costumer idCostumer; // FK para a tabela de clientes
+    @JsonIgnore
+    private Costumer idCostumer; // FK para a tabela de clientes
 
     public Adress() {
     }
@@ -164,11 +165,11 @@ public class Adress {
         this.principal = principal;
     }
 
-    public Costumer getIdCliente() {
+    public Costumer getIdCostumer() {
         return idCostumer;
     }
 
-    public void setIdCliente(Costumer idCliente) {
+    public void setIdCostumer(Costumer idCliente) {
         this.idCostumer = idCliente;
     }
 

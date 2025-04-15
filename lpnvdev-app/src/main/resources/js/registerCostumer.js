@@ -94,20 +94,40 @@ function validateForm() {
 }
 
 function registerUser() {
+  let dados = new FormData();
+  dados.append("email", Iemail.value);
+  dados.append("cpf", Icpf.value);
+  dados.append("nomecompleto", Ifullname.value);
+  dados.append("datanascimento", Idob.value);
+  dados.append(
+    "genero",
+    document.getElementById("genero").value == "M" ? true : false
+  );
+  dados.append("senha", Isenha.value);
+
+  dados.append("logradouro", IlogradouroT.value);
+  dados.append("cep", IcepT.value);
+  dados.append("bairro", IbairroT.value);
+  dados.append("uf", IUfT.value);
+  dados.append("cidade", IcidadeT.value);
+  dados.append("numero", InumeroT.value);
+  dados.append("complemento", IcomplementoT.value);
+  dados.append("tipoendereco", true);
+  dados.append("principal", false);
+
+  dados.append("logradouroD", IlogradouroD.value);
+  dados.append("cepD", IcepD.value);
+  dados.append("bairroD", IbairroD.value);
+  dados.append("ufD", IUfD.value);
+  dados.append("cidadeD", IcidadeD.value);
+  dados.append("numeroD", InumeroD.value);
+  dados.append("complementoD", IcomplementoD.value);
+  dados.append("tipoenderecoD", false);
+  dados.append("principalD", true);
+
   fetch("http://localhost:8080/costumer", {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: Iemail.value,
-      cpf: Icpf.value,
-      nomecompleto: Ifullname.value,
-      datanascimento: Idob.value,
-      genero: document.getElementById("genero").value == "M" ? true : false,
-      senha: Isenha.value,
-    }),
+    body: dados,
   })
     .then((res) => {
       if (!res.ok) {
@@ -119,128 +139,10 @@ function registerUser() {
     })
     .then((data) => {
       alert("Usuário Cadastrado com sucesso!");
-      registerAdress(data);
       clean();
     })
     .catch((err) => {
       alert("Usuário já cadastrado!");
-    });
-}
-
-function registerAdress(costumer) {
-  fetch("http://localhost:8080/adress", {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify({
-      costumerId: costumer.id,
-      logradouro: IlogradouroT.value,
-      cep: IcepT.value,
-      bairro: IbairroT.value,
-      uf: IUfT.value,
-      cidade: IcidadeT.value,
-      numero: InumeroT.value,
-      complemento: IcomplementoT.value,
-      tipoendereco: true,
-      principal: false,
-    }),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(
-          `Erro na requisição: ${res.status} - ${res.statusText}`
-        );
-      }
-      return res.json();
-    })
-    .then((dataAdress) => {
-      fetch("http://localhost:8080/adress", {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          costumerId: costumer.id,
-          logradouro: IlogradouroD.value,
-          cep: IcepD.value,
-          bairro: IbairroD.value,
-          uf: IUfD.value,
-          cidade: IcidadeD.value,
-          numero: InumeroD.value,
-          complemento: IcomplementoD.value,
-          tipoendereco: false,
-          principal: true,
-        }),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(
-              `Erro na requisição: ${res.status} - ${res.statusText}`
-            );
-          }
-          return res.json();
-        })
-        .then((dataAdress) => {
-          console.log("Endereço principal salvo com sucesso!");
-
-          // NOVA PARTE: Enviar os endereços de entrega adicionais
-          const deliverySections = document.querySelectorAll(".deliveryAddressSection");
-          deliverySections.forEach((section, index) => {
-            if (index === 0) return; // Ignora o primeiro
-
-            const logradouro = section.querySelector(`[name^="logradouroD"]`).value;
-            const cep = section.querySelector(`[name^="cepD"]`).value;
-            const bairro = section.querySelector(`[name^="bairroD"]`).value;
-            const uf = section.querySelector(`[name^="ufD"]`).value;
-            const cidade = section.querySelector(`[name^="cidadeD"]`).value;
-            const numero = section.querySelector(`[name^="numeroD"]`).value;
-            const complemento = section.querySelector(`[name^="complementoD"]`).value;
-
-            fetch("http://localhost:8080/adress", {
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              method: "POST",
-              body: JSON.stringify({
-                costumerId: costumer.id,
-                logradouro,
-                cep,
-                bairro,
-                uf,
-                cidade,
-                numero,
-                complemento,
-                tipoendereco: false,
-                principal: false,
-              }),
-            })
-              .then((res) => {
-                if (!res.ok) {
-                  throw new Error(`Erro na requisição: ${res.status} - ${res.statusText}`);
-                }
-                return res.json();
-              })
-              .then((extraAddressData) => {
-                console.log("Endereço adicional salvo:", extraAddressData);
-              })
-              .catch((err) => {
-                console.error("Erro ao salvar endereço adicional:", err);
-              });
-          });
-
-          alert("Endereços salvos com sucesso!");
-          window.location.href = "../pages/loginCostumer.html";
-        })
-        .catch((err) => {
-          console.error("Erro ao alterar endereço!", err);
-        });
-    })
-    .catch((err) => {
-      console.error("Erro ao alterar endereço!", err);
     });
 }
 
@@ -393,18 +295,26 @@ document.getElementById("addNewAdress").addEventListener("click", function () {
     const cep = cepInput.value.replace(/\D/g, "");
     if (cep.length === 8) {
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           if (!data.erro) {
-            newAddressSection.querySelector(`[name="logradouroD${deliveryAddressCount}"]`).value = data.logradouro;
-            newAddressSection.querySelector(`[name="bairroD${deliveryAddressCount}"]`).value = data.bairro;
-            newAddressSection.querySelector(`[name="ufD${deliveryAddressCount}"]`).value = data.uf;
-            newAddressSection.querySelector(`[name="cidadeD${deliveryAddressCount}"]`).value = data.localidade;
+            newAddressSection.querySelector(
+              `[name="logradouroD${deliveryAddressCount}"]`
+            ).value = data.logradouro;
+            newAddressSection.querySelector(
+              `[name="bairroD${deliveryAddressCount}"]`
+            ).value = data.bairro;
+            newAddressSection.querySelector(
+              `[name="ufD${deliveryAddressCount}"]`
+            ).value = data.uf;
+            newAddressSection.querySelector(
+              `[name="cidadeD${deliveryAddressCount}"]`
+            ).value = data.localidade;
           } else {
             alert("CEP não encontrado.");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Erro ao buscar o CEP:", error);
         });
     } else {

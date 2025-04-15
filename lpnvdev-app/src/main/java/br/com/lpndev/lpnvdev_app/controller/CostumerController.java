@@ -1,6 +1,9 @@
 package br.com.lpndev.lpnvdev_app.controller;
 
+import br.com.lpndev.lpnvdev_app.model.Adress;
 import br.com.lpndev.lpnvdev_app.model.Costumer;
+import br.com.lpndev.lpnvdev_app.model.DTOCostumer;
+import br.com.lpndev.lpnvdev_app.service.AdressService;
 import br.com.lpndev.lpnvdev_app.service.CostumerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +15,10 @@ import java.util.Optional;
 @RequestMapping("/costumer")
 public class CostumerController {
     private final CostumerService costumerService;
+    private final AdressService adressService;
 
-    public CostumerController(CostumerService costumerService) {
+    public CostumerController(CostumerService costumerService, AdressService adressService) {
+        this.adressService = adressService;
         this.costumerService = costumerService;
     }
 
@@ -36,13 +41,26 @@ public class CostumerController {
     }
 
     @PostMapping
-    public Costumer createCostumer(@RequestBody Costumer costumer) {
-        Optional<Costumer> foundUser = costumerService.findByEmail(costumer.getEmail());
-        Optional<Costumer> foundUserByCpf = costumerService.findByCpf(costumer.getCpf());
-        if (foundUser.isPresent() || foundUserByCpf.isPresent()) {
+    public Costumer createCostumer2(@ModelAttribute DTOCostumer DTO) {
+        System.out.println(DTO);
+        Costumer costumer = new Costumer(DTO.getEmail(), DTO.getNomeCompleto(), DTO.getCpf(), DTO.getDataNascimento(),
+                DTO.isGenero(), DTO.getSenha());
+        Costumer newCostumer = costumerService.saveCostumer(costumer);
+
+        Adress adress = new Adress(DTO.getLogradouro(), DTO.getCep(), DTO.getBairro(), DTO.getUf(), DTO.getCidade(),
+                DTO.getNumero(), DTO.getComplemento(), DTO.isTipoEndereco(), DTO.isPrincipal(), newCostumer);
+        Adress newAdress = adressService.saveAdress(adress);
+
+        Adress adressD = new Adress(DTO.getLogradouroD(), DTO.getCepD(), DTO.getBairroD(), DTO.getUfD(),
+                DTO.getCidadeD(), DTO.getNumeroD(), DTO.getComplementoD(), DTO.isTipoEnderecoD(), DTO.isPrincipalD(),
+                newCostumer);
+        Adress newAdressD = adressService.saveAdress(adressD);
+
+        if (newCostumer != null && newAdress != null && newAdressD != null) {
+            return newCostumer; // User created successfully
+        } else {
             return null; // User already exists
         }
-        return costumerService.saveCostumer(costumer);
     }
 
     @PutMapping

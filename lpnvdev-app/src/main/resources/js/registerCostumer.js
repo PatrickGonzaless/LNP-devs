@@ -97,7 +97,7 @@ function registerUser() {
   let dados = new FormData();
   dados.append("email", Iemail.value);
   dados.append("cpf", Icpf.value);
-  dados.append("nomecompleto", Ifullname.value);
+  dados.append("nomeCompleto", Ifullname.value);
   dados.append("datanascimento", Idob.value);
   dados.append(
     "genero",

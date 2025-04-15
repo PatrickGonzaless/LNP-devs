@@ -39,6 +39,16 @@ public class Costumer {
     public Costumer() {
     }
 
+    public Costumer(String email, String nomecompleto, String cpf, LocalDate datanascimento, boolean genero,
+            String senha) {
+        this.email = email;
+        this.nomecompleto = nomecompleto;
+        this.cpf = cpf;
+        this.datanascimento = datanascimento;
+        this.genero = genero;
+        this.senha = senha;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

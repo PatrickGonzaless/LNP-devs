@@ -2,7 +2,7 @@ package br.com.lpndev.lpnvdev_app.controller;
 
 import br.com.lpndev.lpnvdev_app.model.Adress;
 import br.com.lpndev.lpnvdev_app.model.Costumer;
-import br.com.lpndev.lpnvdev_app.model.DTOCostumer;
+import br.com.lpndev.lpnvdev_app.DTO.DTOCostumer;
 import br.com.lpndev.lpnvdev_app.service.AdressService;
 import br.com.lpndev.lpnvdev_app.service.CostumerService;
 import org.springframework.web.bind.annotation.*;

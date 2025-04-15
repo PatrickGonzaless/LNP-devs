@@ -1,4 +1,4 @@
-package br.com.lpndev.lpnvdev_app.model;
+package br.com.lpndev.lpnvdev_app.DTO;
 
 public class DTOadress {
     private Integer costumerId;

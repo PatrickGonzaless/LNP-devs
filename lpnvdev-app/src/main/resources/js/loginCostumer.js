@@ -15,12 +15,12 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
       if (!res.ok) {
         throw new Error("Falha no login");
       }
-      return res.text();
+      return res.json();
     })
     .then((response) => {
       if (response) {
         alert("Login realizado com sucesso!");
-        localStorage.setItem("cliente", response);
+        localStorage.setItem("loggedInCostumer", JSON.stringify(response));
         window.location.href = "../pages/mainProductSc.html";
       } else {
         alert("Email ou senha inválidos.");

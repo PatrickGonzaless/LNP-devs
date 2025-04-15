@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
+  const loggedInCostumer = JSON.stringify(localStorage.getItem("loggedInCostumer"));
+  listProduct();
+
+  console.log('loggedInUser:', loggedInUser);  // Verifique a estrutura de loggedInUser
+  console.log('loggedInCostumer:', loggedInCostumer);
 
   if (loggedInUser) {
     verifUser(loggedInUser);
@@ -16,48 +20,45 @@ function verifUser(user) {
   const perfil = document.getElementById("perfil");
   const userLogin = document.getElementById("userLogin");
   const userLogout = document.getElementById("userLogout");
-  const costumerLogin = document.getElementById("costumerLogin");
-  const costumerLogout = document.getElementById("costumerLogout");
+  const areauser = document.getElementById("areaLoginUser");
+  const areacostumer = document.getElementById("areaLoginCostumer");
 
   if (perfil) {
     perfil.innerHTML = `${user.username}, ${user.grupo}`;
   }
 
-  if (userLogin) userLogin.style.display = "none";
+  if (userLogin){
+    userLogin.style.display = "none"; 
+    areauser.style.display = "block";
+    areacostumer.style.display = "none";
+  } 
   if (userLogout) {
     userLogout.style.display = "block";
+    areauser = areaLoginUser.style.display = "block";
     userLogout.addEventListener("click", logout);
   }
-
-  // esconde o login de cliente se for usuário logado
-  if (costumerLogin) costumerLogin.style.display = "none";
-  if (costumerLogout) costumerLogout.style.display = "none";
-
-  listProduct();
 }
 
 function verifCostumer(costumer) {
-  const perfil = document.getElementById("perfil");
+  const perfilC = document.getElementById("perfilC");
   const costumerLogin = document.getElementById("costumerLogin");
   const costumerLogout = document.getElementById("costumerLogout");
-  const userLogin = document.getElementById("userLogin");
-  const userLogout = document.getElementById("userLogout");
+  const areauser = document.getElementById("areaLoginUser");
+  const areacostumer = document.getElementById("areaLoginCostumer");
 
-  if (perfil) {
-    perfil.innerHTML = `${costumer.nomecompleto}, Cliente`;
+  if (perfilC) {
+    perfilC.innerHTML = `${costumer.name}, Cliente`;
   }
 
-  if (costumerLogin) costumerLogin.style.display = "none";
+  if (costumerLogin){
+    costumerLogin.style.display = "none";
+    areauser.style.display = "none";
+    areacostumer.style.display = "block";
+  } 
   if (costumerLogout) {
     costumerLogout.style.display = "block";
-    costumerLogout.addEventListener("click", logoutCostumer);
+    costumerLogout.addEventListener("click", costumerLogout);
   }
-
-  // esconde o login de usuário se for cliente logado
-  if (userLogin) userLogin.style.display = "none";
-  if (userLogout) userLogout.style.display = "none";
-
-  listProduct();
 }
 
 function logout() {
@@ -65,7 +66,7 @@ function logout() {
   window.location.href = "../pages/index.html";
 }
 
-function logoutCostumer() {
+function costumerLogout() {
   localStorage.removeItem("loggedInCostumer");
   window.location.href = "../pages/loginCostumer.html";
 }

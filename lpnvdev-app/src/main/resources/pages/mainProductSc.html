@@ -16,27 +16,36 @@
     </div>
     <div class="userid">
       <div class="userid_space">
-        <div class="user">
-          <img src="../img/login/username.png" />
-          <h4 id="perfil"></h4>
-        </div>
-        <!-- Para USUÁRIO -->
-        <div class="sigin" id="userLogin" style="display: none"> 
-          <a class="sgsu" href="loginUser.html">ENTRE <span> ou </span></a>
-          <a class="sgsu" href="registerUser.html">CADASTRE-SE</a>
-        </div>
-        <div class="leave" id="userLogout" style="display: none">
-          <a href="#">Sair</a>
+
+        <div id="areaLoginUser" style="display: none">
+          <div class="user">
+            <img src="../img/login/username.png" />
+            <h4 id="perfil"></h4>
+          </div>
+          <div class="sigin" id="userLogin">
+            <a href="../pages/index.html" class="sgsu" href="loginUser.html">ENTRE <span> ou </span></a>
+            <a class="sgsu" href="registerUser.html">CADASTRE-SE</a>
+          </div>
+          <div class="leave" id="userLogout" style="display: none">
+            <a href="../pages/register.html">Sair</a>
+          </div>
         </div>
 
         <!-- Para CLIENTE -->
-        <div class="sigin" id="costumerLogin">
-          <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a>
-          <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
+        <div id="areaLoginCostumer">
+          <div class="user">
+            <img src="../img/login/username.png" />
+            <h4 id="perfilC"></h4>
+          </div>
+          <div class="sigin" id="costumerLogin">
+            <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a>
+            <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
+          </div>
+          <div class="leave" id="costumerLogout">
+            <a href="../pages/loginCostumer.html">Sair</a>
+          </div>
         </div>
-        <div class="leave" id="costumerLogout" style="display: none">
-          <a href="#">Sair</a>
-        </div>
+
       </div>
     </div>
 

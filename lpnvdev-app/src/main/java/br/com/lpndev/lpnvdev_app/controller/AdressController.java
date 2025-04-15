@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.lpndev.lpnvdev_app.model.Adress;
 import br.com.lpndev.lpnvdev_app.model.Costumer;
-import br.com.lpndev.lpnvdev_app.model.DTOadress;
+import br.com.lpndev.lpnvdev_app.DTO.DTOadress;
 
 @RestController
 @CrossOrigin("*")

@@ -112,7 +112,7 @@ function registerUser() {
   dados.append("cidade", IcidadeT.value);
   dados.append("numero", InumeroT.value);
   dados.append("complemento", IcomplementoT.value);
-  dados.append("tipoendereco", true);
+  dados.append("tipoEndereco", true);
   dados.append("principal", false);
 
   dados.append("logradouroD", IlogradouroD.value);
@@ -122,7 +122,7 @@ function registerUser() {
   dados.append("cidadeD", IcidadeD.value);
   dados.append("numeroD", InumeroD.value);
   dados.append("complementoD", IcomplementoD.value);
-  dados.append("tipoenderecoD", false);
+  dados.append("tipoEnderecoD", false);
   dados.append("principalD", true);
 
   fetch("http://localhost:8080/costumer", {
@@ -138,7 +138,8 @@ function registerUser() {
       return res.json();
     })
     .then((data) => {
-      alert("Usuário Cadastrado com sucesso!");
+      alert("Usuário Cadastrado com sucesso!")
+      window.location.href = "../pages/loginCostumer.html";
       clean();
     })
     .catch((err) => {

@@ -21,7 +21,6 @@ public class DTOCostumer {
     private boolean[] tipoEndereco; // 0 = entrega, 1 = cobrança
     private boolean[] principal; // 0 = não, 1 = sim
 
-
     public String getEmail() {
         return email;
     }
@@ -141,5 +140,5 @@ public class DTOCostumer {
     public void setPrincipal(boolean[] principal) {
         this.principal = principal;
     }
-    
+
 }

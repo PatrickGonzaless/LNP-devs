@@ -47,11 +47,11 @@ public class CostumerController {
                 DTO.isGenero(), DTO.getSenha());
         Costumer newCostumer = costumerService.saveCostumer(costumer);
 
-
         Adress adress = null;
-        for(int i = 0; i < DTO.getLogradouro().length; i++) {
+        for (int i = 0; i < DTO.getLogradouro().length; i++) {
             adress = new Adress(DTO.getLogradouro()[i], DTO.getCep()[i], DTO.getBairro()[i], DTO.getUf()[i],
-                    DTO.getCidade()[i], DTO.getNumero()[i], DTO.getComplemento()[i], DTO.getTipoEndereco()[i], DTO.getPrincipal()[i], newCostumer);
+                    DTO.getCidade()[i], DTO.getNumero()[i], DTO.getComplemento()[i], DTO.getTipoEndereco()[i],
+                    DTO.getPrincipal()[i], newCostumer);
             adressService.saveAdress(adress);
         }
 

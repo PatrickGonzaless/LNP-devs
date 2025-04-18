@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - LnpDevs</title>
+    <link rel="stylesheet" href="../css/checkoutScreen.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="../img/productTable/logo.png" alt="Logo" />
+        <h1>LnpDevs</h1>
+      </div>
+      <div class="userid">
+        <div class="userid_space">
+          <div class="user">
+            <img src="../img/login/username.png" />
+            <h4 id="perfil"></h4>
+          </div>
+          <div class="sigin" id="userLogin">
+            <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a
+            ><a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
+          </div>
+          <div class="leave" id="userLogout" style="display: none">
+            <a href="loginCostumer.html">Sair</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="checkout-container">
+      <section class="address-section">
+        <h2>📍 Endereço de entrega</h2>
+        <div class="address-box">
+          <p><strong>[Usuário quando estiver logado]</strong></p>
+          <p>Endereço, Bairro, Número - CEP</p>
+          <p>Cidade/UF</p>
+          <input type="radio" />
+          <button>Adicionar endereço</button>
+        </div>
+      </section>
+
+      <section class="summary-section">
+        <h2>Resumo:</h2>
+        <p>Valor dos produtos: R$100,00</p>
+        <p>Frete: R$19,90</p>
+        <p><strong>Total: R$119,90</strong></p>
+        <a href="payment.html" class="btn-pagar">Ir para pagamento</a>
+      </section>
+
+      <section class="shipping-section">
+        <h2>🚚 Método de envio</h2>
+        <div class="shipping-option">
+          <label
+            ><input type="radio" name="frete" /> SEDEX - 3 dias úteis</label
+          >
+          <span>R$19,90</span>
+        </div>
+        <div class="shipping-option">
+          <label
+            ><input type="radio" name="frete" /> SENAC - 10 dias úteis</label
+          >
+          <span>R$6,90</span>
+        </div>
+        <div class="shipping-option">
+          <label
+            ><input type="radio" name="frete" /> FAST - em até 2 horas</label
+          >
+          <span>R$59,90</span>
+        </div>
+      </section>
+
+      <div class="voltar">
+        <a href="cartScreen.html">← Voltar para o carrinho</a>
+      </div>
+    </main>
+  </body>
+</html>

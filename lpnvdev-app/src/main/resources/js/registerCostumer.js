@@ -21,7 +21,6 @@ const IcomplementoT = document.getElementById("complementoT");
 const IcomplementoD = document.getElementById("complementoD");
 let deliveryAddressCount = 0;
 
-
 const userToAlter = JSON.parse(localStorage.getItem("userToAlter"));
 const AdressToAlter = JSON.parse(localStorage.getItem("AdressToAlter"));
 let loggedEmail = null;
@@ -127,17 +126,35 @@ function registerUser() {
   dados.append("tipoEndereco[]", false);
   dados.append("principal[]", document.getElementById(`padraoD`).checked);
 
-  if(deliveryAddressCount!= 0){
+  if (deliveryAddressCount != 0) {
     for (let i = 1; i <= deliveryAddressCount; i++) {
-      dados.append(`logradouro[]`, document.querySelector(`[name="logradouroD${i}"]`).value);
+      dados.append(
+        `logradouro[]`,
+        document.querySelector(`[name="logradouroD${i}"]`).value
+      );
       dados.append(`cep[]`, document.querySelector(`[name="cepD${i}"]`).value);
-      dados.append(`bairro[]`, document.querySelector(`[name="bairroD${i}"]`).value);
+      dados.append(
+        `bairro[]`,
+        document.querySelector(`[name="bairroD${i}"]`).value
+      );
       dados.append(`uf[]`, document.querySelector(`[name="ufD${i}"]`).value);
-      dados.append(`cidade[]`, document.querySelector(`[name="cidadeD${i}"]`).value);
-      dados.append(`numero[]`, document.querySelector(`[name="numeroD${i}"]`).value);
-      dados.append(`complemento[]`, document.querySelector(`[name="complementoD${i}"]`).value);
+      dados.append(
+        `cidade[]`,
+        document.querySelector(`[name="cidadeD${i}"]`).value
+      );
+      dados.append(
+        `numero[]`,
+        document.querySelector(`[name="numeroD${i}"]`).value
+      );
+      dados.append(
+        `complemento[]`,
+        document.querySelector(`[name="complementoD${i}"]`).value
+      );
       dados.append(`tipoEndereco[]`, false);
-      dados.append(`principal[]`, document.getElementById(`padrao${i}`).checked);
+      dados.append(
+        `principal[]`,
+        document.getElementById(`padrao${i}`).checked
+      );
     }
   }
 
@@ -154,7 +171,7 @@ function registerUser() {
       return res.json();
     })
     .then((data) => {
-      alert("Usuário Cadastrado com sucesso!")
+      alert("Usuário Cadastrado com sucesso!");
       window.location.href = "../pages/loginCostumer.html";
       clean();
     })
@@ -275,7 +292,6 @@ IcepD.addEventListener("blur", function () {
   }
 });
 
-
 document.getElementById("addNewAdress").addEventListener("click", function () {
   deliveryAddressCount++;
 
@@ -301,8 +317,8 @@ document.getElementById("addNewAdress").addEventListener("click", function () {
     </div>
     <div class="input-group">
       <input type="text" name="complementoD${deliveryAddressCount}" placeholder="Complemento" required />
-      <input type="radio" id="padrao${deliveryAddressCount}" name="endereco" value="padrao" checked />
-      <label for="padraoD${deliveryAddressCount}">Endereço padrão</label>
+      <input type="radio" id="padrao${deliveryAddressCount}" name="endereco" value="padrao"/>
+      <label for="padrao${deliveryAddressCount}">Endereço padrão</label>
     </div>
   `;
 

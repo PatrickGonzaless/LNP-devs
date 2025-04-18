@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #5c1111;
+  color: #fff;
+}
+
+header {
+  background-color: #8b4d4d;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info img {
+  width: 24px;
+}
+
+.logout {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.checkout-container {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.address-section,
+.shipping-section,
+.summary-section {
+  background-color: #601414;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.address-section h2,
+.shipping-section h2,
+.summary-section h2 {
+  margin-top: 0;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.address-box {
+  margin-top: 15px;
+}
+
+.address-box button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: #8b4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.shipping-option {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #999;
+}
+
+.shipping-option:last-child {
+  border-bottom: none;
+}
+
+.summary-section p {
+  margin: 6px 0;
+}
+
+.btn-pagar {
+  display: inline-block;
+  margin-top: 15px;
+  background-color: white;
+  color: #5c1111;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.voltar {
+  grid-column: span 2;
+  margin-top: 20px;
+}
+
+.voltar a {
+  color: white;
+  text-decoration: underline;
+}

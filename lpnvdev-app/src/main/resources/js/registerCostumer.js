@@ -114,7 +114,7 @@ function registerUser() {
   dados.append("numero[]", InumeroT.value);
   dados.append("complemento[]", IcomplementoT.value);
   dados.append("tipoEndereco[]", true);
-  dados.append("principal[]", document.getElementById(`padrao`).checked);
+  dados.append("principal[]", false);
 
   dados.append("logradouro[]", IlogradouroD.value);
   dados.append("cep[]", IcepD.value);
@@ -124,7 +124,10 @@ function registerUser() {
   dados.append("numero[]", InumeroD.value);
   dados.append("complemento[]", IcomplementoD.value);
   dados.append("tipoEndereco[]", false);
-  dados.append("principal[]", document.getElementById(`padraoD`).checked);
+  dados.append(
+    "principal[]",
+    deliveryAddressCount ? document.getElementById(`padrao0`).checked : true
+  );
 
   if (deliveryAddressCount != 0) {
     for (let i = 1; i <= deliveryAddressCount; i++) {
@@ -293,6 +296,12 @@ IcepD.addEventListener("blur", function () {
 });
 
 document.getElementById("addNewAdress").addEventListener("click", function () {
+  if (deliveryAddressCount == 0) {
+    let txt = `<input type="radio" id="padrao0" name="endereco" value="padrao"/>
+      <label for="padrao0">Endereço padrão</label>`;
+    document.getElementById("complementoD").insertAdjacentHTML("afterend", txt);
+  }
+
   deliveryAddressCount++;
 
   const newAddressSection = document.createElement("div");

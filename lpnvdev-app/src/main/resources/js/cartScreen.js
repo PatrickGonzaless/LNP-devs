@@ -1,27 +1,41 @@
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
 
-function verifUser() {
-  if (loggedInUser) {
-    const perfil = document.getElementById("perfil");
-    const userLogin = document.getElementById("userLogin");
-    const userLogout = document.getElementById("userLogout");
+  console.log("loggedInCostumer:", loggedInCostumer);
 
-    if (perfil)
-      perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
-    if (userLogin) userLogin.style.display = "none";
-    if (userLogout) userLogout.style.display = "block";
-
-    const logoutButton = document.getElementById("userLogout");
-    if (logoutButton) logoutButton.addEventListener("click", logout);
+  if (loggedInCostumer) {
+    verifCostumer(loggedInCostumer);
   } else {
-    const userLogin = document.getElementById("userLogin");
-    const userLogout = document.getElementById("userLogout");
+    document.getElementById("costumerLogin").style.display = "block";
+  }
+});
 
-    if (userLogin) userLogin.style.display = "block";
-    if (userLogout) userLogout.style.display = "none";
+function verifCostumer(costumer) {
+  const perfilC = document.getElementById("perfilC");
+  const costumerLogin = document.getElementById("costumerLogin");
+  const costumerLogout = document.getElementById("leaves");
+  const areacostumer = document.getElementById("areaLoginCostumer");
+
+  if (perfilC) {
+    perfilC.innerHTML = `${costumer.nomecompleto}, Cliente`;
+  }
+
+  if (costumerLogin) {
+    costumerLogin.style.display = "none";
+    areacostumer.style.display = "block";
+  }
+  if (costumerLogout) {
+    costumerLogout.style.display = "block";
+    costumerLogout.addEventListener("click", costumerLogouts);
   }
 
   listarProdutos();
+}
+
+function costumerLogouts() {
+  console.log("Logout realizado com sucesso!");
+  localStorage.removeItem("loggedInCostumer");
+  window.location.href = "../pages/loginCostumer.html";
 }
 
 function listarProdutos() {
@@ -236,7 +250,3 @@ function aumentaQtd(id) {
   adicionarResumoPedido();
   window.location.reload();
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  verifUser();
-});

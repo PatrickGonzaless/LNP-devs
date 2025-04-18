@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tela Principal - Produtos</title>
+    <link rel="stylesheet" href="../css/mainProductSc.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tela Principal - Produtos</title>
-  <link rel="stylesheet" href="../css/mainProductSc.css" />
-</head>
-
-<body>
-  <header>
-    <div class="logo">
-      <img src="../img/productTable/logo.png" alt="Logo" />
-      <h1>LnpDevs</h1>
-    </div>
-    <div class="userid">
-      <div class="userid_space">
-        <!-- Para CLIENTE -->
-        <div id="areaLoginCostumer">
-          <div class="user">
-            <img src="../img/login/username.png" />
-            <h4 id="perfilC"></h4>
-          </div>
-          <div class="sigin" id="costumerLogin">
-            <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a>
-            <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
-          </div>
-          <div class="leave" id="costumerLogout">
-            <label id="leave" onclick="costumerLogouts()" style="cursor: pointer;">Sair</label>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="../img/productTable/logo.png" alt="Logo" />
+        <h1>LnpDevs</h1>
+      </div>
+      <div class="userid">
+        <div class="userid_space">
+          <!-- Para CLIENTE -->
+          <div id="areaLoginCostumer">
+            <div class="user">
+              <a href="./costumerProfile.html">
+                <img src="../img/login/username.png" />
+                <h4 id="perfilC"></h4>
+              </a>
+            </div>
+            <div class="sigin" id="costumerLogin">
+              <a class="sgsu" href="loginCostumer.html"
+                >ENTRE <span> ou </span></a
+              >
+              <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
+            </div>
+            <div class="leave" id="costumerLogout">
+              <label
+                id="leave"
+                onclick="costumerLogouts()"
+                style="cursor: pointer"
+                >Sair</label
+              >
+            </div>
           </div>
         </div>
-
       </div>
+
+      <div class="cart">
+        <img src="../img/mainProductSc/cart.png" alt="Carrinho de compras" />
+      </div>
+    </header>
+
+    <div id="mainProducts">
+      <h1>Produtos</h1>
     </div>
 
-    <div class="cart">
-      <img src="../img/mainProductSc/cart.png" alt="Carrinho de compras" />
-    </div>
-  </header>
-
-  <div id="mainProducts">
-    <h1>Produtos</h1>
-  </div>
-
-  <div id="cardContainer"></div>
-</body>
-<script src="../js/mainProductSc.js"></script>
-
+    <div id="cardContainer"></div>
+  </body>
+  <script src="../js/mainProductSc.js"></script>
 </html>

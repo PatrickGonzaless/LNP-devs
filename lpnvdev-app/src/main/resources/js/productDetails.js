@@ -1,34 +1,43 @@
 let id = localStorage.getItem("productId");
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 const comprarBtn = document.getElementById("buyButton");
 
-function verifUser() {
-  if (loggedInUser) {
-    const perfil = document.getElementById("perfil");
-    const userLogin = document.getElementById("userLogin");
-    const userLogout = document.getElementById("userLogout");
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
+  listProduct();
 
-    if (perfil)
-      perfil.innerHTML = `${loggedInUser.username}, ${loggedInUser.grupo}`;
-    if (userLogin) userLogin.style.display = "none";
-    if (userLogout) userLogout.style.display = "block";
+  console.log("loggedInCostumer:", loggedInCostumer);
 
-    const logoutButton = document.getElementById("userLogout");
-    if (logoutButton) logoutButton.addEventListener("click", logout);
+  if (loggedInCostumer) {
+    verifCostumer(loggedInCostumer);
   } else {
-    const userLogin = document.getElementById("userLogin");
-    const userLogout = document.getElementById("userLogout");
+    document.getElementById("costumerLogin").style.display = "block";
+  }
+});
 
-    if (userLogin) userLogin.style.display = "block";
-    if (userLogout) userLogout.style.display = "none";
+function verifCostumer(costumer) {
+  const perfilC = document.getElementById("perfilC");
+  const costumerLogin = document.getElementById("costumerLogin");
+  const costumerLogout = document.getElementById("leaves");
+  const areacostumer = document.getElementById("areaLoginCostumer");
+
+  if (perfilC) {
+    perfilC.innerHTML = `${costumer.nomecompleto}, Cliente`;
   }
 
-  listProduct();
+  if (costumerLogin) {
+    costumerLogin.style.display = "none";
+    areacostumer.style.display = "block";
+  }
+  if (costumerLogout) {
+    costumerLogout.style.display = "block";
+    costumerLogout.addEventListener("click", costumerLogouts);
+  }
 }
 
-function logout() {
-  localStorage.removeItem("loggedInUser");
-  window.location.href = "./index.html";
+function costumerLogouts() {
+  console.log("Logout realizado com sucesso!");
+  localStorage.removeItem("loggedInCostumer");
+  window.location.href = "../pages/loginCostumer.html";
 }
 
 function listProduct() {

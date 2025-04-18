@@ -2,13 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
   listProduct();
 
-  console.log('loggedInCostumer:', loggedInCostumer);
+  console.log("loggedInCostumer:", loggedInCostumer);
 
   if (loggedInCostumer) {
     verifCostumer(loggedInCostumer);
   } else {
     document.getElementById("costumerLogin").style.display = "block";
-    listProduct();
   }
 });
 
@@ -22,16 +21,16 @@ function verifCostumer(costumer) {
     perfilC.innerHTML = `${costumer.nomecompleto}, Cliente`;
   }
 
-  if (costumerLogin){
+  if (costumerLogin) {
     costumerLogin.style.display = "none";
     areacostumer.style.display = "block";
-  } 
+  }
   if (costumerLogout) {
     costumerLogout.style.display = "block";
     costumerLogout.addEventListener("click", costumerLogouts);
   }
 }
-   
+
 function costumerLogouts() {
   console.log("Logout realizado com sucesso!");
   localStorage.removeItem("loggedInCostumer");
@@ -48,7 +47,9 @@ function listProduct() {
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error(`Erro na reqasdasdauisição: ${res.status} - ${res.statusText}`);
+        throw new Error(
+          `Erro na reqasdasdauisição: ${res.status} - ${res.statusText}`
+        );
       }
       return res.json();
     })
@@ -86,11 +87,15 @@ function listarProdutos(produtos) {
             </figure>
           </div>
           <div class="rating">
-            <span>${produto.avaliacao ? produto.avaliacao.toFixed(1) : "N/A"}</span> /5.0
+            <span>${
+              produto.avaliacao ? produto.avaliacao.toFixed(1) : "N/A"
+            }</span> /5.0
           </div>
           <div class="productName"><p>${produto.nome}</p></div>
           <div class="productPrice">
-            <p>Valor do produto: R$ <span class="price">${produto.valor ? produto.valor.toFixed(2) : "0.00"}</span></p>
+            <p>Valor do produto: R$ <span class="price">${
+              produto.valor ? produto.valor.toFixed(2) : "0.00"
+            }</span></p>
           </div>
           <div class="btnCont">
             <button onclick="goDetails(${produto.id})">Detalhes</button>

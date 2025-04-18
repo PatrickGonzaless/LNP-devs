@@ -13,16 +13,28 @@
       </div>
       <div class="userid">
         <div class="userid_space">
-          <div class="user">
-            <img src="../img/login/username.png" />
-            <h4 id="perfil"></h4>
-          </div>
-          <div class="sigin" id="userLogin">
-            <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a
-            ><a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
-          </div>
-          <div class="leave" id="userLogout" style="display: none">
-            <a href="loginCostumer.html">Sair</a>
+          <!-- Para CLIENTE -->
+          <div id="areaLoginCostumer">
+            <div class="user">
+              <a href="./costumerProfile.html">
+                <img src="../img/login/username.png" />
+                <h4 id="perfilC"></h4>
+              </a>
+            </div>
+            <div class="sigin" id="costumerLogin">
+              <a class="sgsu" href="loginCostumer.html"
+                >ENTRE <span> ou </span></a
+              >
+              <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
+            </div>
+            <div class="leave" id="costumerLogout">
+              <label
+                id="leave"
+                onclick="costumerLogouts()"
+                style="cursor: pointer"
+                >Sair</label
+              >
+            </div>
           </div>
         </div>
       </div>

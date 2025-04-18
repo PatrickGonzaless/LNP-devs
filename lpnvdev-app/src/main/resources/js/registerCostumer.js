@@ -115,7 +115,7 @@ function registerUser() {
   dados.append("numero[]", InumeroT.value);
   dados.append("complemento[]", IcomplementoT.value);
   dados.append("tipoEndereco[]", true);
-  dados.append("principal[]", false);
+  dados.append("principal[]", document.getElementById(`padrao`).checked);
 
   dados.append("logradouro[]", IlogradouroD.value);
   dados.append("cep[]", IcepD.value);
@@ -125,7 +125,7 @@ function registerUser() {
   dados.append("numero[]", InumeroD.value);
   dados.append("complemento[]", IcomplementoD.value);
   dados.append("tipoEndereco[]", false);
-  dados.append("principal[]", document.getElementById(`padrao${i}`).checked);
+  dados.append("principal[]", document.getElementById(`padraoD`).checked);
 
   if(deliveryAddressCount!= 0){
     for (let i = 1; i <= deliveryAddressCount; i++) {

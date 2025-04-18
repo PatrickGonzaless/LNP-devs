@@ -11,25 +11,16 @@ public class DTOCostumer {
     private boolean genero;
     private String senha;
 
-    private String logradouro;
-    private String cep;
-    private String bairro;
-    private String uf;
-    private String cidade;
-    private String numero;
-    private String complemento;
-    private boolean tipoEndereco; // 0 = entrega, 1 = cobrança
-    private boolean principal; // 0 = não, 1 = sim
+    private String[] logradouro;
+    private String[] cep;
+    private String[] bairro;
+    private String[] uf;
+    private String[] cidade;
+    private String[] numero;
+    private String[] complemento;
+    private boolean[] tipoEndereco; // 0 = entrega, 1 = cobrança
+    private boolean[] principal; // 0 = não, 1 = sim
 
-    private String logradouroD;
-    private String cepD;
-    private String bairroD;
-    private String ufD;
-    private String cidadeD;
-    private String numeroD;
-    private String complementoD;
-    private boolean tipoEnderecoD; // 0 = entrega, 1 = cobrança
-    private boolean principalD; // 0 = não, 1 = sim
 
     public String getEmail() {
         return email;
@@ -79,148 +70,76 @@ public class DTOCostumer {
         this.senha = senha;
     }
 
-    public String getLogradouro() {
+    public String[] getLogradouro() {
         return logradouro;
     }
 
-    public void setLogradouro(String logradouro) {
+    public void setLogradouro(String[] logradouro) {
         this.logradouro = logradouro;
     }
 
-    public String getCep() {
+    public String[] getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep(String[] cep) {
         this.cep = cep;
     }
 
-    public String getBairro() {
+    public String[] getBairro() {
         return bairro;
     }
 
-    public void setBairro(String bairro) {
+    public void setBairro(String[] bairro) {
         this.bairro = bairro;
     }
 
-    public String getUf() {
+    public String[] getUf() {
         return uf;
     }
 
-    public void setUf(String uf) {
+    public void setUf(String[] uf) {
         this.uf = uf;
     }
 
-    public String getCidade() {
+    public String[] getCidade() {
         return cidade;
     }
 
-    public void setCidade(String cidade) {
+    public void setCidade(String[] cidade) {
         this.cidade = cidade;
     }
 
-    public String getNumero() {
+    public String[] getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(String[] numero) {
         this.numero = numero;
     }
 
-    public String getComplemento() {
+    public String[] getComplemento() {
         return complemento;
     }
 
-    public void setComplemento(String complemento) {
+    public void setComplemento(String[] complemento) {
         this.complemento = complemento;
     }
 
-    public boolean isTipoEndereco() {
+    public boolean[] getTipoEndereco() {
         return tipoEndereco;
     }
 
-    public void setTipoEndereco(boolean tipoEndereco) {
+    public void setTipoEndereco(boolean[] tipoEndereco) {
         this.tipoEndereco = tipoEndereco;
     }
 
-    public boolean isPrincipal() {
+    public boolean[] getPrincipal() {
         return principal;
     }
 
-    public void setPrincipal(boolean principal) {
+    public void setPrincipal(boolean[] principal) {
         this.principal = principal;
     }
-
-    public String getLogradouroD() {
-        return logradouroD;
-    }
-
-    public void setLogradouroD(String logradouroD) {
-        this.logradouroD = logradouroD;
-    }
-
-    public String getCepD() {
-        return cepD;
-    }
-
-    public void setCepD(String cepD) {
-        this.cepD = cepD;
-    }
-
-    public String getBairroD() {
-        return bairroD;
-    }
-
-    public void setBairroD(String bairroD) {
-        this.bairroD = bairroD;
-    }
-
-    public String getUfD() {
-        return ufD;
-    }
-
-    public void setUfD(String ufD) {
-        this.ufD = ufD;
-    }
-
-    public String getCidadeD() {
-        return cidadeD;
-    }
-
-    public void setCidadeD(String cidadeD) {
-        this.cidadeD = cidadeD;
-    }
-
-    public String getNumeroD() {
-        return numeroD;
-    }
-
-    public void setNumeroD(String numeroD) {
-        this.numeroD = numeroD;
-    }
-
-    public String getComplementoD() {
-        return complementoD;
-    }
-
-    public void setComplementoD(String complementoD) {
-        this.complementoD = complementoD;
-    }
-
-    public boolean isTipoEnderecoD() {
-        return tipoEnderecoD;
-    }
-
-    public void setTipoEnderecoD(boolean tipoEnderecoD) {
-        this.tipoEnderecoD = tipoEnderecoD;
-    }
-
-    public boolean isPrincipalD() {
-        return principalD;
-    }
-
-    public void setPrincipalD(boolean principalD) {
-        this.principalD = principalD;
-    }
-
+    
 }

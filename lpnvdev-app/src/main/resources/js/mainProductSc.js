@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function verifCostumer(costumer) {
   const perfilC = document.getElementById("perfilC");
   const costumerLogin = document.getElementById("costumerLogin");
-  const costumerLogout = document.getElementById("leave");
+  const costumerLogout = document.getElementById("leaves");
   const areacostumer = document.getElementById("areaLoginCostumer");
 
   if (perfilC) {

@@ -19,6 +19,8 @@ const InumeroT = document.getElementById("numeroT");
 const InumeroD = document.getElementById("numeroD");
 const IcomplementoT = document.getElementById("complementoT");
 const IcomplementoD = document.getElementById("complementoD");
+let deliveryAddressCount = 0;
+
 
 const userToAlter = JSON.parse(localStorage.getItem("userToAlter"));
 const AdressToAlter = JSON.parse(localStorage.getItem("AdressToAlter"));
@@ -105,25 +107,39 @@ function registerUser() {
   );
   dados.append("senha", Isenha.value);
 
-  dados.append("logradouro", IlogradouroT.value);
-  dados.append("cep", IcepT.value);
-  dados.append("bairro", IbairroT.value);
-  dados.append("uf", IUfT.value);
-  dados.append("cidade", IcidadeT.value);
-  dados.append("numero", InumeroT.value);
-  dados.append("complemento", IcomplementoT.value);
-  dados.append("tipoEndereco", true);
-  dados.append("principal", false);
+  dados.append("logradouro[]", IlogradouroT.value);
+  dados.append("cep[]", IcepT.value);
+  dados.append("bairro[]", IbairroT.value);
+  dados.append("uf[]", IUfT.value);
+  dados.append("cidade[]", IcidadeT.value);
+  dados.append("numero[]", InumeroT.value);
+  dados.append("complemento[]", IcomplementoT.value);
+  dados.append("tipoEndereco[]", true);
+  dados.append("principal[]", false);
 
-  dados.append("logradouroD", IlogradouroD.value);
-  dados.append("cepD", IcepD.value);
-  dados.append("bairroD", IbairroD.value);
-  dados.append("ufD", IUfD.value);
-  dados.append("cidadeD", IcidadeD.value);
-  dados.append("numeroD", InumeroD.value);
-  dados.append("complementoD", IcomplementoD.value);
-  dados.append("tipoEnderecoD", false);
-  dados.append("principalD", true);
+  dados.append("logradouro[]", IlogradouroD.value);
+  dados.append("cep[]", IcepD.value);
+  dados.append("bairro[]", IbairroD.value);
+  dados.append("uf[]", IUfD.value);
+  dados.append("cidade[]", IcidadeD.value);
+  dados.append("numero[]", InumeroD.value);
+  dados.append("complemento[]", IcomplementoD.value);
+  dados.append("tipoEndereco[]", false);
+  dados.append("principal[]", true);
+
+  if(deliveryAddressCount!= 0){
+    for (let i = 1; i <= deliveryAddressCount; i++) {
+      dados.append(`logradouro[]`, document.querySelector(`[name="logradouroD${i}"]`).value);
+      dados.append(`cep[]`, document.querySelector(`[name="cepD${i}"]`).value);
+      dados.append(`bairro[]`, document.querySelector(`[name="bairroD${i}"]`).value);
+      dados.append(`uf[]`, document.querySelector(`[name="ufD${i}"]`).value);
+      dados.append(`cidade[]`, document.querySelector(`[name="cidadeD${i}"]`).value);
+      dados.append(`numero[]`, document.querySelector(`[name="numeroD${i}"]`).value);
+      dados.append(`complemento[]`, document.querySelector(`[name="complementoD${i}"]`).value);
+      dados.append(`tipoEndereco[]`, false);
+      dados.append(`principal[]`, false);
+    }
+  }
 
   fetch("http://localhost:8080/costumer", {
     method: "POST",
@@ -259,7 +275,6 @@ IcepD.addEventListener("blur", function () {
   }
 });
 
-let deliveryAddressCount = 1;
 
 document.getElementById("addNewAdress").addEventListener("click", function () {
   deliveryAddressCount++;

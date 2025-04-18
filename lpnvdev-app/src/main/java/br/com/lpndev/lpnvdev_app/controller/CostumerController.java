@@ -47,16 +47,15 @@ public class CostumerController {
                 DTO.isGenero(), DTO.getSenha());
         Costumer newCostumer = costumerService.saveCostumer(costumer);
 
-        Adress adress = new Adress(DTO.getLogradouro(), DTO.getCep(), DTO.getBairro(), DTO.getUf(), DTO.getCidade(),
-                DTO.getNumero(), DTO.getComplemento(), DTO.isTipoEndereco(), DTO.isPrincipal(), newCostumer);
-        Adress newAdress = adressService.saveAdress(adress);
 
-        Adress adressD = new Adress(DTO.getLogradouroD(), DTO.getCepD(), DTO.getBairroD(), DTO.getUfD(),
-                DTO.getCidadeD(), DTO.getNumeroD(), DTO.getComplementoD(), DTO.isTipoEnderecoD(), DTO.isPrincipalD(),
-                newCostumer);
-        Adress newAdressD = adressService.saveAdress(adressD);
+        Adress adress = null;
+        for(int i = 0; i < DTO.getLogradouro().length; i++) {
+            adress = new Adress(DTO.getLogradouro()[i], DTO.getCep()[i], DTO.getBairro()[i], DTO.getUf()[i],
+                    DTO.getCidade()[i], DTO.getNumero()[i], DTO.getComplemento()[i], DTO.getTipoEndereco()[i], DTO.getPrincipal()[i], newCostumer);
+            adressService.saveAdress(adress);
+        }
 
-        if (newCostumer != null && newAdress != null && newAdressD != null) {
+        if (newCostumer != null && adress != null) {
             return newCostumer; // User created successfully
         } else {
             return null; // User already exists

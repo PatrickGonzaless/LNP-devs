@@ -1,8 +1,11 @@
+document.getElementById("leave").style.display = "none"; 
+
 document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const email = document.getElementById("email").value;
   const senha = document.getElementById("senha").value;
+
 
   fetch("http://localhost:8080/costumer/login", {
     method: "POST",

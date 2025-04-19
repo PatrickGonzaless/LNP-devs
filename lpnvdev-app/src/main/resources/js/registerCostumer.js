@@ -25,6 +25,7 @@ const userToAlter = JSON.parse(localStorage.getItem("userToAlter"));
 const AdressToAlter = JSON.parse(localStorage.getItem("AdressToAlter"));
 let loggedEmail = null;
 const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+document.getElementById("leave").style.display = "none"; 
 
 function validateForm() {
   if (Ifullname.value.trim() === "") {

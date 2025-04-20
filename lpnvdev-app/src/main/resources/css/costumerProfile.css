@@ -36,7 +36,7 @@ header {
   margin-left: 2vh;
 }
 
-#areaLoginCostumer{
+#areaLoginCostumer {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -115,13 +115,13 @@ header {
   color: white;
 }
 
-h4{
+h4 {
   width: 20vh;
   font-size: 17px;
 }
 
 .leave {
-  font-size: 22px
+  font-size: 22px;
 }
 
 .container {
@@ -178,7 +178,8 @@ h4{
   margin: 10px 0 5px;
 }
 
-.section input {
+.section input,
+select {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
@@ -219,4 +220,8 @@ h4{
   .sidebar button {
     width: auto;
   }
+}
+
+:disabled {
+  cursor: not-allowed;
 }

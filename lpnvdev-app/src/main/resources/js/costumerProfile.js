@@ -46,7 +46,7 @@ function costumerLogouts() {
   window.location.href = "../pages/loginCostumer.html";
 }
 
-document.getElementById("alter").addEventListener("click", () => {
+document.getElementById("alter").addEventListener("click", (event) => {
   event.preventDefault();
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
   const formCostumer = document.getElementById("formCostumer");
@@ -60,20 +60,19 @@ document.getElementById("alter").addEventListener("click", () => {
   elementos[7].disabled = false;
 });
 
-function confirmUser() {
+document.getElementById("confirm").addEventListener("click", (event) => {
+  event.preventDefault();
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
   const formCostumer = document.getElementById("formCostumer");
   const elementos = formCostumer.elements;
-  let login = {
-    email: loggedInCostumer.email,
-    senha: elementos[5].value,
-  };
+  let email = loggedInCostumer.email;
+  let senha = elementos[5].value;
   fetch("http://localhost:8080/costumer/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(login),
+    body: JSON.stringify({ email, senha }),
   })
     .then((res) => {
       if (!res.ok) {
@@ -83,15 +82,18 @@ function confirmUser() {
     })
     .then((response) => {
       if (response) {
+        console.log("1");
         updateCostumer();
       } else {
+        console.log("2");
         alert("Senha inválida.");
       }
     })
     .catch((err) => {
+      console.log("3");
       alert("Erro no server");
     });
-}
+});
 
 function updateCostumer() {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
@@ -116,8 +118,9 @@ function updateCostumer() {
     enderecos: loggedInCostumer.enderecos,
   };
 
+  console.log(costumer);
   // Enviar os dados atualizados para o servidor
-  fetch(`http://localhost:8080/costumers`, {
+  fetch(`http://localhost:8080/costumer`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

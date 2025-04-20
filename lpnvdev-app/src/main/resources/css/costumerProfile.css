@@ -6,21 +6,122 @@ body {
 }
 
 header {
-  background-color: #8b4d4d;
-  padding: 10px 40px;
+  background-color: #985d5d;
+  height: 15vh;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  padding: 0 5vh;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 50%;
+  height: 15vh;
 }
 
-.login {
-  font-size: 14px;
+.logo h1 {
+  font-size: 35px;
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 2vh;
+}
+
+#areaLoginCostumer{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.userid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: auto;
+  width: 50%;
+  height: 15vh;
+}
+
+.userid_space {
+  display: flex;
+  height: 8vh;
+  margin-left: auto;
+  margin-right: 10vh;
+  border-radius: 13px;
+}
+
+.user img {
+  width: 4.5vh;
+  height: 4.5vh;
+  align-items: center;
+  margin-right: 2vh;
+}
+
+.user {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.user a {
+  width: 10vh;
+}
+
+.sigin {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+  width: 25vh;
+  align-items: left;
+  justify-content: center;
+  line-height: 3.5vh;
+}
+
+.sigin a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sigin a:hover {
+  color: #5d1010;
+}
+
+.sgsu span {
+  cursor: default;
+  font-weight: 500;
+  color: white;
+}
+
+h4{
+  width: 20vh;
+  font-size: 17px;
+}
+
+.leave {
+  font-size: 22px
 }
 
 .container {

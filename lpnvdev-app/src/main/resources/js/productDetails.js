@@ -1,5 +1,6 @@
 let id = localStorage.getItem("productId");
 const comprarBtn = document.getElementById("buyButton");
+document.getElementById("leave").style.display = "none"; 
 
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
@@ -19,6 +20,7 @@ function verifCostumer(costumer) {
   const costumerLogin = document.getElementById("costumerLogin");
   const costumerLogout = document.getElementById("leaves");
   const areacostumer = document.getElementById("areaLoginCostumer");
+  document.getElementById("leave").style.display = "block"; 
 
   if (perfilC) {
     perfilC.innerHTML = `${costumer.nomecompleto}, Cliente`;

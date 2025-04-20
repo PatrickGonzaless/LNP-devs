@@ -1,3 +1,6 @@
+document.getElementById("leave").style.display = "none"; 
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
 
@@ -15,6 +18,8 @@ function verifCostumer(costumer) {
   const costumerLogin = document.getElementById("costumerLogin");
   const costumerLogout = document.getElementById("leaves");
   const areacostumer = document.getElementById("areaLoginCostumer");
+  document.getElementById("removeAllcontainer").style.display = "block";
+  document.getElementById("leave").style.display = "block"; 
 
   if (perfilC) {
     perfilC.innerHTML = `${costumer.nomecompleto}, Cliente`;
@@ -172,12 +177,13 @@ function removerProduto(index) {
   document.getElementById("noItem").style.display = "block";
 }
 
-//Remover todos os itens
+
 document.getElementById("removeAll").addEventListener("click", () => {
   localStorage.removeItem("carrinho");
   listarProdutos();
-  window.location.reload();
   document.getElementById("noItem").style.display = "block";
+
+  window.location.reload();
 });
 
 function adicionarResumoPedido() {

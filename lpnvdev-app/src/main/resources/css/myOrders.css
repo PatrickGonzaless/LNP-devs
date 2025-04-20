@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #5b0f0f;
+  color: white;
+}
+
+header {
+  background-color: #8b4d4d;
+  padding: 1vh 2vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1vh;
+}
+
+main {
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#title {
+  width: 100%;
+  height: 100%;
+  font-size: 3vh;
+  display: flex;
+  justify-content: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+#cards {
+  margin: auto 32px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #fff;
+  padding: 1vh;
+}
+
+#contentCard {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#contentCard div {
+  align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1vh;
+}
+
+#contentCard div p {
+  margin: 3px;
+}
+
+#buttonCard {
+  margin: 16px 0 0 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#buttonCard button {
+  margin: 0 32px 0 0;
+  background-color: #fff;
+  color: #000;
+  border: solid 1px #000;
+  border-radius: 5px;
+  padding: 0.5vh 1vh;
+  cursor: pointer;
+  font-size: 2vh;
+}

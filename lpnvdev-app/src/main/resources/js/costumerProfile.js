@@ -1,7 +1,7 @@
+document.getElementById("leave").style.display = "none";
+
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
-
-  console.log("loggedInCostumer:", loggedInCostumer);
 
   if (loggedInCostumer) {
     verifCostumer(loggedInCostumer);
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function verifCostumer(costumer) {
+  document.getElementById("leave").style.display = "block";
   const perfilC = document.getElementById("perfilC");
   const costumerLogin = document.getElementById("costumerLogin");
   const costumerLogout = document.getElementById("leaves");

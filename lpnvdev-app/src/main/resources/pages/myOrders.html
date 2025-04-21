@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/myOrders.css" />
-    <title>My Orders</title>
+    <title>Meus pedidos</title>
   </head>
   <body>
     <header>
@@ -23,21 +23,18 @@
               </a>
             </div>
             <div class="sigin" id="costumerLogin">
-              <a class="sgsu" href="loginCostumer.html"
-                >ENTRE <span> ou </span></a
-              >
+              <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a>
               <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
             </div>
             <div class="leave" id="costumerLogout">
-              <label
-                id="leave"
-                onclick="costumerLogouts()"
-                style="cursor: pointer"
-                >Sair</label
-              >
+              <label id="leave" onclick="costumerLogouts()" style="cursor: pointer">Sair</label>
             </div>
           </div>
         </div>
+      </div>
+  
+      <div class="cart">
+        <a href="../pages/cartScreen.html"><img src="../img/mainProductSc/cart.png" alt="Carrinho de compras" /></a>
       </div>
     </header>
 
@@ -73,5 +70,6 @@
         </div>
       </section>
     </main>
+    <script src="../js/myOrders.js"></script>
   </body>
 </html>

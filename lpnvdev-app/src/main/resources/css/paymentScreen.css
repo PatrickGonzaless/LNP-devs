@@ -1,0 +1,248 @@
+@font-face {
+    font-family: "Inter";
+    src: url("../font/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #5D1010;
+    align-items: center;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+  }
+  
+  header {
+    background-color: #985d5d;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5vh;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+    height: 15vh;
+  }
+  
+  .logo h1 {
+    font-size: 35px;
+    font-family: "Inter", sans-serif;
+    color: white;
+  }
+  
+  .cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 2vh;
+  }
+  
+  #areaLoginCostumer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .cart img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .userid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: auto;
+    width: 50%;
+    height: 15vh;
+  }
+  
+  .userid_space {
+    display: flex;
+    height: 8vh;
+    margin-left: auto;
+    margin-right: 10vh;
+    border-radius: 13px;
+  }
+  
+  .user img {
+    width: 4.5vh;
+    height: 4.5vh;
+    align-items: center;
+    margin-right: 2vh;
+  }
+  
+  .user {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .user a {
+    width: 10vh;
+  }
+  
+  .sigin {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    width: 25vh;
+    align-items: left;
+    justify-content: center;
+    line-height: 3.5vh;
+  }
+  
+  .sigin a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .sigin a:hover {
+    color: #5d1010;
+  }
+  
+  .sgsu span {
+    cursor: default;
+    font-weight: 500;
+    color: white;
+  }
+  
+  h4 {
+    width: 20vh;
+    font-size: 17px;
+  }
+  
+  .leave {
+    font-size: 22px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center; 
+    gap: 1.5vh; 
+    width: 95%;
+    height: 15vh;
+    color: white;
+    margin: auto;
+    padding: 0 2vh;
+  }
+  
+  .title h1 {
+    font-size: 4vh;
+  }
+  
+  .title img {
+    height: 6vh; 
+    width: auto; /
+  }
+
+  #container{
+   display: flex;
+    margin: auto;
+    width: 93%;
+    height: 70vh;
+    justify-content: space-between;
+  }
+
+  .payment-options {
+    display: flex;
+    flex-direction: column;  
+    width: 60%;
+    height: 65vh;
+    background-color: red;
+}
+
+  .pixArea{
+    width: 100%;
+    background-color: blue;
+    height: 20vh;
+  }
+
+  .bankSlipArea{
+    width: 100%;
+    background-color: gray;
+    height: 20vh;
+  }
+
+  #summaryContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3vh;
+    width: 40%;
+    height: 30vh;
+}
+
+.summaryArea{
+    width: 70%;
+    height: 65vh;
+    margin: auto; 
+    border: 1px solid white;
+}
+
+.summaryArea {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.summaryTitle{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    height: 5vh;
+    background-color: #5d1010;
+    color: white;
+    font-size: 20px;
+    border-bottom: 1px solid white;
+}
+
+.summaryTitle h3, .cepTitle h3 {
+    margin-left: 2vh;
+}
+
+.summaryContent {
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    gap: 2vh;
+    flex-grow: 1;
+    color: white;
+    justify-content: space-between;
+    padding: 3vh; 
+}
+
+.subTotal, .frete, .total {
+    font-size: 22px;
+    font-weight: normal;
+    display: flex;
+    justify-content: space-between; 
+}
+
+.subTotal h4, .frete h4, .total h4 {
+    margin: 0;
+}

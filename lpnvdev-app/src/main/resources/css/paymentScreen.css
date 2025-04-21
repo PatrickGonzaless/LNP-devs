@@ -3,66 +3,67 @@
     src: url("../font/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
-  }
-  
-  * {
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-  }
-  
-  body {
+}
+
+body {
     background-color: #5D1010;
     align-items: center;
     justify-content: center;
     font-family: "Inter", sans-serif;
-  }
-  
-  header {
+    color: white;
+}
+
+header {
     background-color: #985d5d;
     height: 15vh;
     display: flex;
     align-items: center;
     padding: 0 5vh;
-  }
-  
-  .logo {
+}
+
+.logo {
     display: flex;
     align-items: center;
     gap: 10px;
     width: 50%;
     height: 15vh;
-  }
-  
-  .logo h1 {
+}
+
+.logo h1 {
     font-size: 35px;
     font-family: "Inter", sans-serif;
     color: white;
-  }
-  
-  .cart {
+}
+
+.cart {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
     margin-left: 2vh;
-  }
-  
-  #areaLoginCostumer {
+}
+
+#areaLoginCostumer {
     display: flex;
     align-items: center;
     gap: 10px;
-  }
-  
-  .cart img {
+}
+
+.cart img {
     width: 100%;
     height: auto;
     cursor: pointer;
-  }
-  
-  .userid {
+}
+
+.userid {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -70,24 +71,24 @@
     margin-left: auto;
     width: 50%;
     height: 15vh;
-  }
-  
-  .userid_space {
+}
+
+.userid_space {
     display: flex;
     height: 8vh;
     margin-left: auto;
     margin-right: 10vh;
     border-radius: 13px;
-  }
-  
-  .user img {
+}
+
+.user img {
     width: 4.5vh;
     height: 4.5vh;
     align-items: center;
     margin-right: 2vh;
-  }
-  
-  .user {
+}
+
+.user {
     width: 60%;
     height: 100%;
     display: flex;
@@ -95,13 +96,13 @@
     font-size: 15px;
     align-items: center;
     justify-content: center;
-  }
-  
-  .user a {
+}
+
+.user a {
     width: 10vh;
-  }
-  
-  .sigin {
+}
+
+.sigin {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -110,105 +111,156 @@
     align-items: left;
     justify-content: center;
     line-height: 3.5vh;
-  }
-  
-  .sigin a {
+}
+
+.sigin a {
     text-decoration: none;
     color: white;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .sigin a:hover {
+}
+
+.sigin a:hover {
     color: #5d1010;
-  }
-  
-  .sgsu span {
+}
+
+.sgsu span {
     cursor: default;
     font-weight: 500;
     color: white;
-  }
-  
-  h4 {
+}
+
+h4 {
     width: 20vh;
     font-size: 17px;
-  }
-  
-  .leave {
-    font-size: 22px;
-  }
+}
 
-  .title {
+.leave {
+    font-size: 22px;
+}
+
+.title {
     display: flex;
-    align-items: center; 
-    gap: 1.5vh; 
+    align-items: center;
+    gap: 1.5vh;
     width: 95%;
     height: 15vh;
     color: white;
     margin: auto;
     padding: 0 2vh;
-  }
-  
-  .title h1 {
-    font-size: 4vh;
-  }
-  
-  .title img {
-    height: 6vh; 
-    width: auto; /
-  }
+}
 
-  #container{
-   display: flex;
+.title h1 {
+    font-size: 4vh;
+}
+
+.title img {
+    height: 6vh;
+    width: auto;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
     margin: auto;
     width: 93%;
     height: 70vh;
-    justify-content: space-between;
-  }
-
-  .payment-options {
-    display: flex;
-    flex-direction: column;  
-    width: 60%;
-    height: 65vh;
-    background-color: red;
 }
 
-  .pixArea{
-    width: 100%;
-    background-color: blue;
-    height: 20vh;
-  }
-
-  .bankSlipArea{
-    width: 100%;
-    background-color: gray;
-    height: 20vh;
-  }
-
-  #summaryContainer {
+.payment-options {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 3vh;
-    width: 40%;
-    height: 30vh;
+    align-items: center;
+    justify-content: center;
+    width: 65%;
+    height: 70vh;
+    gap: 2vh;
 }
 
-.summaryArea{
-    width: 70%;
-    height: 65vh;
-    margin: auto; 
+.pixArea, .bankSlipArea, .creditCardArea{
+    width: 100%;
+    height: 20vh;
+}
+
+.selectPix, .selectBoleto,.selectCartao{
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid white;
+    line-height: 10vh;
+}
+
+.pixDescription{
+    width: 100%;
+    height: 10vh;
+    border: 1px solid white;
+    
+}
+
+.pixDescription p{
+    font-size: 20px;
+    margin-left: 2vh;
+    margin-top: 3.8vh;
+}
+
+.boletoDescription {
+    width: 100%;
+    height: 10vh;
+    border: 1px solid white;
+    padding: 0 2vh; 
+}
+
+.boletoDescription p{
+    margin-top: 2.5vh;
+    font-size: 20px;
+    margin-left: 0.5vh;
+}
+
+
+.selectCartao{
+    font-size: 25px;
+    font-weight: bold;
     border: 1px solid white;
 }
 
-.summaryArea {
-    display: flex;
-    flex-direction: column;
-    height: 100%; 
+#cardFieldsArea{
+    width: 100%;
+    height: 10vh;
+    border: 1px solid white;
 }
 
-.summaryTitle{
+.selectPix input, .selectBoleto input, .selectCartao input{
+    width: 2.5vh;
+    height: 2.5vh;
+    margin-left: 2vh;
+}
+
+input[type="radio"] {
+    accent-color: #5D1010; 
+    border: 2px solid #999; 
+    width: 20px;
+    height: 20px; 
+    cursor: pointer;
+  }
+  
+  input[type="radio"]:checked {
+    border: 2px solid red; 
+  }
+
+#summaryContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+    height: 65vh;
+    margin: auto;
+}
+
+.summaryArea {
+    width: 70%;
+    height: 65vh;
+    margin: auto;
+}
+
+.summaryTitle {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -217,10 +269,10 @@
     background-color: #5d1010;
     color: white;
     font-size: 20px;
-    border-bottom: 1px solid white;
+    border: 1px solid white;
 }
 
-.summaryTitle h3, .cepTitle h3 {
+.summaryTitle h3{
     margin-left: 2vh;
 }
 
@@ -228,21 +280,29 @@
     font-size: 22px;
     display: flex;
     flex-direction: column;
-    height: 30vh;
     gap: 2vh;
-    flex-grow: 1;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 30vh;
     color: white;
     justify-content: space-between;
-    padding: 3vh; 
+    padding: 3vh;
+    border: 1px solid white;
 }
 
-.subTotal, .frete, .total {
+.subTotal,
+.frete,
+.total {
     font-size: 22px;
     font-weight: normal;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
-.subTotal h4, .frete h4, .total h4 {
+.subTotal h4,
+.frete h4,
+.total h4 {
     margin: 0;
 }
+
+

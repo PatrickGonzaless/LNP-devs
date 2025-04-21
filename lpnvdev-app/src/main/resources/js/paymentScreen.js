@@ -45,4 +45,92 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("loggedInCostumer");
     window.location.href = "../pages/loginCostumer.html";
   }
+
+
+    // PIX
+  const pixRadio = document.getElementById("pix");
+  const pixDescription = document.getElementById("pixDescription");
+  const pixArea = document.getElementById("pixArea");
+
+  // BOLETO
+  const boletoRadio = document.getElementById("boleto");
+  const boletoDescription = document.querySelector(".boletoDescription");
+  const boletoArea = document.querySelector(".bankSlipArea");
+
+  // CARTÃO
+  const cartaoRadio = document.getElementById("cartao");
+  const cardFieldsArea = document.getElementById("cardFieldsArea");
+  const cartaoArea = document.querySelector(".creditCardArea");
+
+  function resetAll() {
+    // Esconde descrições
+    pixDescription.style.display = "none";
+    boletoDescription.style.display = "none";
+    cardFieldsArea.innerHTML = "";
+
+    // Reseta alturas
+    pixArea.style.height = "10vh";
+    boletoArea.style.height = "10vh";
+    cartaoArea.style.height = "10vh";
+  }
+
+  // PIX
+  pixRadio.addEventListener("change", function () {
+    if (this.checked) {
+      resetAll();
+      pixDescription.style.display = "block";
+      pixArea.style.height = "20vh";
+    }
+  });
+
+  // BOLETO
+  boletoRadio.addEventListener("change", function () {
+    if (this.checked) {
+      resetAll();
+      boletoDescription.style.display = "block";
+      boletoArea.style.height = "22vh";
+    }
+  });
+
+  // CARTÃO
+  cartaoRadio.addEventListener("change", function () {
+    if (this.checked) {
+      resetAll();
+      cartaoArea.style.height = "32vh";
+      cardFieldsArea.innerHTML = `
+        <div class="cardFields">
+          <label>Nome no Cartão:</label>
+          <input type="text" placeholder="Como aparece no cartão" />
+
+          <label>Número do Cartão:</label>
+          <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" />
+
+          <label>Validade:</label>
+          <input type="text" placeholder="MM/AA" maxlength="5" />
+
+          <label>CVV:</label>
+          <input type="text" placeholder="123" maxlength="4" />
+        </div>
+      `;
+    }
+  });
+
+
   
+//   function showDesc() {
+//     const pixDesc = document.getElementById("pixDescription");
+//     
+
+//     const cardDesc = document.getElementById("cardDesc");
+//     const boletoDesc = document.getElementById("boletoDesc");
+  
+//     if (pixDesc.style.display === "none") {
+//       pixDesc.style.display = "block";
+//       pixHeight.style.height = "20vh";
+//       cardDesc.style.display = "none";
+//       boletoDesc.style.display = "none";
+//     } else {
+//       pixDesc.style.display = "none";
+//       pixHeight.style.height = "10vh";
+//     }
+//   }

@@ -45,17 +45,46 @@
   </div>
 
   <section id="container">
+
     <div class="payment-options">
-      <div class="pixArea">
-        
+    <div class="pixArea" id="pixArea" style="height: 10vh;">
+        <div class="selectPix" id="selectPix">
+            <label class="radio-containerPix">
+                <input type="radio" id="pix" name="payment" value="pix" />
+                <span class="radio-custom"></span> PIX
+            </label>
         </div>
-      </div>
-      <div class="bankSlipArea">
-        
-      </div>
-      <div class="creditCardArea">
-        
+        <div class="pixDescription" id="pixDescription" style="display:none">
+          <p>Até 20% de desconto com aprovação imediata que torna a expedição mais rápida do pedido.</p>
+        </div>
     </div>
+
+    <div class="bankSlipArea" id="bankSlipArea" style="height: 10vh;">
+        <div class="selectBoleto">
+            <label class="radio-container">
+                <input type="radio" id="boleto" name="payment" value="boleto" />
+                <span class="radio-custom"></span> BOLETO
+            </label>
+        </div>
+        <div class="boletoDescription" style="display:none">
+           <p>Até 2% de desconto. Você poderá visualizar ou imprimir o boleto após a finalização do pedido. 
+            Mas fique de olho! Passada a data de vencimento, seu pedido perderá automaticamente a validade.</p>
+        </div>
+    </div>
+
+    <div class="creditCardArea" id="creditCardArea" style="height: 10vh;">
+        <div class="selectCartao">
+            <label class="radio-containerCard" >
+                <input type="radio" id="cartao" name="payment" value="cartao"  />
+                <span class="radio-custom"></span> CARTÃO DE CRÉDITO
+            </label>
+        </div>
+        <div id="cardFieldsArea" >
+           
+        </div>
+    </div>
+
+</div>
 
     <div id="summaryContainer">
       <div class="summaryArea">
@@ -76,7 +105,7 @@
       </div>
     </div>
   </section>
-  
+
   <script src="../js/paymentScreen.js"></script>
 </body>
 

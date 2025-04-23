@@ -27,6 +27,10 @@ public class CostumerController {
         return costumerService.findAll();
     }
 
+    public Optional<Costumer> costumerById(@PathVariable Integer id) {
+        return costumerService.findById(id);
+    }
+
     @PostMapping("/login")
     public Optional<Costumer> login(@RequestBody Costumer costumer) {
         Optional<Costumer> foundUser = costumerService.findByEmail(costumer.getEmail());
@@ -63,6 +67,9 @@ public class CostumerController {
 
     @PutMapping
     public Costumer editCostumer(@RequestBody Costumer costumer) {
+        Optional<Costumer> existingCostumer = costumerService.findById(costumer.getId());
+        costumer.setSenha(existingCostumer.get().getSenha());
+        costumer.setEnderecos(existingCostumer.get().getEnderecos());
         return costumerService.alterCostumer(costumer);
     }
 

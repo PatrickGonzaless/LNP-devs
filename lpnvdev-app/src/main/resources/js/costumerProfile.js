@@ -64,7 +64,8 @@ document.getElementById("alter").addEventListener("click", (event) => {
   elementos[5].disabled = false;
 });
 
-document.getElementById("confirm").addEventListener("click", ()=>{
+document.getElementById("confirm").addEventListener("click", (evt) => {
+  evt.preventDefault();
   const email = document.getElementById("email").value;
   const senha = document.getElementById("password1").value;
 
@@ -79,7 +80,7 @@ document.getElementById("confirm").addEventListener("click", ()=>{
   })
     .then((res) => {
       console.log(res);
-    console.log("esteve aqui");
+      console.log("esteve aqui");
       if (!res.ok) {
         throw new Error("Falha no login");
       }
@@ -134,9 +135,9 @@ function updateCostumer() {
   })
     .then((response) => {
       if (response.ok) {
-        console.log("Dados atualizados com sucesso!");
+        alert("Dados atualizados com sucesso!");
         localStorage.setItem("loggedInCostumer", JSON.stringify(costumer));
-        window.reload();
+        window.location.href = "../pages/costumerProfile.html";
       } else {
         console.error("Erro ao atualizar os dados do cliente.");
       }

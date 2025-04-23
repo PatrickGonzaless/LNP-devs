@@ -30,7 +30,6 @@ public class CostumerController {
     @PostMapping("/login")
     public Optional<Costumer> login(@RequestBody Costumer costumer) {
         Optional<Costumer> foundUser = costumerService.findByEmail(costumer.getEmail());
-
         if (foundUser.isPresent()) {
             Costumer existingUser = foundUser.get();
             if (costumerService.checkPassword(existingUser, costumer.getSenha())) {

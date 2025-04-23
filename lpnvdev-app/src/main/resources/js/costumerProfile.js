@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     verifCostumer(loggedInCostumer);
     console.log(loggedInCostumer);
     //selecionar o formulario e preencher com os dados do cliente
-    let formCostumer = document.getElementById("formCostumer");
+    let formCostumer = document.getElementById("dataAreaForm");
     let elementos = formCostumer.elements;
     elementos[0].value = loggedInCostumer.nomecompleto;
     elementos[1].value = loggedInCostumer.cpf;
@@ -49,24 +49,27 @@ function costumerLogouts() {
 document.getElementById("alter").addEventListener("click", (event) => {
   event.preventDefault();
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
-  const formCostumer = document.getElementById("formCostumer");
+  const formCostumer = document.getElementById("dataAreaForm");
   const elementos = formCostumer.elements;
+  let linha1 = ` <input type="password" id="password1" placeholder="Digite sua senha" required/>`;
+  let linha2 = ` <input type="password" id="password2" placeholder="Digite uma nova senha(OPCIONAL)"/>`;
+  let linha3 = ` <input type="password" id="password3" placeholder="Repita a nova senha"/>`;
 
+  elementos[4].insertAdjacentHTML("afterend", linha1);
+  elementos[5].insertAdjacentHTML("afterend", linha2);
+  elementos[6].insertAdjacentHTML("afterend", linha3);
   elementos[0].disabled = false;
   elementos[3].disabled = false;
   elementos[4].disabled = false;
   elementos[5].disabled = false;
-  elementos[6].disabled = false;
-  elementos[7].disabled = false;
 });
 
-document.getElementById("confirm").addEventListener("click", (event) => {
-  event.preventDefault();
-  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
-  const formCostumer = document.getElementById("formCostumer");
-  const elementos = formCostumer.elements;
-  let email = loggedInCostumer.email;
-  let senha = elementos[5].value;
+document.getElementById("confirm").addEventListener("click", ()=>{
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("password1").value;
+
+  console.log(email);
+  console.log(senha);
   fetch("http://localhost:8080/costumer/login", {
     method: "POST",
     headers: {
@@ -75,29 +78,31 @@ document.getElementById("confirm").addEventListener("click", (event) => {
     body: JSON.stringify({ email, senha }),
   })
     .then((res) => {
+      console.log(res);
+    console.log("esteve aqui");
       if (!res.ok) {
-        throw new Error("Falha na alteração");
+        throw new Error("Falha no login");
       }
       return res.json();
     })
     .then((response) => {
       if (response) {
-        console.log("1");
+        console.log(1);
         updateCostumer();
       } else {
-        console.log("2");
-        alert("Senha inválida.");
+        console.log(2);
+        alert("senha inválida.");
       }
     })
     .catch((err) => {
-      console.log("3");
-      alert("Erro no server");
+      console.log(3);
+      alert("senha inválida.");
     });
 });
 
 function updateCostumer() {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
-  const formCostumer = document.getElementById("formCostumer");
+  const formCostumer = document.getElementById("dataAreaForm");
   const elementos = formCostumer.elements;
   const senha = elementos[5].value;
   if (!elementos[6].value == "") {
@@ -131,7 +136,7 @@ function updateCostumer() {
       if (response.ok) {
         console.log("Dados atualizados com sucesso!");
         localStorage.setItem("loggedInCostumer", JSON.stringify(costumer));
-        window.location.href = "../pages/costumerProfile.html";
+        window.reload();
       } else {
         console.error("Erro ao atualizar os dados do cliente.");
       }
@@ -139,6 +144,4 @@ function updateCostumer() {
     .catch((error) => {
       console.error("Erro de rede:", error);
     });
-  // Previne o envio do formulário padrão
-  event.preventDefault();
 }

@@ -27,9 +27,6 @@ public class CostumerService {
     }
 
     public Costumer alterCostumer(Costumer costumer) {
-        if (costumer.getSenha() != null && !costumer.getSenha().isEmpty()) {
-            costumer.setSenha(passwordEncoder.encode(costumer.getSenha())); // Encriptando a senha
-        }
         return daoC.save(costumer);
     }
 

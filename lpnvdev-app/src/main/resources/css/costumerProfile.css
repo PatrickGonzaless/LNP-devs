@@ -240,7 +240,7 @@ button a:hover{
   gap: 2vh;
 }
 
-#dataAreaForm input {
+#dataAreaForm input, select {
   flex: 1; 
   padding: 1.5vh;
   border: none;
@@ -332,4 +332,11 @@ button a:hover{
 
 .button-group button:hover {
   background-color: #701c1c;
+}
+
+:disabled {
+  background-color: #5D1010;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.7;
 }

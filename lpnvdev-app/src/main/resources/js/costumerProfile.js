@@ -1,4 +1,29 @@
 document.getElementById("leave").style.display = "none";
+const modal = document.getElementById("myModal");
+const openModalBtnT = document.getElementById("addAdressT");
+const openModalBtnD = document.getElementById("addAdressD");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const selectEndereco = document.getElementById("adressPrincipal");
+const title = document.getElementsByClassName("taxAdressContent")[0];
+
+// Quando o botão "Abrir Modal" for clicado, o modal é mostrado
+openModalBtnT.onclick = function (evt) {
+  evt.preventDefault();
+  let titleText = `<h4>Endereço Fiscal</h4>`;
+  title.insertAdjacentHTML("afterbegin", titleText);
+  modal.style.display = "block";
+};
+openModalBtnD.onclick = function (evt) {
+  evt.preventDefault();
+  let titleText = `<h4>Endereço Entrega</h4>`;
+  title.insertAdjacentHTML("afterbegin", titleText);
+  modal.style.display = "block";
+};
+// Quando o botão de fechar (X) for clicado, o modal é escondido
+closeModalBtn.onclick = function () {
+  title.removeChild(title.firstChild);
+  modal.style.display = "none";
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
@@ -30,6 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
         elementosAdressD[0].value = address.logradouro;
         elementosAdressD[1].value = address.cep;
         elementosAdressD[2].value = address.numero;
+      }
+    });
+
+    let linha;
+    adresses.forEach((address) => {
+      if (!address.tipoEndereco) {
+        linha = `<option value="${address.id}">${address.logradouro}, ${address.numero}</option>`;
+        console.log(linha);
+        selectEndereco.insertAdjacentHTML("beforeend", linha);
       }
     });
   } else {
@@ -171,3 +205,10 @@ function updateCostumer() {
       console.error("Erro de rede:", error);
     });
 }
+
+window.onclick = function (event) {
+  if (event.target === modal) {
+    title.removeChild(title.firstChild);
+    modal.style.display = "none";
+  }
+};

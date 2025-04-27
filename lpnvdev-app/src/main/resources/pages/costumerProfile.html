@@ -104,6 +104,8 @@
               <button id="confirm" type="submit">Ok</button>
             </div>
           </form>
+
+          <select name="principal" id="adressPrincipal"></select>
         </div>
 
         <div class="adressArea">
@@ -113,7 +115,7 @@
             <input type="text" placeholder="Número" disabled />
 
             <div class="button-group">
-              <button id="addAdress" type="submit">Adicionar Endereço</button>
+              <button id="addAdressT" type="submit">Adicionar Endereço</button>
             </div>
           </form>
 
@@ -123,13 +125,50 @@
             <input type="text" placeholder="Número" disabled />
 
             <div class="button-group">
-              <button id="addAdress" type="submit">Adicionar Endereço</button>
+              <button id="addAdressD" type="submit">Adicionar Endereço</button>
             </div>
           </form>
         </div>
       </div>
     </section>
 
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModalBtn" class="close">&times;</span>
+        <div class="taxAdressContent">
+          <div class="input-group">
+            <input
+              type="text"
+              id="logradouroT"
+              placeholder="Logradouro"
+              required />
+            <input type="text" id="cepT" placeholder="CEP" required />
+          </div>
+
+          <div class="input-group">
+            <input type="text" id="bairroT" placeholder="Bairro" required />
+            <input type="text" id="ufT" placeholder="UF" required />
+          </div>
+
+          <div class="input-group">
+            <input type="text" id="cidadeT" placeholder="Cidade" required />
+            <input type="text" id="numeroT" placeholder="Número" required />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="text"
+              id="complementoT"
+              placeholder="Complemento"
+              required />
+          </div>
+          <div class="buttonsModal">
+            <button id="cancelModal">Cancel</button>
+            <button id="okModal">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- <div class="container">
       <div class="sidebar">
         <button>Minha conta</button>

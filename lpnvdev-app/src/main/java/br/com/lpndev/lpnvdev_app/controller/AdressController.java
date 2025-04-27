@@ -6,6 +6,7 @@ import java.util.Optional;
 import br.com.lpndev.lpnvdev_app.service.AdressService;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.lpndev.lpnvdev_app.model.Adress;
@@ -31,6 +32,7 @@ public class AdressController {
         return ResponseEntity.ok(adressDTO);
     }
 
+    @Transactional
     @PutMapping
     public Adress editUser(@RequestBody Adress adress) {
         return adressService.alterAdress(adress);

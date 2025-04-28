@@ -1,35 +1,33 @@
-document.getElementById("leave").style.display = "none";
-
 document.addEventListener("DOMContentLoaded", () => {
-    const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
+  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
   
-    if (loggedInCostumer) {
-      verifCostumer(loggedInCostumer);
-      console.log(loggedInCostumer);
-      //selecionar o formulario e preencher com os dados do cliente
-      let formCostumer = document.getElementById("formCostumer");
-      let elementos = formCostumer.elements;
-      elementos[0].value = loggedInCostumer.nomecompleto;
-      elementos[1].value = loggedInCostumer.cpf;
-      elementos[2].value = loggedInCostumer.email;
-      elementos[3].value = loggedInCostumer.genero;
-      elementos[4].value = loggedInCostumer.datanascimento;
-    } else {
-      document.getElementById("costumerLogin").style.display = "block";
-    }
-  });
-  
+  if (loggedInCostumer) {
+    verifCostumer(loggedInCostumer);
+    console.log(loggedInCostumer);
+    // Selecionar o formulário e preencher com os dados do cliente
+    let formCostumer = document.getElementById("formCostumer");
+    let elementos = formCostumer.elements;
+    elementos[0].value = loggedInCostumer.nomecompleto;
+    elementos[1].value = loggedInCostumer.cpf;
+    elementos[2].value = loggedInCostumer.email;
+    elementos[3].value = loggedInCostumer.genero;
+    elementos[4].value = loggedInCostumer.datanascimento;
+  } else {
+    document.getElementById("costumerLogin").style.display = "block";
+  }
+
+  // Verifica se o cliente está logado
   function verifCostumer(costumer) {
     document.getElementById("leave").style.display = "block";
     const perfilC = document.getElementById("perfilC");
     const costumerLogin = document.getElementById("costumerLogin");
     const costumerLogout = document.getElementById("leaves");
     const areacostumer = document.getElementById("areaLoginCostumer");
-  
+
     if (perfilC) {
       perfilC.innerHTML = `${costumer.nomecompleto}, Cliente`;
     }
-  
+
     if (costumerLogin) {
       costumerLogin.style.display = "none";
       areacostumer.style.display = "block";
@@ -39,47 +37,45 @@ document.addEventListener("DOMContentLoaded", () => {
       costumerLogout.addEventListener("click", costumerLogouts);
     }
   }
-  
+
+  // Função de logout
   function costumerLogouts() {
     console.log("Logout realizado com sucesso!");
     localStorage.removeItem("loggedInCostumer");
     window.location.href = "../pages/loginCostumer.html";
   }
 
-
-    // PIX
+  // Elementos de pagamento
   const pixRadio = document.getElementById("pix");
   const pixDescription = document.getElementById("pixDescription");
   const pixArea = document.getElementById("pixArea");
 
-  // BOLETO
   const boletoRadio = document.getElementById("boleto");
   const boletoDescription = document.querySelector(".boletoDescription");
   const boletoArea = document.querySelector(".bankSlipArea");
 
-  // CARTÃO
   const cartaoRadio = document.getElementById("cartao");
-  const cardFieldsArea = document.getElementById("cardFieldsArea");
   const cartaoArea = document.querySelector(".creditCardArea");
 
+  // Função para resetar todos os campos de pagamento
   function resetAll() {
-    // Esconde descrições
-    pixDescription.style.display = "none";
-    boletoDescription.style.display = "none";
-    cardFieldsArea.innerHTML = "";
-
-    // Reseta alturas
-    pixArea.style.height = "10vh";
-    boletoArea.style.height = "10vh";
-    cartaoArea.style.height = "10vh";
+    if (pixDescription) {
+      pixDescription.style.display = "none";
+    }
+    if (boletoDescription) {
+      boletoDescription.style.display = "none";
+    }
+    if (cartaoArea) {
+      cartaoArea.style.height = "10vh";
+    }
   }
 
   // PIX
   pixRadio.addEventListener("change", function () {
     if (this.checked) {
       resetAll();
-      pixDescription.style.display = "block";
-      pixArea.style.height = "20vh";
+      if (pixDescription) pixDescription.style.display = "block";
+      if (pixArea) pixArea.style.height = "20vh";
     }
   });
 
@@ -87,50 +83,65 @@ document.addEventListener("DOMContentLoaded", () => {
   boletoRadio.addEventListener("change", function () {
     if (this.checked) {
       resetAll();
-      boletoDescription.style.display = "block";
-      boletoArea.style.height = "22vh";
+      if (boletoDescription) boletoDescription.style.display = "block";
+      if (boletoArea) boletoArea.style.height = "22vh";
     }
   });
 
-  // CARTÃO
+  // CARTÃO DE CRÉDITO
   cartaoRadio.addEventListener("change", function () {
     if (this.checked) {
       resetAll();
-      cartaoArea.style.height = "32vh";
-      cardFieldsArea.innerHTML = `
-        <div class="cardFields">
-          <label>Nome no Cartão:</label>
-          <input type="text" placeholder="Como aparece no cartão" />
+      
+      const cardDescription = document.getElementById('cardDescription');
+      
+      if (cardDescription) {
+        cardDescription.innerHTML = `
+          <div class="credit-card-form">
+            <div class="card-image">
+              <div class="fake-card-image"></div>
+            </div>
+    
+            <div class="card-inputs">
+              <input type="text" placeholder="Número do cartão" class="input-full" />
+              <input type="text" placeholder="Nome impresso no cartão" class="input-full" />
+              
+              <div class="input-row">
+                <input type="text" placeholder="Validade" class="input-half" />
+                <input type="text" placeholder="CVV" class="input-half" />
+              </div>
+    
+              <div class="input-row">
+                <input type="text" placeholder="CPF/CNPJ do titular" class="input-half" />
+                <input type="text" placeholder="Data de Nascimento" class="input-half" />
+              </div>
+            </div>
+          </div>
+        `;
+      }
 
-          <label>Número do Cartão:</label>
-          <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" />
-
-          <label>Validade:</label>
-          <input type="text" placeholder="MM/AA" maxlength="5" />
-
-          <label>CVV:</label>
-          <input type="text" placeholder="123" maxlength="4" />
-        </div>
-      `;
+      if (cardDescription) cardDescription.classList.add("active");
+      if (cardDescription) cardDescription.style.marginBottom = "30vh";
     }
   });
 
+  // Mudança de opções de pagamento
+  document.querySelectorAll('input[name="payment"]').forEach((radio) => {
+    radio.addEventListener('change', () => {
+      // Ocultar todas as descrições
+      document.querySelectorAll('.pixDescription, .boletoDescription, #cardDescription').forEach((desc) => {
+        if (desc) desc.style.display = 'none';
+      });
 
-  
-//   function showDesc() {
-//     const pixDesc = document.getElementById("pixDescription");
-//     
-
-//     const cardDesc = document.getElementById("cardDesc");
-//     const boletoDesc = document.getElementById("boletoDesc");
-  
-//     if (pixDesc.style.display === "none") {
-//       pixDesc.style.display = "block";
-//       pixHeight.style.height = "20vh";
-//       cardDesc.style.display = "none";
-//       boletoDesc.style.display = "none";
-//     } else {
-//       pixDesc.style.display = "none";
-//       pixHeight.style.height = "10vh";
-//     }
-//   }
+      // Mostrar a descrição da opção selecionada
+      const selectedOption = document.querySelector(`input[name="payment"]:checked`);
+      if (selectedOption) {
+        const descriptionId = selectedOption.value + "Description";
+        const descriptionElement = document.getElementById(descriptionId);
+        if (descriptionElement) {
+          descriptionElement.style.display = 'block';
+        }
+      }
+    });
+  });
+});

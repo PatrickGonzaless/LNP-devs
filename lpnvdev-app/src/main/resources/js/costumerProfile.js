@@ -1,4 +1,29 @@
 document.getElementById("leave").style.display = "none";
+const modal = document.getElementById("myModal");
+const openModalBtnT = document.getElementById("addAdressT");
+const openModalBtnD = document.getElementById("addAdressD");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const selectEndereco = document.getElementById("adressPrincipal");
+const title = document.getElementsByClassName("taxAdressContent")[0];
+
+// Quando o botão "Abrir Modal" for clicado, o modal é mostrado
+openModalBtnT.onclick = function (evt) {
+  evt.preventDefault();
+  let titleText = `<h4>Endereço Fiscal</h4>`;
+  title.insertAdjacentHTML("afterbegin", titleText);
+  modal.style.display = "block";
+};
+openModalBtnD.onclick = function (evt) {
+  evt.preventDefault();
+  let titleText = `<h4>Endereço Entrega</h4>`;
+  title.insertAdjacentHTML("afterbegin", titleText);
+  modal.style.display = "block";
+};
+// Quando o botão de fechar (X) for clicado, o modal é escondido
+closeModalBtn.onclick = function () {
+  title.removeChild(title.firstChild);
+  modal.style.display = "none";
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
@@ -14,6 +39,33 @@ document.addEventListener("DOMContentLoaded", () => {
     elementos[2].value = loggedInCostumer.email;
     elementos[3].value = loggedInCostumer.genero;
     elementos[4].value = loggedInCostumer.datanascimento;
+
+    const formAdressT = document.getElementById("adressAreaFormT");
+    let elementosAdressT = formAdressT.elements;
+    const formAdressD = document.getElementById("adressAreaFormD");
+    let elementosAdressD = formAdressD.elements;
+    const adresses = loggedInCostumer.enderecos;
+    adresses.forEach((address) => {
+      if (address.tipoEndereco) {
+        elementosAdressT[0].value = address.logradouro;
+        elementosAdressT[1].value = address.cep;
+        elementosAdressT[2].value = address.numero;
+      }
+      if (address.principal) {
+        elementosAdressD[0].value = address.logradouro;
+        elementosAdressD[1].value = address.cep;
+        elementosAdressD[2].value = address.numero;
+      }
+    });
+
+    let linha;
+    adresses.forEach((address) => {
+      if (!address.tipoEndereco) {
+        linha = `<option value="${address.id}">${address.logradouro}, ${address.numero}</option>`;
+        console.log(linha);
+        selectEndereco.insertAdjacentHTML("beforeend", linha);
+      }
+    });
   } else {
     document.getElementById("costumerLogin").style.display = "block";
   }
@@ -90,12 +142,12 @@ document.getElementById("confirm").addEventListener("click", (evt) => {
         updateCostumer();
       } else {
         console.log(2);
-        alert("senha inválida.");
+        alert("senha inválida.1");
       }
     })
     .catch((err) => {
       console.log(3);
-      alert("senha inválida.");
+      alert("senha inválida.2");
     });
 });
 
@@ -103,14 +155,21 @@ function updateCostumer() {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
   const formCostumer = document.getElementById("dataAreaForm");
   const elementos = formCostumer.elements;
-  const senha = elementos[5].value;
+  let senha1 = elementos[5].value;
+  console.log("teste1");
   if (!elementos[6].value == "") {
+    console.log("teste2");
+
     if (elementos[6].value != elementos[7].value) {
       alert("As senhas não coincidem.");
       return;
     }
-    senha = elementos[6].value;
+    console.log("teste3");
+
+    senha1 = elementos[6].value;
   }
+  console.log("teste4");
+  console.log(senha1);
   const costumer = {
     id: loggedInCostumer.id,
     nomecompleto: elementos[0].value,
@@ -118,7 +177,7 @@ function updateCostumer() {
     email: loggedInCostumer.email,
     genero: elementos[3].value,
     datanascimento: elementos[4].value,
-    senha: senha,
+    senha: senha1,
     enderecos: loggedInCostumer.enderecos,
   };
 
@@ -144,3 +203,10 @@ function updateCostumer() {
       console.error("Erro de rede:", error);
     });
 }
+
+window.onclick = function (event) {
+  if (event.target === modal) {
+    title.removeChild(title.firstChild);
+    modal.style.display = "none";
+  }
+};

@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.lpndev.lpnvdev_app.DTO.DTOadress;
 import br.com.lpndev.lpnvdev_app.dao.IAdress;
 import br.com.lpndev.lpnvdev_app.model.Adress;
+import br.com.lpndev.lpnvdev_app.model.Costumer;
 
 @Service
 public class AdressService {
@@ -22,7 +24,17 @@ public class AdressService {
     }
 
     public Adress alterAdress(Adress adress) {
-        return daoE.save(adress);
+        final CostumerService costumerService = null;
+        // Obtenha o cliente com base no ID
+        Costumer costumer = costumerService.findById(adress.getIdCostumer().getId())
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+        // Crie o objeto Adress e associe o cliente
+        Adress adress2 = new Adress(adress.getLogradouro(), adress.getCep(), adress.getBairro(),
+                adress.getUf(), adress.getCidade(), adress.getNumero(), adress.getComplemento(),
+                adress.isTipoEndereco(), adress.isPrincipal(), costumer);
+
+        return daoE.save(adress2);
     }
 
     public List<Adress> findAll() {

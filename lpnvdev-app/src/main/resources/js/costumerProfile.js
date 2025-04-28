@@ -68,9 +68,7 @@ document.getElementById("confirm").addEventListener("click", (evt) => {
   evt.preventDefault();
   const email = document.getElementById("email").value;
   const senha = document.getElementById("password1").value;
-
-  console.log(email);
-  console.log(senha);
+  
   fetch("http://localhost:8080/costumer/login", {
     method: "POST",
     headers: {

@@ -266,5 +266,4 @@ const idade = 25;
 
 // Modifica a URL para incluir os parâmetros
 window.location.href = `https://www.exemplo.com/pagina?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}`;
-
 */

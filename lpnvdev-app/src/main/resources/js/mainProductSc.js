@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
   listProduct();
 
-  console.log("loggedInCostumer:", loggedInCostumer);
-
   if (loggedInCostumer) {
     verifCostumer(loggedInCostumer);
   } else {

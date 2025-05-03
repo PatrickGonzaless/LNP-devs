@@ -1,5 +1,4 @@
-document.getElementById("leave").style.display = "none"; 
-
+document.getElementById("leave").style.display = "none";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
@@ -19,7 +18,7 @@ function verifCostumer(costumer) {
   const costumerLogout = document.getElementById("leaves");
   const areacostumer = document.getElementById("areaLoginCostumer");
   document.getElementById("removeAllcontainer").style.display = "block";
-  document.getElementById("leave").style.display = "block"; 
+  document.getElementById("leave").style.display = "block";
 
   if (perfilC) {
     perfilC.innerHTML = `${costumer.nomecompleto}, Cliente`;
@@ -53,11 +52,11 @@ function listarProdutos() {
 
   if (produtos.length === 0) {
     document.getElementById("noItem").style.display = "block";
-    footer.style.marginTop = "0"; 
+    footer.style.marginTop = "0";
     return;
   } else {
     document.getElementById("noItem").style.display = "none";
-    footer.style.marginTop = "30vh"; 
+    footer.style.marginTop = "30vh";
   }
 
   cartContent.innerHTML = "";
@@ -181,7 +180,6 @@ function removerProduto(index) {
   document.getElementById("noItem").style.display = "block";
 }
 
-
 document.getElementById("removeAll").addEventListener("click", () => {
   localStorage.removeItem("carrinho");
   listarProdutos();
@@ -260,3 +258,13 @@ function aumentaQtd(id) {
   adicionarResumoPedido();
   window.location.reload();
 }
+
+/*
+// Define os parâmetros a serem passados
+const nome = "Joao";
+const idade = 25;
+
+// Modifica a URL para incluir os parâmetros
+window.location.href = `https://www.exemplo.com/pagina?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}`;
+
+*/

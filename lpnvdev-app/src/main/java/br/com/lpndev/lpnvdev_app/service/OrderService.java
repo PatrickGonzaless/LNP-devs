@@ -3,10 +3,12 @@ package br.com.lpndev.lpnvdev_app.service;
 import br.com.lpndev.lpnvdev_app.dao.IOrder;
 import br.com.lpndev.lpnvdev_app.model.Adress;
 import br.com.lpndev.lpnvdev_app.model.Order;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class OrderService {
 
     private final IOrder daoO;

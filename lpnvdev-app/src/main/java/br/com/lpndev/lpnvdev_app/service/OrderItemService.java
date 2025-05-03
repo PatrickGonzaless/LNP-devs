@@ -5,10 +5,12 @@ import br.com.lpndev.lpnvdev_app.model.Order;
 import br.com.lpndev.lpnvdev_app.model.OrderItem;
 import br.com.lpndev.lpnvdev_app.model.Product;
 import br.com.lpndev.lpnvdev_app.model.ProductImg;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class OrderItemService {
 
     private final IOrderItem orderItemDao;

@@ -49,11 +49,15 @@ function listarProdutos() {
 
   let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
 
+  const footer = document.getElementById("footer");
+
   if (produtos.length === 0) {
     document.getElementById("noItem").style.display = "block";
+    footer.style.marginTop = "0"; 
     return;
   } else {
     document.getElementById("noItem").style.display = "none";
+    footer.style.marginTop = "30vh"; 
   }
 
   cartContent.innerHTML = "";

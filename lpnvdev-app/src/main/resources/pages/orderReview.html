@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisão do pedido</title>
+    <link rel="stylesheet" href="../css/orderReview.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="../img/productTable/logo.png" alt="Logo" />
+      <h1>LnpDevs</h1>
+    </div>
+    <div class="userid">
+      <div class="userid_space">
+        <!-- Para CLIENTE -->
+        <div id="areaLoginCostumer">
+          <div class="user">
+            <a href="./costumerProfile.html">
+              <img src="../img/login/username.png" />
+              <h4 id="perfilC"></h4>
+            </a>
+          </div>
+          <div class="sigin" id="costumerLogin">
+            <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a>
+            <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
+          </div>
+          <div class="leave" id="costumerLogout">
+            <label id="leave" onclick="costumerLogouts()" style="cursor: pointer">Sair</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart">
+      <a href="../pages/cartScreen.html"><img src="../img/mainProductSc/cart.png" alt="Carrinho de compras" /></a>
+    </div>
+  </header>
+
+  <div class="title">
+    <img src="../img/orderReview/revisao.png">
+    <h1>Revise seu pedido e finalize</h1>
+  </div>
+
+  <section id="container">
+    <!-- Meus dados (linha de cima) -->
+    <div class="box-section full-width">
+      <div class="section-title">
+        <img src="../img/orderReview/head.png" alt="">
+        <h2>Meus dados</h2>
+      </div>
+      <p><span id="nomecliente"></span>(<span id="emailcliente"></span>) do cliente (email do cliente)</p>
+      <p>CPF: <span id="CPF"></span></p>
+    </div>
+  
+    <div class="row-bottom">
+      <div class="box-section">
+        <div class="section-title">
+          <img src="../img/orderReview/truck.png" alt="">
+          <h2>Entrega</h2>
+          <span class="edit">✎</span>
+        </div>
+        <p>Destinatário: <span></span></p>
+        <p><span id="endereco"></span>,<span id="bairro"></span>, <span id="numero"></span></p>
+        <p><span id="CEP"></span> - <span id="cidadeUF"></span>CEP - Cidade/UF</p>
+        <p>Tipo do frete escolhido: <span id="freteEscolhido"></span></p>
+        <p>R$ <span id="preco"span></p>
+      </div>
+  
+      <div class="box-section">
+        <div class="section-title">
+          <img src="../img/orderReview/cards.png" alt="">
+          <h2>Forma de pagamento</h2>
+          <span class="edit">✎</span>
+        </div>
+        <p>Pague via <span id="formapagamento"></span></p>
+      </div>
+    </div>
+
+    <section id="product-review">
+      <div class="product-header">Produto</div>
+      <div class="product-box">
+        <div class="product-img">
+          <div class="img-placeholder">Img</div>
+        </div>
+    
+        <div class="product-details">
+          <p class="product-description">Descrição do produto</p>
+    
+          <div class="product-info">
+            <p class="product-price">Preço do produto</p>
+            <div class="product-qty">
+              <span class="qty-btn">-</span>
+              <span class="qty-number">1</span>
+              <span class="qty-btn">+</span>
+            </div>
+            <p class="product-total">Preço total</p>
+            <img class="trash-icon" src="../img/icons/trash.png" alt="Remover">
+          </div>
+    
+          <p class="product-name">Nome do produto</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  
+  <footer id="footer">
+    <button class="btn-checkout"> Finalizar a compra</button>
+  </footer>
+    
+  <script src="../js/orderReview.js"> </script>
+</body>
+</html>

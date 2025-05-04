@@ -32,18 +32,24 @@ public class Order {
     @JsonIgnore
     private Adress idAdress;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", nullable = false)
+    @JsonIgnore
+    private Costumer idCostumer;
+
     public Order(String dt_pedido, Integer formapagamento, Integer valorfrete,
-                 Integer valortotalpedido, boolean statuspedido, Adress idAdress) {
+            Integer valortotalpedido, boolean statuspedido, Adress idAdress, Costumer idCostumer) {
         this.dt_pedido = dt_pedido;
         this.formapagamento = formapagamento;
         this.valorfrete = valorfrete;
         this.valortotalpedido = valortotalpedido;
         this.statuspedido = statuspedido;
         this.idAdress = idAdress;
+        this.idCostumer = idCostumer;
     }
 
     public Order(int id, String dt_pedido, Integer formapagamento, Integer valorfrete,
-                 Integer valortotalpedido, boolean statuspedido, Adress idAdress) {
+            Integer valortotalpedido, boolean statuspedido, Adress idAdress, Costumer idCostumer) {
         this.id = id;
         this.dt_pedido = dt_pedido;
         this.formapagamento = formapagamento;
@@ -51,6 +57,7 @@ public class Order {
         this.valortotalpedido = valortotalpedido;
         this.statuspedido = statuspedido;
         this.idAdress = idAdress;
+        this.idCostumer = idCostumer;
     }
 
     public Integer getId() {
@@ -108,6 +115,13 @@ public class Order {
     public void setIdAdress(Adress idAdress) {
         this.idAdress = idAdress;
     }
+
+    public Costumer getIdCostumer() {
+        return idCostumer;
+    }
+
+    public void setIdCostumer(Costumer idCostumer) {
+        this.idCostumer = idCostumer;
+    }
+
 }
-
-

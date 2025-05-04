@@ -1,10 +1,8 @@
 document.getElementById("leave").style.display = "none";
+const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
+const btnCheck = document.getElementById("okCheck");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
-
-  console.log("loggedInCostumer:", loggedInCostumer);
-
   if (loggedInCostumer) {
     verifCostumer(loggedInCostumer);
   } else {
@@ -63,9 +61,6 @@ function listarProdutos() {
 
   produtos.forEach((produto, index) => {
     let image;
-    console.log(produto);
-    console.log(produto.imagem);
-    console.log(index);
     produto.imagem.forEach((img) => {
       if (img.padrao) {
         image = img.linkimg;
@@ -198,6 +193,7 @@ function adicionarResumoPedido() {
     0
   );
   document.getElementById("subTotal").innerText = subTotal.toFixed(2);
+  localStorage.setItem("subTotal", subTotal);
   try {
     subTotal += localStorage.getItem("frete")
       ? parseFloat(localStorage.getItem("frete"))
@@ -207,6 +203,7 @@ function adicionarResumoPedido() {
     ? localStorage.getItem("frete")
     : "none";
   document.getElementById("total").innerText = subTotal.toFixed(2);
+  localStorage.setItem("total", subTotal);
 }
 
 function calcularFrete() {
@@ -259,11 +256,10 @@ function aumentaQtd(id) {
   window.location.reload();
 }
 
-/*
-// Define os parâmetros a serem passados
-const nome = "Joao";
-const idade = 25;
-
-// Modifica a URL para incluir os parâmetros
-window.location.href = `https://www.exemplo.com/pagina?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}`;
-*/
+btnCheck.addEventListener("click", () => {
+  if (loggedInCostumer) {
+    window.location.href = "../pages/checkoutScreen.html";
+  } else {
+    window.location.href = "../pages/loginCostumer.html?logged=true";
+  }
+});

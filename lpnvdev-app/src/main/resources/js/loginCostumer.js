@@ -1,3 +1,6 @@
+const urlParams = new URLSearchParams(window.location.search);
+const compra = urlParams.get("logged") || false;
+
 document.getElementById("leave").style.display = "none";
 
 document.getElementById("loginForm").addEventListener("submit", function (e) {
@@ -23,6 +26,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
       if (response) {
         alert("Login realizado com sucesso!");
         localStorage.setItem("loggedInCostumer", JSON.stringify(response));
+        if (compra) {
+          window.location.href = "../pages/checkoutScreen.html";
+        }
         window.location.href = "../pages/mainProductSc.html";
       } else {
         alert("Email ou senha inválidos.");

@@ -24,67 +24,54 @@
               </a>
             </div>
             <div class="sigin" id="costumerLogin">
-              <a class="sgsu" href="loginCostumer.html">ENTRE <span> ou </span></a>
+              <a class="sgsu" href="loginCostumer.html"
+                >ENTRE <span> ou </span></a
+              >
               <a class="sgsu" href="registerCostumer.html">CADASTRE-SE</a>
             </div>
             <div class="leave" id="costumerLogout">
-              <label id="leave" onclick="costumerLogouts()" style="cursor: pointer">Sair</label>
+              <label
+                id="leave"
+                onclick="costumerLogouts()"
+                style="cursor: pointer"
+                >Sair</label
+              >
             </div>
           </div>
         </div>
       </div>
-  
+
       <div class="cart">
-        <a href="../pages/cartScreen.html"><img src="../img/mainProductSc/cart.png" alt="Carrinho de compras" /></a>
+        <a href="../pages/cartScreen.html"
+          ><img src="../img/mainProductSc/cart.png" alt="Carrinho de compras"
+        /></a>
       </div>
     </header>
 
     <main class="checkout-container">
       <section class="address-section">
         <h2>📍 Endereço de entrega</h2>
-        <div class="address-box">
-          <p><strong>[Usuário quando estiver logado]</strong></p>
-          <p>Endereço, Bairro, Número - CEP</p>
-          <p>Cidade/UF</p>
-          <input type="radio" />
-          <button>Adicionar endereço</button>
-        </div>
+        <div class="address-box"></div>
+        <button>Adicionar novo endereço</button>
       </section>
 
       <section class="summary-section">
         <h2>Resumo:</h2>
-        <p>Valor dos produtos: R$100,00</p>
-        <p>Frete: R$19,90</p>
-        <p><strong>Total: R$119,90</strong></p>
-        <a href="payment.html" class="btn-pagar">Ir para pagamento</a>
+        <p id="subTotal">Valor dos produtos:</p>
+        <p id="frete">Frete:</p>
+        <p><strong id="total">Total:</strong></p>
+        <button class="btn-pagar">Ir para pagamento</button>
       </section>
 
       <section class="shipping-section">
         <h2>🚚 Método de envio</h2>
-        <div class="shipping-option">
-          <label
-            ><input type="radio" name="frete" /> SEDEX - 3 dias úteis</label
-          >
-          <span>R$19,90</span>
-        </div>
-        <div class="shipping-option">
-          <label
-            ><input type="radio" name="frete" /> SENAC - 10 dias úteis</label
-          >
-          <span>R$6,90</span>
-        </div>
-        <div class="shipping-option">
-          <label
-            ><input type="radio" name="frete" /> FAST - em até 2 horas</label
-          >
-          <span>R$59,90</span>
-        </div>
       </section>
-
     </main>
 
     <footer id="footer">
-      <button class="btn-voltar">&larr; Voltar para o carrinho</button>
+      <button class="btn-voltar" id="goBack">
+        &larr; Voltar para o carrinho
+      </button>
     </footer>
     <script src="../js/checkoutScreen.js"></script>
   </body>

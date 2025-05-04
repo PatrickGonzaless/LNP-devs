@@ -1,5 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
-const compra = urlParams.get("compra");
+const compra = urlParams.get("logged");
 
 const Iform = document.getElementById("registerForm");
 const Ifullname = document.getElementById("name");

@@ -405,3 +405,40 @@ h4{
     margin-top: 10vh;
 }
 
+footer {
+    display: flex;
+    justify-content: flex-end; /* Alinha o conteúdo à direita */
+    align-items: flex-end; /* Alinha o conteúdo na parte inferior */
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .btn-checkout {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ffffff;
+    color: #5d1010;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  footer button:hover {
+    background-color: #5d1010;
+    color: white;
+  }
+
+
+.btn-checkout {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+footer button:hover {
+  background-color: #ccc;
+  color: black;
+}

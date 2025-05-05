@@ -1,11 +1,8 @@
-document.getElementById("leave").style.display = "none"; 
-
+document.getElementById("leave").style.display = "none";
+const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
+const btnCheck = document.getElementById("okCheck");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
-
-  console.log("loggedInCostumer:", loggedInCostumer);
-
   if (loggedInCostumer) {
     verifCostumer(loggedInCostumer);
   } else {
@@ -19,7 +16,7 @@ function verifCostumer(costumer) {
   const costumerLogout = document.getElementById("leaves");
   const areacostumer = document.getElementById("areaLoginCostumer");
   document.getElementById("removeAllcontainer").style.display = "block";
-  document.getElementById("leave").style.display = "block"; 
+  document.getElementById("leave").style.display = "block";
 
   if (perfilC) {
     perfilC.innerHTML = `${costumer.nomecompleto}, Cliente`;
@@ -49,20 +46,21 @@ function listarProdutos() {
 
   let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
 
+  const footer = document.getElementById("footer");
+
   if (produtos.length === 0) {
     document.getElementById("noItem").style.display = "block";
+    footer.style.marginTop = "0";
     return;
   } else {
     document.getElementById("noItem").style.display = "none";
+    footer.style.marginTop = "30vh";
   }
 
   cartContent.innerHTML = "";
 
   produtos.forEach((produto, index) => {
     let image;
-    console.log(produto);
-    console.log(produto.imagem);
-    console.log(index);
     produto.imagem.forEach((img) => {
       if (img.padrao) {
         image = img.linkimg;
@@ -177,7 +175,6 @@ function removerProduto(index) {
   document.getElementById("noItem").style.display = "block";
 }
 
-
 document.getElementById("removeAll").addEventListener("click", () => {
   localStorage.removeItem("carrinho");
   listarProdutos();
@@ -196,6 +193,7 @@ function adicionarResumoPedido() {
     0
   );
   document.getElementById("subTotal").innerText = subTotal.toFixed(2);
+  localStorage.setItem("subTotal", subTotal);
   try {
     subTotal += localStorage.getItem("frete")
       ? parseFloat(localStorage.getItem("frete"))
@@ -205,6 +203,7 @@ function adicionarResumoPedido() {
     ? localStorage.getItem("frete")
     : "none";
   document.getElementById("total").innerText = subTotal.toFixed(2);
+  localStorage.setItem("total", subTotal);
 }
 
 function calcularFrete() {
@@ -256,3 +255,11 @@ function aumentaQtd(id) {
   adicionarResumoPedido();
   window.location.reload();
 }
+
+btnCheck.addEventListener("click", () => {
+  if (loggedInCostumer) {
+    window.location.href = "../pages/checkoutScreen.html";
+  } else {
+    window.location.href = "../pages/loginCostumer.html?logged=true";
+  }
+});

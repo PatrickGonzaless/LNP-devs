@@ -18,6 +18,7 @@ body {
   justify-content: center;
   font-family: "Inter", sans-serif;
   color: white;
+  height: 100vh;
 }
 
 header {
@@ -160,6 +161,7 @@ h4 {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
+  height: 75vh;
 }
 
 .address-section,
@@ -178,6 +180,47 @@ h4 {
   font-size: 18px;
   display: flex;
   align-items: center;
+}
+.shipping-section {
+  background-color: #601414;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;  /* Organiza os itens verticalmente */
+  gap: 32px; /* Espaço entre os itens */
+  height: 30vh;
+}
+
+.shipping-section h2 {
+  margin-top: 0;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shipping-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  /* Alinha os itens no eixo vertical */
+  padding: 8px 0;
+  border-bottom: 1px solid #999;
+}
+
+.shipping-option:last-child {
+  border-bottom: none;
+}
+
+.shipping-option label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.shipping-option span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
 }
 
 .address-box {
@@ -228,4 +271,35 @@ h4 {
 .voltar a {
   color: white;
   text-decoration: underline;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+
+}
+.btn-voltar,
+.btn-revisao {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn-voltar {
+  background-color: #5d1010;
+  color: white;
+
+}
+
+.btn-revisao {
+  background-color: #5d1010;
+  color: white;
+}
+
+footer button:hover {
+  background-color: #ccc;
+  color: black;
 }

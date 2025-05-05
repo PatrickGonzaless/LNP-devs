@@ -1,3 +1,6 @@
+const urlParams = new URLSearchParams(window.location.search);
+const compra = urlParams.get("logged");
+
 const Iform = document.getElementById("registerForm");
 const Ifullname = document.getElementById("name");
 const Icpf = document.getElementById("cpf");
@@ -25,7 +28,7 @@ const userToAlter = JSON.parse(localStorage.getItem("userToAlter"));
 const AdressToAlter = JSON.parse(localStorage.getItem("AdressToAlter"));
 let loggedEmail = null;
 const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
-document.getElementById("leave").style.display = "none"; 
+document.getElementById("leave").style.display = "none";
 
 function validateForm() {
   if (Ifullname.value.trim() === "") {
@@ -176,6 +179,10 @@ function registerUser() {
     })
     .then((data) => {
       alert("Usuário Cadastrado com sucesso!");
+      if (compra) {
+        localStorage.setItem("loggedInCostumer", JSON.stringify(data));
+        window.location.href = "../pages/cartScreen.html";
+      }
       window.location.href = "../pages/loginCostumer.html";
       clean();
     })

@@ -61,3 +61,29 @@ foreign key (id_cliente) references cliente(id)
 );
 
 select * from cliente;
+
+create table pedido(
+id_pedido integer auto_increment primary key,
+dtpedido varchar(150) not null,
+formapagamento BOOLEAN not null,
+valorfrete double not null,
+valortotalpedido double not null,
+statuspedido boolean ,
+id_cliente integer not null,
+foreign key (id_cliente) references cliente(id),
+id_endereco integer not null,
+foreign key (id_endereco) references enderecos(id_endereco)
+);
+
+create table itempedido(
+id_itempedido integer auto_increment primary key,
+qtdproduto integer not null,
+valorunit double not null,
+subtotal double not null,
+id_pedido integer not null,
+foreign key (id_pedido) references pedido(id_pedido),
+id_produto integer not null,
+foreign key (id_produto) references produto(id),
+id_img integer not null,
+foreign key (id_img) references img_prod(id_img)
+);

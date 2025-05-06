@@ -30,12 +30,33 @@ document.addEventListener("DOMContentLoaded", () => {
     ? localStorage.getItem("frete")
     : "none";
 
+  let freteEscolhido;
+  console.log(frete.innerText);
+  if(frete.innerText == "Frete:15.99"){
+    freteEscolhido = "SEDEX - 3 dias úteis";
+  }else if(frete.innerText == "Frete:5.99"){
+    freteEscolhido = "SENAC - 10 dias úteis";
+  }else{
+    freteEscolhido = "FAST - Em até 2 horas";
+  }
   let freteText = `
   <div class="shipping-option">
     <label
-      ><input type="radio" name="frete" checked/>SEDEX - 3 dias úteis</label
+      ><input type="radio" name="frete" ${frete.innerText == "Frete:15.99" ? "checked" : "disabled"} />SEDEX - 3 dias úteis</label
     >
-    <span>${localStorage.getItem("frete")}</span>
+    <span>R$ 15,99</span>
+  </div>
+  <div class="shipping-option">
+    <label
+      ><input type="radio" name="frete"  ${frete.innerText == "Frete:5.99" ? "checked" : "disabled"} />SENAC - 10 dias úteis</label
+    >
+    <span>R$ 5,99</span>
+  </div>
+  <div class="shipping-option">
+    <label
+      ><input type="radio" name="frete"  ${frete.innerText == "Frete:56.90" ? "checked" : "disabled"} />FAST - Em até duas horas</label
+    >
+    <span>R$ 56,90</span>
   </div>
   `;
   document

@@ -1,7 +1,5 @@
 package br.com.lpndev.lpnvdev_app.controller;
 
-
-import br.com.lpndev.lpnvdev_app.model.Order;
 import br.com.lpndev.lpnvdev_app.model.OrderItem;
 import br.com.lpndev.lpnvdev_app.service.OrderItemService;
 import org.springframework.http.ResponseEntity;

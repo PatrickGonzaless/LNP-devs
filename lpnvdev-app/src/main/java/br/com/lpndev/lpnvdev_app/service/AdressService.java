@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import br.com.lpndev.lpnvdev_app.DTO.DTOadress;
 import br.com.lpndev.lpnvdev_app.dao.IAdress;
 import br.com.lpndev.lpnvdev_app.model.Adress;
 import br.com.lpndev.lpnvdev_app.model.Costumer;

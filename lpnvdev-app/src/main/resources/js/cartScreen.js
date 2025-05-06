@@ -164,6 +164,7 @@ function checkOK() {
     document.querySelector(".frete-options").style.display = "block";
   }
   adicionarResumoPedido();
+  btnCheck.disabled = false;
 }
 
 function removerProduto(index) {
@@ -257,6 +258,7 @@ function aumentaQtd(id) {
 }
 
 btnCheck.addEventListener("click", () => {
+  adicionarResumoPedido();
   if (loggedInCostumer) {
     window.location.href = "../pages/checkoutScreen.html";
   } else {

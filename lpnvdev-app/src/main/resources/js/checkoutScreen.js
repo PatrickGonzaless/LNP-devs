@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let linha = `
           <p>${address.logradouro}, ${address.bairro}, ${address.numero} - ${address.cep}</p>
           <p>${address.cidade}/${address.uf}</p>
-          <input type="radio" name="principal" ${address.principal} ? checked || />`;
+          <input value="${address.id}" type="radio" name="principal" ${address.principal} ? checked || />`;
     enderecos.insertAdjacentHTML("beforeend", linha);
   });
 
@@ -93,3 +93,7 @@ function costumerLogouts() {
   localStorage.removeItem("loggedInCostumer");
   window.location.href = "../pages/loginCostumer.html";
 }
+
+concluir.addEventListener("click", () => {
+  window.location.href = "../pages/paymentScreen.html";
+});

@@ -1,18 +1,12 @@
 document.getElementById("leave").style.display = "none";
+const voltar = document.getElementById("goBack");
+const concluir = document.getElementById("btn-revisao");
 
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
 
   if (loggedInCostumer) {
     verifCostumer(loggedInCostumer);
-    console.log(loggedInCostumer);
-    let formCostumer = document.getElementById("formCostumer");
-    let elementos = formCostumer.elements;
-    elementos[0].value = loggedInCostumer.nomecompleto;
-    elementos[1].value = loggedInCostumer.cpf;
-    elementos[2].value = loggedInCostumer.email;
-    elementos[3].value = loggedInCostumer.genero;
-    elementos[4].value = loggedInCostumer.datanascimento;
   } else {
     document.getElementById("costumerLogin").style.display = "block";
   }
@@ -90,15 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="fake-card-image"></div>
             </div>
             <div class="card-inputs">
-              <input type="text" placeholder="Número do cartão" class="input-full" />
+              <input type="number" placeholder="Número do cartão" class="input-full" />
               <input type="text" placeholder="Nome impresso no cartão" class="input-full" />
               <div class="input-row">
-                <input type="text" placeholder="Validade" class="input-half" />
-                <input type="text" placeholder="CVV" class="input-half" />
+                <input type="number" placeholder="Validade" class="input-half" />
+                <input type="number" placeholder="CVV" class="input-half" />
               </div>
               <div class="input-row">
-                <input type="text" placeholder="CPF/CNPJ do titular" class="input-half" />
-                <input type="text" placeholder="Data de Nascimento" class="input-half" />
+                <input type="number" placeholder="nº de parcelas" class="input-half" />
+                <input type="number" placeholder="Data de Nascimento" class="input-half" />
               </div>
             </div>
           </div>
@@ -150,4 +144,41 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  let subtotal = document.getElementById("subTotal");
+  subtotal.innerText += localStorage.getItem("subTotal");
+  let total = document.getElementById("total");
+  total.innerText += localStorage.getItem("total");
+  let frete = document.getElementById("frete");
+  frete.innerText += localStorage.getItem("frete")
+    ? localStorage.getItem("frete")
+    : "none";
+});
+
+voltar.addEventListener("click", () => {
+  window.location.href = "../pages/checkoutScreen.html";
+});
+
+concluir.addEventListener("click", () => {
+  if(document.getElementById("pix").checked){
+    localStorage.setItem("paymentMethod", "pix");
+  }else if(document.getElementById("boleto").checked){
+    localStorage.setItem("paymentMethod", "boleto");
+  }else if(document.getElementById("cartao").checked){
+    let cartao = {
+      numero : document.querySelector(".input-full").value,
+      nome : document.querySelector(".input-full").value,
+      validade : document.querySelector(".input-half").value,
+      cvv : document.querySelector(".input-half").value,
+      parcelas : document.querySelector(".input-half").value,
+      nascimento : document.querySelector(".input-half").value
+    }
+    localStorage.setItem("paymentMethod", "cartao");
+    console.log(cartao);
+  }else{
+    alert("Selecione um método de pagamento!");
+    return;
+  }
+  
+  window.location.href = "../pages/orderReview.html";
 });

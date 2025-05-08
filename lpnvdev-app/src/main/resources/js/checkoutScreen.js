@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
   <div class="shipping-option">
     <label
-      ><input type="radio" name="frete"  ${frete.innerText == "Frete:56.90" ? "checked" : "disabled"} />FAST - Em até duas horas</label
+      ><input type="radio" name="frete"  ${frete.innerText == "Frete:56.9" ? "checked" : "disabled"} />FAST - Em até duas horas</label
     >
     <span>R$ 56,90</span>
   </div>

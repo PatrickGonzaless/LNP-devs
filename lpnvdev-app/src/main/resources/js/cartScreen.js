@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     document.getElementById("costumerLogin").style.display = "block";
   }
+  try {
+    calcularFrete();
+  } catch (erro) {
+  }
 });
 
 function verifCostumer(costumer) {
@@ -69,9 +73,8 @@ function listarProdutos() {
     let cart = `
        <div id="cartContent">
         <div class="imgArea">
-            <img src="../../../../../../${image}" alt="${
-      produto.nome
-    }" width="100%" height="100%"/>
+            <img src="../../../../../../${image}" alt="${produto.nome
+      }" width="100%" height="100%"/>
         </div>
         <div class="productNamePrice">
             <h4 id="prodName"><span>${produto.nome}</span></h4>
@@ -80,11 +83,9 @@ function listarProdutos() {
         <div class="quantity">
             <h4>Quant.</h4>
             <div class="qntNumber">
-                <p style="cursor:pointer" onclick="reduzQtd(${
-                  produto.id
-                })"><</p><span id="${produto.id}">${
-      produto.qtd
-    }</span><p style="cursor:pointer" onclick="aumentaQtd(${produto.id})">></p>
+                <p style="cursor:pointer" onclick="reduzQtd(${produto.id
+      })"><</p><span id="${produto.id}">${produto.qtd
+      }</span><p style="cursor:pointer" onclick="aumentaQtd(${produto.id})">></p>
             </div>
         </div>
         <div class="removeItembtn">
@@ -123,27 +124,23 @@ function listarProdutos() {
             <div class="cepContent">
                 <input type="text" id="cep"/>
                 <button onclick="checkOK()" id="cepButton">OK</button>
-                <div class="frete-options" style="display: ${
-                  localStorage.getItem("frete")
-                    ? localStorage.getItem("frete")
-                    : "none"
-                }">
+                <div class="frete-options" style="display: ${localStorage.getItem("frete")
+      ? localStorage.getItem("frete")
+      : "none"
+    }">
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="15.99" ${
-                        localStorage.getItem("frete") == 15.99 ? "checked" : ""
-                      }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="15.99" ${localStorage.getItem("frete") == 15.99 ? "checked" : ""
+    }>
                       <span>R$15,99 - SEDEX - 3 dias úteis</span>
                     </label>
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="5.99"${
-                        localStorage.getItem("frete") == 5.99 ? "checked" : ""
-                      }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="5.99"${localStorage.getItem("frete") == 5.99 ? "checked" : ""
+    }>
                       <span>R$5,99 - SENAC - 10 dias úteis</span>
                     </label>
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="56.90"${
-                        localStorage.getItem("frete") == 56.9 ? "checked" : ""
-                      }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="56.90"${localStorage.getItem("frete") == 56.9 ? "checked" : ""
+    }>
                       <span>R$56,90 - FAST - Em até duas horas</span>
                     </label>
                 </div>
@@ -164,7 +161,6 @@ function checkOK() {
     document.querySelector(".frete-options").style.display = "block";
   }
   adicionarResumoPedido();
-  btnCheck.disabled = false;
 }
 
 function removerProduto(index) {
@@ -190,7 +186,7 @@ function adicionarResumoPedido() {
     (acc, produto) =>
       acc +
       produto.valor *
-        parseInt(document.getElementById(`${produto.id}`).innerText),
+      parseInt(document.getElementById(`${produto.id}`).innerText),
     0
   );
   document.getElementById("subTotal").innerText = subTotal.toFixed(2);
@@ -199,7 +195,7 @@ function adicionarResumoPedido() {
     subTotal += localStorage.getItem("frete")
       ? parseFloat(localStorage.getItem("frete"))
       : 0;
-  } catch (erro) {}
+  } catch (erro) { }
   document.getElementById("frete").innerText = localStorage.getItem("frete")
     ? localStorage.getItem("frete")
     : "none";
@@ -217,6 +213,7 @@ function calcularFrete() {
     subTotal += frete;
     document.getElementById("frete").innerText = frete.toFixed(2);
     localStorage.setItem("frete", frete);
+    btnCheck.disabled = false;
   } catch (error) {
     console.log("Nenhum frete selecionado.");
   }

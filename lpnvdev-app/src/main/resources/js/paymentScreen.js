@@ -84,15 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="fake-card-image"></div>
             </div>
             <div class="card-inputs">
-              <input type="number" placeholder="Número do cartão" class="input-full" />
+              <input type="text" placeholder="Número do cartão" class="input-full" />
               <input type="text" placeholder="Nome impresso no cartão" class="input-full" />
               <div class="input-row">
-                <input type="number" placeholder="Validade" class="input-half" />
-                <input type="number" placeholder="CVV" class="input-half" />
+                <input type="text" placeholder="Validade" class="input-half" />
+                <input type="text" placeholder="CVV" class="input-half" />
               </div>
               <div class="input-row">
                 <input type="number" placeholder="nº de parcelas" class="input-half" />
-                <input type="number" placeholder="Data de Nascimento" class="input-half" />
+                <input type="date" placeholder="Data de Nascimento" class="input-half" />
               </div>
             </div>
           </div>

@@ -174,7 +174,7 @@ concluir.addEventListener("click", () => {
       nascimento : document.querySelector(".input-half").value
     }
     localStorage.setItem("paymentMethod", "cartao");
-    console.log(cartao);
+    localStorage.setItem("dadosCartao", JSON.stringify(cartao));
   }else{
     alert("Selecione um método de pagamento!");
     return;

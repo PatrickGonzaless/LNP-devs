@@ -95,5 +95,8 @@ function costumerLogouts() {
 }
 
 concluir.addEventListener("click", () => {
+  const val = document.querySelector('input[name="frete"]:checked');
+  localStorage.setItem("enderecoEntrega", val.value);
+
   window.location.href = "../pages/paymentScreen.html";
 });

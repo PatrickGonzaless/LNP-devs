@@ -51,8 +51,9 @@
         <img src="../img/orderReview/head.png" alt="">
         <h2>Meus dados</h2>
       </div>
-      <p><span id="nomecliente"></span>(<span id="emailcliente"></span>)</p>
-      <p>CPF: <span id="CPF"></span></p>
+      <section id="myDados">
+        
+      </section>
     </div>
   
     <div class="row-bottom">
@@ -60,55 +61,30 @@
         <div class="section-title">
           <img src="../img/orderReview/truck.png" alt="">
           <h2>Entrega</h2>
-          <span class="edit">✎</span>
         </div>
-        <p>Destinatário: <span></span></p>
-        <p><span id="endereco"></span>,<span id="bairro"></span>, <span id="numero"></span></p>
-        <p><span id="CEP"></span> - <span id="cidadeUF"></span>CEP - Cidade/UF</p>
-        <p>Tipo do frete escolhido: <span id="freteEscolhido"></span></p>
-        <p>R$ <span id="preco"span></p>
+        <section id="endereco">
+
+        </section>
       </div>
   
       <div class="box-section">
         <div class="section-title">
           <img src="../img/orderReview/cards.png" alt="">
           <h2>Forma de pagamento</h2>
-          <span class="edit">✎</span>
         </div>
-        <p>Pague via <span id="formapagamento"></span></p>
+        <section id="pag"></section>
       </div>
     </div>
 
     <section id="product-review">
-      <div class="product-header">Produto</div>
-      <div class="product-box">
-        <div class="product-img">
-          <div class="img-placeholder">Img</div>
-        </div>
-    
-        <div class="product-details">
-          <p class="product-description">Descrição do produto</p>
-    
-          <div class="product-info">
-            <p class="product-price">Preço do produto</p>
-            <div class="product-qty">
-              <span class="qty-btn">-</span>
-              <span class="qty-number">1</span>
-              <span class="qty-btn">+</span>
-            </div>
-            <p class="product-total">Preço total</p>
-            <img class="trash-icon" src="../img/icons/trash.png" alt="Remover">
-          </div>
-    
-          <p class="product-name">Nome do produto</p>
-        </div>
-      </div>
+      
     </section>
   </section>
 
   
   <footer id="footer">
-    <button class="btn-checkout"> Finalizar a compra</button>
+    <button class="btn-checkout" id="goBack">&larr; Voltar para o checkout</button>
+    <button class="btn-checkout" id="finish"> Finalizar a compra</button>
   </footer>
     
   <script src="../js/orderReview.js"> </script>

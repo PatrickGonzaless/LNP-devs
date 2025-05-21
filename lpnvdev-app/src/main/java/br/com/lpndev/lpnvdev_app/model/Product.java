@@ -35,6 +35,12 @@ public class Product {
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductImg> imagens;
 
+    @OneToMany(mappedBy = "id_produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cart> carrinho; // FK para a tabela de carrinho
+
+    public Product() {
+    }
+
     public Integer getId() {
         return id;
     }

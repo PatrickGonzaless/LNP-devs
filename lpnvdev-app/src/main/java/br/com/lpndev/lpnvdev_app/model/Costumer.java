@@ -36,6 +36,9 @@ public class Costumer {
     @OneToMany(mappedBy = "idCostumer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Adress> enderecos; // FK para a tabela de endereços
 
+    @OneToMany(mappedBy = "id_cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cart> carrinho; // FK para a tabela de carrinho
+
     public Costumer() {
     }
 

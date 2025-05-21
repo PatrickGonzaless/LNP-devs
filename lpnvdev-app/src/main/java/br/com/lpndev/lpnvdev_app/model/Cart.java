@@ -18,14 +18,13 @@ public class Cart {
     @Column(name = "id_carrinho")
     private Integer id_carrinho;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente", nullable = false)
+    private Costumer id_cliente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_carrinho", nullable = false)
-    private Integer id_cliente;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_carrinho", nullable = false)
-    private Integer id_produto;
+    @JoinColumn(name = "id_produto", nullable = false)
+    private Product id_produto;
 
     @Column(name = "qtd")
     private Integer qtd;
@@ -33,7 +32,7 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(Integer id_carrinho, Integer id_cliente, Integer id_produto, Integer qtd) {
+    public Cart(Integer id_carrinho, Costumer id_cliente, Product id_produto, Integer qtd) {
         this.id_carrinho = id_carrinho;
         this.id_cliente = id_cliente;
         this.id_produto = id_produto;
@@ -48,22 +47,6 @@ public class Cart {
         this.id_carrinho = id_carrinho;
     }
 
-    public Integer getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(Integer id_cliente) {
-        this.id_cliente = id_cliente;
-    }
-
-    public Integer getId_produto() {
-        return id_produto;
-    }
-
-    public void setId_produto(Integer id_produto) {
-        this.id_produto = id_produto;
-    }
-
     public Integer getQtd() {
         return qtd;
     }
@@ -71,4 +54,21 @@ public class Cart {
     public void setQtd(Integer qtd) {
         this.qtd = qtd;
     }
+
+    public Costumer getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Costumer id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public Product getId_produto() {
+        return id_produto;
+    }
+
+    public void setId_produto(Product id_produto) {
+        this.id_produto = id_produto;
+    }
+
 }

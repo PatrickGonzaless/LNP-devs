@@ -25,10 +25,12 @@ public class CartController {
     public Cart createCart(@RequestBody Cart cart) {
         return cartService.saveCart(cart);
     }
-    @PostMapping
+
+    @PutMapping
     public Cart editCart(@RequestBody Cart cart) {
         return cartService.saveCart(cart);
     }
+
     @DeleteMapping
     public Cart deleteCart(@PathVariable Integer id) {
         Cart cart = cartService.findById(id);

@@ -4,6 +4,7 @@ const btnCheck = document.getElementById("okCheck");
 
 document.addEventListener("DOMContentLoaded", () => {
   if (loggedInCostumer) {
+    salvarCarrinho();
     verifCostumer(loggedInCostumer);
   } else {
     document.getElementById("costumerLogin").style.display = "block";
@@ -11,8 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   try {
     calcularFrete();
-  } catch (erro) {
-  }
+  } catch (erro) {}
 });
 
 function verifCostumer(costumer) {
@@ -74,8 +74,9 @@ function listarProdutos() {
     let cart = `
        <div id="cartContent">
         <div class="imgArea">
-            <img src="../../../../../../${image}" alt="${produto.nome
-      }" width="100%" height="100%"/>
+            <img src="../../../../../../${image}" alt="${
+      produto.nome
+    }" width="100%" height="100%"/>
         </div>
         <div class="productNamePrice">
             <h4 id="prodName"><span>${produto.nome}</span></h4>
@@ -84,9 +85,11 @@ function listarProdutos() {
         <div class="quantity">
             <h4>Quant.</h4>
             <div class="qntNumber">
-                <p style="cursor:pointer" onclick="reduzQtd(${produto.id
-      })"><</p><span id="${produto.id}">${produto.qtd
-      }</span><p style="cursor:pointer" onclick="aumentaQtd(${produto.id})">></p>
+                <p style="cursor:pointer" onclick="reduzQtd(${
+                  produto.id
+                })"><</p><span id="${produto.id}">${
+      produto.qtd
+    }</span><p style="cursor:pointer" onclick="aumentaQtd(${produto.id})">></p>
             </div>
         </div>
         <div class="removeItembtn">
@@ -125,23 +128,27 @@ function listarProdutos() {
             <div class="cepContent">
                 <input type="text" id="cep"/>
                 <button onclick="checkOK()" id="cepButton">OK</button>
-                <div class="frete-options" style="display: ${localStorage.getItem("frete")
-      ? localStorage.getItem("frete")
-      : "none"
-    }">
+                <div class="frete-options" style="display: ${
+                  localStorage.getItem("frete")
+                    ? localStorage.getItem("frete")
+                    : "none"
+                }">
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="15.99" ${localStorage.getItem("frete") == 15.99 ? "checked" : ""
-    }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="15.99" ${
+                        localStorage.getItem("frete") == 15.99 ? "checked" : ""
+                      }>
                       <span>R$15,99 - SEDEX - 3 dias úteis</span>
                     </label>
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="5.99"${localStorage.getItem("frete") == 5.99 ? "checked" : ""
-    }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="5.99"${
+                        localStorage.getItem("frete") == 5.99 ? "checked" : ""
+                      }>
                       <span>R$5,99 - SENAC - 10 dias úteis</span>
                     </label>
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="56.90"${localStorage.getItem("frete") == 56.9 ? "checked" : ""
-    }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="56.90"${
+                        localStorage.getItem("frete") == 56.9 ? "checked" : ""
+                      }>
                       <span>R$56,90 - FAST - Em até duas horas</span>
                     </label>
                 </div>
@@ -187,7 +194,7 @@ function adicionarResumoPedido() {
     (acc, produto) =>
       acc +
       produto.valor *
-      parseInt(document.getElementById(`${produto.id}`).innerText),
+        parseInt(document.getElementById(`${produto.id}`).innerText),
     0
   );
   document.getElementById("subTotal").innerText = subTotal.toFixed(2);
@@ -196,7 +203,7 @@ function adicionarResumoPedido() {
     subTotal += localStorage.getItem("frete")
       ? parseFloat(localStorage.getItem("frete"))
       : 0;
-  } catch (erro) { }
+  } catch (erro) {}
   document.getElementById("frete").innerText = localStorage.getItem("frete")
     ? localStorage.getItem("frete")
     : "none";
@@ -263,3 +270,41 @@ btnCheck.addEventListener("click", () => {
     window.location.href = "../pages/loginCostumer.html?logged=true";
   }
 });
+
+function salvarCarrinho() {
+  let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
+  if (produtos.length === 0) {
+    localStorage.setItem("carrinho", JSON.stringify([]));
+  } else {
+    produtos.forEach((produto) => {
+      let carrinho = {
+        id_cliente: loggedInCostumer.id,
+        id_produto: produto.id,
+        qtd: produto.qtd,
+      };
+      fetch(`http://localhost:8080/cart`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(carrinho),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              `Erro na reqasdasdauisição: ${res.status} - ${res.statusText}`
+            );
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log("Carrinho salvo com sucesso!", data);
+          localStorage.setItem("carrinho", JSON.stringify(data));
+        })
+        .catch((err) => {
+          alert("Erro ao salvar carrinho: " + err.message);
+        });
+    });
+  }
+}

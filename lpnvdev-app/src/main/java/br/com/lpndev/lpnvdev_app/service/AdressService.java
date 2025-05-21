@@ -22,6 +22,7 @@ public class AdressService {
         return daoE.save(adress);
     }
 
+    @SuppressWarnings("null")
     public Adress alterAdress(Adress adress) {
         final CostumerService costumerService = null;
         // Obtenha o cliente com base no ID

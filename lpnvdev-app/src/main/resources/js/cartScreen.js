@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     verifCostumer(loggedInCostumer);
   } else {
     document.getElementById("costumerLogin").style.display = "block";
+    listarProdutos();
   }
   try {
     calcularFrete();

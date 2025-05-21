@@ -62,6 +62,15 @@ foreign key (id_cliente) references cliente(id)
 
 select * from cliente;
 
+create table carrinho(
+id_carrinho integer auto_increment primary key,
+id_cliente integer not null,
+id_produto integer not null,
+qtd integer not null,
+foreign key (id_cliente) references cliente(id),
+foreign key (id_produto) references produto(id)
+);
+
 create table pedido(
 id_pedido integer auto_increment primary key,
 dtpedido varchar(150) not null,

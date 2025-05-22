@@ -18,11 +18,11 @@ public class Cart {
     @Column(name = "id_carrinho")
     private Integer id_carrinho;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cliente", nullable = false)
     private Costumer id_cliente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_produto", nullable = false)
     private Product id_produto;
 

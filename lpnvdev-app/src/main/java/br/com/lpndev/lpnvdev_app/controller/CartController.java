@@ -3,7 +3,6 @@ package br.com.lpndev.lpnvdev_app.controller;
 import java.util.List;
 import br.com.lpndev.lpnvdev_app.service.CartService;
 import org.springframework.web.bind.annotation.*;
-
 import br.com.lpndev.lpnvdev_app.model.Cart;
 
 @RestController
@@ -19,6 +18,11 @@ public class CartController {
     @GetMapping
     public List<Cart> cartList() {
         return cartService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Cart cartByIdCliente(@PathVariable Integer id) {
+        return cartService.findById(id);
     }
 
     @PostMapping

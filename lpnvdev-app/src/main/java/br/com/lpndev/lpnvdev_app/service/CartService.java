@@ -15,21 +15,29 @@ public class CartService {
         this.daoCart = daoCart;
     }
 
-    public Cart saveCart(Cart cart){
+    public Cart saveCart(Cart cart) {
         return daoCart.save(cart);
     }
 
-    private Cart alterCart(Cart cart){
+    private Cart alterCart(Cart cart) {
         return daoCart.save(cart);
     }
 
-    public List<Cart> findAll(){
+    public List<Cart> findAll() {
         return daoCart.findAll();
     }
-    public Cart findById(Integer id){
-        return daoCart.findById(id).orElse(null);
+
+    public Cart findById(Integer id) {
+        List<Cart> cartList = daoCart.findAll();
+        for (Cart cart : cartList) {
+            if (cart.getId_cliente().equals(id)) {
+                return cart;
+            }
+        }
+        return null;
     }
-    public void deleteCart(Integer id){
+
+    public void deleteCart(Integer id) {
         daoCart.deleteById(id);
     }
 }

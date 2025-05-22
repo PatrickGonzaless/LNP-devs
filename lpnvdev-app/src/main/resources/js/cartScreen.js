@@ -4,7 +4,7 @@ const btnCheck = document.getElementById("okCheck");
 
 document.addEventListener("DOMContentLoaded", () => {
   if (loggedInCostumer) {
-    salvarCarrinho();
+    controlaCarrinho();
     verifCostumer(loggedInCostumer);
   } else {
     document.getElementById("costumerLogin").style.display = "block";
@@ -271,18 +271,18 @@ btnCheck.addEventListener("click", () => {
   }
 });
 
-function salvarCarrinho() {
+async function salvarCarrinho() {
   let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
   if (produtos.length === 0) {
     localStorage.setItem("carrinho", JSON.stringify([]));
   } else {
-    produtos.forEach((produto) => {
+    for (let produto of produtos) {
       let carrinho = {
-        id_cliente: loggedInCostumer.id,
-        id_produto: produto.id,
+        id_cliente: loggedInCostumer,
+        id_produto: produto,
         qtd: produto.qtd,
       };
-      fetch(`http://localhost:8080/cart`, {
+      await fetch(`http://localhost:8080/cart`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -300,11 +300,53 @@ function salvarCarrinho() {
         })
         .then((data) => {
           console.log("Carrinho salvo com sucesso!", data);
-          localStorage.setItem("carrinho", JSON.stringify(data));
+          let carrinhoBD = localStorage.getItem("carrinhoDb");
+          carrinhoBD = JSON.parse(carrinhoBD);
+          carrinho.push(pedido);
+          localStorage.setItem("carrinhoDb", JSON.stringify(carrinho));
         })
         .catch((err) => {
-          alert("Erro ao salvar carrinho: " + err.message);
+          console.log("Erro ao salvar carrinho: " + err.message);
         });
-    });
+    }
   }
+}
+
+async function controlaCarrinho() {
+  await fetch(`http://localhost:8080/cart/${loggedInCostumer.id}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "GET",
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(
+          `Erro na requisição: ${res.status} - ${res.statusText}`
+        );
+      }
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Carrinho recuperado com sucesso!", data);
+      for (let pedido of data) {
+        if (pedido.id_cliente.id == loggedInCostumer.id) {
+          let carrinhoBD = localStorage.getItem("carrinhoDb");
+          if (carrinhoBD) {
+            carrinhoBD = JSON.parse(carrinhoBD);
+            carrinho.push(pedido);
+            localStorage.setItem("carrinhoDb", JSON.stringify(carrinho));
+          } else {
+            let carrinho = [];
+            carrinho.push(pedido);
+            localStorage.setItem("carrinhoDb", JSON.stringify(carrinho));
+          }
+        }
+      }
+    })
+    .catch((err) => {
+      salvarCarrinho();
+      console.log("Erro ao recuperar carrinho: " + err.message);
+    });
 }

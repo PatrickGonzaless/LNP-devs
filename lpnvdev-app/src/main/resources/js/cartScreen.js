@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   try {
     calcularFrete();
-  } catch (erro) {}
+  } catch (erro) { }
 });
 
 function verifCostumer(costumer) {
@@ -74,9 +74,8 @@ function listarProdutos() {
     let cart = `
        <div id="cartContent">
         <div class="imgArea">
-            <img src="../../../../../../${image}" alt="${
-      produto.nome
-    }" width="100%" height="100%"/>
+            <img src="../../../../../../${image}" alt="${produto.nome
+      }" width="100%" height="100%"/>
         </div>
         <div class="productNamePrice">
             <h4 id="prodName"><span>${produto.nome}</span></h4>
@@ -85,11 +84,9 @@ function listarProdutos() {
         <div class="quantity">
             <h4>Quant.</h4>
             <div class="qntNumber">
-                <p style="cursor:pointer" onclick="reduzQtd(${
-                  produto.id
-                })"><</p><span id="${produto.id}">${
-      produto.qtd
-    }</span><p style="cursor:pointer" onclick="aumentaQtd(${produto.id})">></p>
+                <p style="cursor:pointer" onclick="reduzQtd(${produto.id
+      })"><</p><span id="${produto.id}">${produto.qtd
+      }</span><p style="cursor:pointer" onclick="aumentaQtd(${produto.id})">></p>
             </div>
         </div>
         <div class="removeItembtn">
@@ -128,27 +125,23 @@ function listarProdutos() {
             <div class="cepContent">
                 <input type="text" id="cep"/>
                 <button onclick="checkOK()" id="cepButton">OK</button>
-                <div class="frete-options" style="display: ${
-                  localStorage.getItem("frete")
-                    ? localStorage.getItem("frete")
-                    : "none"
-                }">
+                <div class="frete-options" style="display: ${localStorage.getItem("frete")
+      ? localStorage.getItem("frete")
+      : "none"
+    }">
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="15.99" ${
-                        localStorage.getItem("frete") == 15.99 ? "checked" : ""
-                      }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="15.99" ${localStorage.getItem("frete") == 15.99 ? "checked" : ""
+    }>
                       <span>R$15,99 - SEDEX - 3 dias úteis</span>
                     </label>
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="5.99"${
-                        localStorage.getItem("frete") == 5.99 ? "checked" : ""
-                      }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="5.99"${localStorage.getItem("frete") == 5.99 ? "checked" : ""
+    }>
                       <span>R$5,99 - SENAC - 10 dias úteis</span>
                     </label>
                     <label>
-                      <input onclick="calcularFrete()" type="radio" name="frete" value="56.90"${
-                        localStorage.getItem("frete") == 56.9 ? "checked" : ""
-                      }>
+                      <input onclick="calcularFrete()" type="radio" name="frete" value="56.90"${localStorage.getItem("frete") == 56.9 ? "checked" : ""
+    }>
                       <span>R$56,90 - FAST - Em até duas horas</span>
                     </label>
                 </div>
@@ -194,7 +187,7 @@ function adicionarResumoPedido() {
     (acc, produto) =>
       acc +
       produto.valor *
-        parseInt(document.getElementById(`${produto.id}`).innerText),
+      parseInt(document.getElementById(`${produto.id}`).innerText),
     0
   );
   document.getElementById("subTotal").innerText = subTotal.toFixed(2);
@@ -203,7 +196,7 @@ function adicionarResumoPedido() {
     subTotal += localStorage.getItem("frete")
       ? parseFloat(localStorage.getItem("frete"))
       : 0;
-  } catch (erro) {}
+  } catch (erro) { }
   document.getElementById("frete").innerText = localStorage.getItem("frete")
     ? localStorage.getItem("frete")
     : "none";
@@ -313,7 +306,8 @@ async function salvarCarrinho() {
 }
 
 async function controlaCarrinho() {
-  await fetch(`http://localhost:8080/cart/${loggedInCostumer.id}`, {
+  let id = loggedInCostumer.id;
+  await fetch(`http://localhost:8080/cart/${id}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -331,22 +325,33 @@ async function controlaCarrinho() {
     .then((data) => {
       console.log("Carrinho recuperado com sucesso!", data);
       for (let pedido of data) {
+        let carrinhoBD = [];
         if (pedido.id_cliente.id == loggedInCostumer.id) {
-          let carrinhoBD = localStorage.getItem("carrinhoDb");
-          if (carrinhoBD) {
-            carrinhoBD = JSON.parse(carrinhoBD);
-            carrinho.push(pedido);
-            localStorage.setItem("carrinhoDb", JSON.stringify(carrinho));
-          } else {
-            let carrinho = [];
-            carrinho.push(pedido);
-            localStorage.setItem("carrinhoDb", JSON.stringify(carrinho));
-          }
+          carrinhoBD.push(pedido);
+        }
+        localStorage.setItem("carrinhoDb", JSON.stringify(carrinhoBD));
+      }
+      let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
+      let produtosBD = JSON.parse(localStorage.getItem("carrinhoDb")) || [];
+      for (let produto of produtosBD) {
+        let produtoExistente = produtos.find((p) => p.id === produto.id_produto.id);
+        if (produtoExistente) {
+          produtoExistente.qtd += produto.qtd;
+        } else {
+          produtos.push({
+            id: produto.id_produto.id,
+            nome: produto.id_produto.nome,
+            valor: produto.id_produto.valor,
+            qtd: produto.qtd,
+            imagem: produto.id_produto.imagem,
+          });
         }
       }
+      localStorage.setItem("carrinho", JSON.stringify(produtos));
+      salvarCarrinho();
     })
     .catch((err) => {
-      salvarCarrinho();
+      //salvarCarrinho();
       console.log("Erro ao recuperar carrinho: " + err.message);
     });
 }

@@ -21,8 +21,8 @@ public class CartController {
     }
 
     @GetMapping("/{id}")
-    public Cart cartByIdCliente(@PathVariable Integer id) {
-        return cartService.findById(id);
+    public List<Cart> cartByIdCliente(@PathVariable Integer id) {
+        return cartService.findByIdCliente(id);
     }
 
     @PostMapping

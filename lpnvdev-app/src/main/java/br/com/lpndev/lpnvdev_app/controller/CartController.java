@@ -41,4 +41,15 @@ public class CartController {
         cartService.deleteCart(id);
         return cart;
     }
+    @DeleteMapping("/{id}")
+    public List<Cart> deleteAllCart(@PathVariable Integer id) {
+        List<Cart> cart = cartService.findAll();
+        for (Cart c : cart) {
+            if (c.getId_cliente().getId() == id) {
+                cartService.deleteCart(c.getId_carrinho());
+            }
+        }
+        cartService.deleteCart(id);
+        return cart;
+    }
 }

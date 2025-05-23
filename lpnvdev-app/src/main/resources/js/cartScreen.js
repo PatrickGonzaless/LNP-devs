@@ -5,7 +5,7 @@ const btnCheck = document.getElementById("okCheck");
 document.addEventListener("DOMContentLoaded", () => {
   if (loggedInCostumer) {
     controlaCarrinho();
-    verifCostumer(loggedInCostumer);
+    
   } else {
     document.getElementById("costumerLogin").style.display = "block";
     listarProdutos();
@@ -42,6 +42,7 @@ function verifCostumer(costumer) {
 function costumerLogouts() {
   console.log("Logout realizado com sucesso!");
   localStorage.removeItem("loggedInCostumer");
+  localStorage.removeItem("carrinho");
   window.location.href = "../pages/loginCostumer.html";
 }
 
@@ -66,6 +67,7 @@ function listarProdutos() {
 
   produtos.forEach((produto, index) => {
     let image;
+    console.log(produto);
     produto.imagem.forEach((img) => {
       if (img.padrao) {
         image = img.linkimg;
@@ -269,6 +271,24 @@ async function salvarCarrinho() {
   if (produtos.length === 0) {
     localStorage.setItem("carrinho", JSON.stringify([]));
   } else {
+    let id = loggedInCostumer.id;
+    await fetch(`http://localhost:8080/cart/${id}`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "DELETE",
+      }).then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            `Erro na requisição: ${res.status} - ${res.statusText}`
+          );
+        }
+        return res.json();
+      }).then((data) => {
+        console.log("Carrinho deletado com sucesso!", data);
+      });
+
     for (let produto of produtos) {
       let carrinho = {
         id_cliente: loggedInCostumer,
@@ -302,6 +322,7 @@ async function salvarCarrinho() {
           console.log("Erro ao salvar carrinho: " + err.message);
         });
     }
+    verifCostumer(loggedInCostumer);
   }
 }
 
@@ -324,13 +345,13 @@ async function controlaCarrinho() {
     })
     .then((data) => {
       console.log("Carrinho recuperado com sucesso!", data);
+      let carrinhoBD = [];
       for (let pedido of data) {
-        let carrinhoBD = [];
         if (pedido.id_cliente.id == loggedInCostumer.id) {
           carrinhoBD.push(pedido);
         }
-        localStorage.setItem("carrinhoDb", JSON.stringify(carrinhoBD));
       }
+      localStorage.setItem("carrinhoDb", JSON.stringify(carrinhoBD));
       let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
       let produtosBD = JSON.parse(localStorage.getItem("carrinhoDb")) || [];
       for (let produto of produtosBD) {
@@ -339,11 +360,12 @@ async function controlaCarrinho() {
           produtoExistente.qtd += produto.qtd;
         } else {
           produtos.push({
-            id: produto.id_produto.id,
-            nome: produto.id_produto.nome,
-            valor: produto.id_produto.valor,
-            qtd: produto.qtd,
-            imagem: produto.id_produto.imagem,
+            // id: produto.id_produto.id,
+            // nome: produto.id_produto.nome,
+            // valor: produto.id_produto.valor,
+            // qtd: produto.qtd,
+            // imagem: produto.id_produto.imagem,
+            produto
           });
         }
       }

@@ -10,6 +10,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+  text-decoration: none;
 }
 
 body {
@@ -84,7 +85,12 @@ header {
   width: 4.5vh;
   height: 4.5vh;
   align-items: center;
-  margin-right: 2vh;
+}
+
+h4#perfilC {
+    text-decoration: none;
+    color: white;
+    text-align: center;
 }
 
 .user {
@@ -136,6 +142,19 @@ h4 {
 
 .leave {
   font-size: 22px;
+  text-align: center;
+  width: 23vh;
+}
+
+.leave:hover {
+  color: #5d1010;
+}
+
+.userIcon{
+  display: flex;
+  width: 19vh;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {

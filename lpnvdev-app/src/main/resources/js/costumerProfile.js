@@ -100,20 +100,80 @@ function costumerLogouts() {
 
 document.getElementById("alter").addEventListener("click", (event) => {
   event.preventDefault();
-  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
   const formCostumer = document.getElementById("dataAreaForm");
+  const dataArea = document.getElementById("dataArea");
   const elementos = formCostumer.elements;
-  let linha1 = ` <input type="password" id="password1" placeholder="Digite sua senha" required/>`;
-  let linha2 = ` <input type="password" id="password2" placeholder="Digite uma nova senha(OPCIONAL)"/>`;
-  let linha3 = ` <input type="password" id="password3" placeholder="Repita a nova senha"/>`;
 
-  elementos[4].insertAdjacentHTML("afterend", linha1);
-  elementos[5].insertAdjacentHTML("afterend", linha2);
-  elementos[6].insertAdjacentHTML("afterend", linha3);
-  elementos[0].disabled = false;
-  elementos[3].disabled = false;
-  elementos[4].disabled = false;
-  elementos[5].disabled = false;
+  const password1 = document.getElementById("password1");
+  const password2 = document.getElementById("password2");
+  const password3 = document.getElementById("password3");
+
+  if (password1 && password2 && password3) {
+
+    password1.remove();
+    password2.remove();
+    password3.remove();
+
+    elementos[0].disabled = true;
+    elementos[3].disabled = true;
+    elementos[4].disabled = true;
+    elementos[5].disabled = true;
+
+     dataArea.style.height = "auto";
+  } else {
+
+    let linha1 = `<input type="password" id="password1" placeholder="Digite sua senha" required/>`;
+    let linha2 = `<input type="password" id="password2" placeholder="Digite uma nova senha(OPCIONAL)"/>`;
+    let linha3 = `<input type="password" id="password3" placeholder="Repita a nova senha"/>`;
+
+    elementos[4].insertAdjacentHTML("afterend", linha1);
+    elementos[5].insertAdjacentHTML("afterend", linha2);
+    elementos[6].insertAdjacentHTML("afterend", linha3);
+
+    elementos[0].disabled = false;
+    elementos[3].disabled = false;
+    elementos[4].disabled = false;
+    elementos[5].disabled = false;
+
+     dataArea.style.height = "78vh";
+  }
+});
+
+document.getElementById("okModal").addEventListener("click", (event) => {
+  event.preventDefault();
+  const logradouroT = document.getElementById("logradouroT").value;
+  const cepT = document.getElementById("cepT").value;
+  const complementoT = document.getElementById("complementoT").value;
+  const cidadeT = document.getElementById("cidadeT").value;
+
+   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
+
+   const novoEndereco = {
+    logradouroT: logradouroT,
+    cepT: cepT,
+    complementoT: complementoT,
+    cidadeT: cidadeT,
+   };
+
+     fetch("http://localhost:8080/adress", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(novoEndereco),
+  })
+    .then((res) => {
+      if (res.ok) {
+        alert("Endereço adicionado com sucesso!");
+      } else {
+        alert("Erro ao adicionar endereço no servidor.");
+      }
+    })
+    .catch((err) => {
+      console.error("Erro de rede:", err);
+    });
+
+
 });
 
 document.getElementById("confirm").addEventListener("click", (evt) => {
@@ -182,7 +242,7 @@ function updateCostumer() {
   };
 
   console.log(costumer);
-  // Enviar os dados atualizados para o servidor
+
   fetch(`http://localhost:8080/costumer`, {
     method: "PUT",
     headers: {

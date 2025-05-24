@@ -105,10 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🔁 Controlador geral para garantir consistência de exibição
   document.querySelectorAll('input[name="payment"]').forEach((radio) => {
     radio.addEventListener('change', () => {
-      // Oculta descrições anteriores
       document.querySelectorAll('.pixDescription, .boletoDescription, #cardDescription').forEach((desc) => {
         if (desc) {
           desc.style.display = 'none';
@@ -124,8 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (descriptionElement) {
           descriptionElement.style.display = 'block';
         }
-
-        // Cartão: ativa animação e estilo
         const cardDescription = document.getElementById("cardDescription");
         const footerArea = document.getElementById("footer");
         if (cardDescription) {

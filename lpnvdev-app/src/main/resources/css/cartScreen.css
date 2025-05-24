@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 @font-face {
@@ -80,10 +81,15 @@ header {
 }
 
 .user img {
-    width: 4.5vh;
-    height: 4.5vh;
-    align-items: center;
-    margin-right: 2vh;
+  width: 4.5vh;
+  height: 4.5vh;
+  align-items: center;
+}
+
+h4#perfilC {
+    text-decoration: none;
+    color: white;
+    text-align: center;
 }
 
 .user {
@@ -133,8 +139,21 @@ h4{
     font-size: 17px;
 }
 
-.leave {
-    font-size: 22px;
+#leave {
+  font-size: 22px;
+  text-align: center;
+  width: 23vh;
+}
+
+.leave:hover {
+    color: #5d1010;
+}
+
+.userIcon{
+  display: flex;
+  width: 19vh;
+  align-items: center;
+  justify-content: center;
 }
 
 .divider{

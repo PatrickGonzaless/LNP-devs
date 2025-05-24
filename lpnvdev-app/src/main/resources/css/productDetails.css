@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 @font-face {
@@ -40,12 +41,10 @@ header {
 }
 
 .cart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+   
     width: 40px;
     height: 40px;
-    margin-left: 2vh;
+    
 }
 
 #areaLoginCostumer{
@@ -75,15 +74,12 @@ header {
     width: 38vh;
     height: 8vh;
     margin-left: auto;
-    margin-right: 10vh;
-    border-radius: 13px;
 }
 
 .user img {
-    width: 4.5vh;
-    height: 4.5vh;
-    align-items: center;
-    margin-right: 2vh;
+  width: 4.5vh;
+  height: 4.5vh;
+  align-items: center;
 }
 
 .user {
@@ -94,6 +90,12 @@ header {
     font-size: 15px;
     align-items: center;
     justify-content: center;
+}
+
+h4#perfilC {
+    text-decoration: none;
+    color: white;
+    text-align: center;
 }
 
 .user a {
@@ -128,13 +130,26 @@ header {
     color: white;
 }
 
+.userIcon{
+  display: flex;
+  width: 19vh;
+  align-items: center;
+  justify-content: center;
+}
+
 h4{
     width: 20vh;
     font-size: 17px;
 }
 
-.leave {
-    font-size: 22px
+#leave {
+  font-size: 22px;
+  text-align: center;
+  width: 23vh;
+}
+
+#leave:hover {
+    color: #5d1010;
 }
 
 #ProductsDetailstitle {

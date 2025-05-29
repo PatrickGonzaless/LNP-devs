@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -24,8 +26,8 @@ public class Cart {
     @JoinColumn(name = "id_cliente", nullable = false)
     private Costumer id_cliente;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_produto", nullable = false)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "carrinho", joinColumns = @JoinColumn(name = "id_carrinho"), inverseJoinColumns = @JoinColumn(name = "id_produto"))
     private List<Product> id_produto;
 
     @Column(name = "qtd")

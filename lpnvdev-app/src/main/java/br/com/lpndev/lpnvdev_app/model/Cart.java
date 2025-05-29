@@ -1,5 +1,7 @@
 package br.com.lpndev.lpnvdev_app.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,7 +26,7 @@ public class Cart {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_produto", nullable = false)
-    private Product id_produto;
+    private List<Product> id_produto;
 
     @Column(name = "qtd")
     private Integer qtd;
@@ -32,7 +34,7 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(Integer id_carrinho, Costumer id_cliente, Product id_produto, Integer qtd) {
+    public Cart(Integer id_carrinho, Costumer id_cliente, List<Product> id_produto, Integer qtd) {
         this.id_carrinho = id_carrinho;
         this.id_cliente = id_cliente;
         this.id_produto = id_produto;
@@ -63,11 +65,11 @@ public class Cart {
         this.id_cliente = id_cliente;
     }
 
-    public Product getId_produto() {
+    public List<Product> getId_produto() {
         return id_produto;
     }
 
-    public void setId_produto(Product id_produto) {
+    public void setId_produto(List<Product> id_produto) {
         this.id_produto = id_produto;
     }
 

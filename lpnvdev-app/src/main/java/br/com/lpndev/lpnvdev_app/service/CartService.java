@@ -26,9 +26,11 @@ public class CartService {
     public List<Cart> findAll() {
         return daoCart.findAll();
     }
+
     public Cart findById(Integer id) {
         return daoCart.findById(id).orElse(null);
     }
+
     public List<Cart> findByIdCliente(Integer id) {
         List<Cart> cartList = daoCart.findAll();
         List<Cart> defCart = new java.util.ArrayList<>();

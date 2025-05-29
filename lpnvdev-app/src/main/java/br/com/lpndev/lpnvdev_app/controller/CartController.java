@@ -36,11 +36,16 @@ public class CartController {
     }
 
     @DeleteMapping
-    public Cart deleteCart(@PathVariable Integer id) {
-        Cart cart = cartService.findById(id);
-        cartService.deleteCart(id);
-        return cart;
+    public void deleteCart() {
+        List<Cart> carts = cartService.findAll();
+
+        if (carts.isEmpty()) {
+            return; // or throw an exception if preferred
+        }
+
+        carts.forEach(cart -> cartService.deleteCart(cart.getId_carrinho()));
     }
+
     @DeleteMapping("/{id}")
     public List<Cart> deleteAllCart(@PathVariable Integer id) {
         List<Cart> cart = cartService.findAll();

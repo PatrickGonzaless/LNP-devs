@@ -1,3 +1,4 @@
+const cart = document.getElementById("cart");
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
   listProduct();
@@ -110,3 +111,7 @@ function goDetails(id) {
   localStorage.setItem("productId", id);
   window.location.href = `./productDetails.html`;
 }
+
+cart.addEventListener("click", () => {
+  window.location.href = `../pages/cartScreen.html`;
+});

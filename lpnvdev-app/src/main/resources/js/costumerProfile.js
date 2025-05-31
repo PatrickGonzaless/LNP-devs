@@ -109,7 +109,6 @@ document.getElementById("alter").addEventListener("click", (event) => {
   const password3 = document.getElementById("password3");
 
   if (password1 && password2 && password3) {
-
     password1.remove();
     password2.remove();
     password3.remove();
@@ -119,9 +118,8 @@ document.getElementById("alter").addEventListener("click", (event) => {
     elementos[4].disabled = true;
     elementos[5].disabled = true;
 
-     dataArea.style.height = "auto";
+    dataArea.style.height = "auto";
   } else {
-
     let linha1 = `<input type="password" id="password1" placeholder="Digite sua senha" required/>`;
     let linha2 = `<input type="password" id="password2" placeholder="Digite uma nova senha(OPCIONAL)"/>`;
     let linha3 = `<input type="password" id="password3" placeholder="Repita a nova senha"/>`;
@@ -135,7 +133,7 @@ document.getElementById("alter").addEventListener("click", (event) => {
     elementos[4].disabled = false;
     elementos[5].disabled = false;
 
-     dataArea.style.height = "78vh";
+    dataArea.style.height = "78vh";
   }
 });
 
@@ -146,16 +144,16 @@ document.getElementById("okModal").addEventListener("click", (event) => {
   const complementoT = document.getElementById("complementoT").value;
   const cidadeT = document.getElementById("cidadeT").value;
 
-   const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
+  const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
 
-   const novoEndereco = {
+  const novoEndereco = {
     logradouroT: logradouroT,
     cepT: cepT,
     complementoT: complementoT,
     cidadeT: cidadeT,
-   };
+  };
 
-     fetch("http://localhost:8080/adress", {
+  fetch("http://localhost:8080/adress", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -172,15 +170,13 @@ document.getElementById("okModal").addEventListener("click", (event) => {
     .catch((err) => {
       console.error("Erro de rede:", err);
     });
-
-
 });
 
 document.getElementById("confirm").addEventListener("click", (evt) => {
   evt.preventDefault();
   const email = document.getElementById("email").value;
   const senha = document.getElementById("password1").value;
-  
+
   fetch("http://localhost:8080/costumer/login", {
     method: "POST",
     headers: {

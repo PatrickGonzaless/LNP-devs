@@ -1,6 +1,6 @@
 document.getElementById("leave").style.display = "none";
-const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
 const btnCheck = document.getElementById("okCheck");
+const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
 
 document.addEventListener("DOMContentLoaded", () => {
   if (loggedInCostumer) {
@@ -9,9 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("costumerLogin").style.display = "block";
     listarProdutos();
   }
-  try {
-    calcularFrete();
-  } catch (erro) {}
 });
 
 function verifCostumer(costumer) {
@@ -210,6 +207,13 @@ function adicionarResumoPedido() {
     : "none";
   document.getElementById("total").innerText = subTotal.toFixed(2);
   localStorage.setItem("total", subTotal);
+  let resumo = {
+    produtos: localStorage.getItem("carrinho"),
+    subTotal: subTotal.toFixed(2),
+    frete: localStorage.getItem("frete") || "none",
+    total: subTotal.toFixed(2),
+  };
+  localStorage.setItem("resumoPedido", JSON.stringify(resumo));
 }
 
 function calcularFrete() {
@@ -223,6 +227,7 @@ function calcularFrete() {
     document.getElementById("frete").innerText = frete.toFixed(2);
     localStorage.setItem("frete", frete);
     btnCheck.disabled = false;
+    console.log("Frete selecionado:", frete);
   } catch (error) {
     console.log("Nenhum frete selecionado.");
   }
@@ -266,8 +271,12 @@ function aumentaQtd(id) {
 btnCheck.addEventListener("click", () => {
   adicionarResumoPedido();
   if (loggedInCostumer) {
+    if (localStorage.getItem("frete") === null) {
+      alert("Selecione o frete antes de prosseguir.");
+      return;
+    }
     window.location.href = "../pages/checkoutScreen.html";
   } else {
-    window.location.href = "../pages/loginCostumer.html?logged=true";
+    window.location.href = "../pages/loginCostumer.html";
   }
 });

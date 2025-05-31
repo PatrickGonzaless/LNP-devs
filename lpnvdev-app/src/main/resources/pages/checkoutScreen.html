@@ -52,7 +52,7 @@
       <section class="address-section">
         <h2>📍 Endereço de entrega</h2>
         <div class="address-box"></div>
-        <button>Adicionar novo endereço</button>
+        <button id="addEndereco">Adicionar novo endereço</button>
       </section>
 
       <section class="summary-section">
@@ -73,6 +73,52 @@
         &larr; Voltar para o carrinho
       </button>
     </footer>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <h2>Adicionar Endereço</h2>
+        <p>
+          Preencha os campos abaixo para adicionar um novo endereço de entrega:
+        </p>
+        <span id="closeModalBtn" class="close">&times;</span>
+        <form id="formModal">
+          <input
+            type="text"
+            id="logradouroT"
+            name="logradouro"
+            placeholder="Logradouro"
+            required />
+          <input type="text" id="cepT" name="cep" placeholder="CEP" required />
+          <input
+            type="text"
+            id="bairroT"
+            name="bairro"
+            placeholder="Bairro"
+            required />
+          <input type="text" id="ufT" name="uf" placeholder="UF" required />
+          <input
+            type="text"
+            id="cidadeT"
+            name="cidade"
+            placeholder="Cidade"
+            required />
+          <input
+            type="text"
+            id="numeroT"
+            name="numero"
+            placeholder="Número"
+            required />
+          <input
+            type="text"
+            id="complementoT"
+            name="complemento"
+            placeholder="Complemento"
+            required />
+          <button type="submit" id="okModal">Ok</button>
+        </form>
+      </div>
+    </div>
+
     <script src="../js/checkoutScreen.js"></script>
   </body>
 </html>

@@ -45,7 +45,7 @@ public class CostumerController {
 
     @PostMapping
     public Costumer createCostumer2(@ModelAttribute DTOCostumer DTO) {
-        System.out.println(DTO);
+        
         Costumer costumer = new Costumer(DTO.getEmail(), DTO.getNomeCompleto(), DTO.getCpf(), DTO.getDataNascimento(),
                 DTO.isGenero(), DTO.getSenha());
         Costumer newCostumer = costumerService.saveCostumer(costumer);

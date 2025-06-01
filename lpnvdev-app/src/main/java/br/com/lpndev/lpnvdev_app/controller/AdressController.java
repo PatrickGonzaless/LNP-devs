@@ -33,8 +33,13 @@ public class AdressController {
     }
 
     @GetMapping("/{id}")
-    public List<Adress> findById(@PathVariable Integer id) {
+    public List<Adress> findByCostumerId(@PathVariable Integer id) {
         return adressService.findByCostumerId(id);
+    }
+
+    @GetMapping("/def/{id}")
+    public Optional<Adress> findById(@PathVariable Integer id) {
+        return adressService.findById(id);
     }
 
     @PostMapping

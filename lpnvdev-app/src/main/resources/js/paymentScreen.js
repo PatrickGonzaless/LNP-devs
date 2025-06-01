@@ -80,19 +80,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (cardDescription) {
         cardDescription.innerHTML = `
           <div class="credit-card-form">
-            <div class="card-image">
-              <div class="fake-card-image"></div>
-            </div>
             <div class="card-inputs">
-              <input type="text" placeholder="Número do cartão" class="input-full" />
+              <input type="number" min='1' max='9999999999999' placeholder="Número do cartão" class="input-full" />
               <input type="text" placeholder="Nome impresso no cartão" class="input-full" />
               <div class="input-row">
-                <input type="text" placeholder="Validade" class="input-half" />
-                <input type="text" placeholder="CVV" class="input-half" />
+                <input type="month" placeholder="Validade" class="input-half" />
+                <input type="number" min='1'max='999' placeholder="CVV" class="input-half" />
               </div>
               <div class="input-row">
-                <input type="number" placeholder="nº de parcelas" class="input-half" />
-                <input type="date" placeholder="Data de Nascimento" class="input-half" />
+                <input type="number" min='1' max='12' placeholder="nº de parcelas" class="input-half" />
               </div>
             </div>
           </div>
@@ -162,24 +158,41 @@ voltar.addEventListener("click", () => {
 
 concluir.addEventListener("click", () => {
   if (document.getElementById("pix").checked) {
-    localStorage.setItem("paymentMethod", "pix");
+    let resume = localStorage.getItem("resumoPedido");
+    let res = JSON.parse(resume);
+    res.formaPagamento = "pix";
+    localStorage.setItem("resumoPedido", JSON.stringify(res));
   } else if (document.getElementById("boleto").checked) {
-    localStorage.setItem("paymentMethod", "boleto");
+    let resume = localStorage.getItem("resumoPedido");
+    let res = JSON.parse(resume);
+    res.formaPagamento = "boleto";
+    localStorage.setItem("resumoPedido", JSON.stringify(res));
   } else if (document.getElementById("cartao").checked) {
+    if (
+      !document.querySelector(".input-full").value ||
+      !document.querySelector(".input-full").value ||
+      !document.querySelector(".input-half").value ||
+      !document.querySelector(".input-half").value ||
+      !document.querySelector(".input-half").value
+    ) {
+      alert("Preencha todos os campos do cartão!");
+      return;
+    }
     let cartao = {
       numero: document.querySelector(".input-full").value,
       nome: document.querySelector(".input-full").value,
       validade: document.querySelector(".input-half").value,
       cvv: document.querySelector(".input-half").value,
       parcelas: document.querySelector(".input-half").value,
-      nascimento: document.querySelector(".input-half").value,
     };
-    localStorage.setItem("paymentMethod", "cartao");
-    localStorage.setItem("dadosCartao", JSON.stringify(cartao));
+    let resume = localStorage.getItem("resumoPedido");
+    let res = JSON.parse(resume);
+    res.formaPagamento = "cartao";
+    res.cartao = cartao;
+    localStorage.setItem("resumoPedido", JSON.stringify(res));
   } else {
     alert("Selecione um método de pagamento!");
     return;
   }
-
   window.location.href = "../pages/orderReview.html";
 });

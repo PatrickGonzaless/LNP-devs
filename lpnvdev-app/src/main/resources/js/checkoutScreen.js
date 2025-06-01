@@ -125,11 +125,10 @@ function costumerLogouts() {
 }
 
 concluir.addEventListener("click", () => {
-  const val = document.querySelector('input[name="frete"]:checked');
-
+  let val = document.querySelector('input[name="principal"]:checked').value;
   let resume = localStorage.getItem("resumoPedido");
   let res = JSON.parse(resume);
-  res.idEndereco = val.value;
+  res.idEndereco = val;
   localStorage.setItem("resumoPedido", JSON.stringify(res));
   window.location.href = "../pages/paymentScreen.html";
 });

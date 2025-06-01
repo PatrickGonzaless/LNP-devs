@@ -32,6 +32,11 @@ public class AdressController {
         return adressService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public List<Adress> findById(@PathVariable Integer id) {
+        return adressService.findByCostumerId(id);
+    }
+
     @PostMapping
     public ResponseEntity<Object> createUser(@RequestBody Adress adressDTO) {
         return ResponseEntity.ok(adressDTO);

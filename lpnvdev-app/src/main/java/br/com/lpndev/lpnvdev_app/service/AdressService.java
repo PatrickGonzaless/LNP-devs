@@ -45,6 +45,13 @@ public class AdressService {
         return daoE.findById(id);
     }
 
+    public List<Adress> findByCostumerId(Integer id) {
+        List<Adress> ends = daoE.findAll();
+        return ends.stream()
+                .filter(adress -> adress.getIdCostumer().getId().equals(id))
+                .toList();
+    }
+
     public void deleteAdress(Integer id) {
         daoE.deleteById(id);
     }

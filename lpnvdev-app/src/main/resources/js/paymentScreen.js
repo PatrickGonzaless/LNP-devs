@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (this.checked) {
       resetAll();
 
-      const cardDescription = document.getElementById('cardDescription');
+      const cardDescription = document.getElementById("cardDescription");
 
       if (cardDescription) {
         cardDescription.innerHTML = `
@@ -106,21 +106,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll('input[name="payment"]').forEach((radio) => {
-    radio.addEventListener('change', () => {
-      document.querySelectorAll('.pixDescription, .boletoDescription, #cardDescription').forEach((desc) => {
-        if (desc) {
-          desc.style.display = 'none';
-          desc.classList?.remove('active');
-        }
-      });
+    radio.addEventListener("change", () => {
+      document
+        .querySelectorAll(
+          ".pixDescription, .boletoDescription, #cardDescription"
+        )
+        .forEach((desc) => {
+          if (desc) {
+            desc.style.display = "none";
+            desc.classList?.remove("active");
+          }
+        });
 
-      const selectedOption = document.querySelector(`input[name="payment"]:checked`);
+      const selectedOption = document.querySelector(
+        `input[name="payment"]:checked`
+      );
       if (selectedOption) {
         const descriptionId = selectedOption.value + "Description";
         const descriptionElement = document.getElementById(descriptionId);
 
         if (descriptionElement) {
-          descriptionElement.style.display = 'block';
+          descriptionElement.style.display = "block";
         }
         const cardDescription = document.getElementById("cardDescription");
         const footerArea = document.getElementById("footer");
@@ -129,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
             cardDescription.classList.add("active");
             cardDescription.style.display = "block";
             footerArea.style.marginTop = "25vh";
-           ;
           } else {
             cardDescription.classList.remove("active");
             cardDescription.style.display = "none";
@@ -156,25 +161,25 @@ voltar.addEventListener("click", () => {
 });
 
 concluir.addEventListener("click", () => {
-  if(document.getElementById("pix").checked){
+  if (document.getElementById("pix").checked) {
     localStorage.setItem("paymentMethod", "pix");
-  }else if(document.getElementById("boleto").checked){
+  } else if (document.getElementById("boleto").checked) {
     localStorage.setItem("paymentMethod", "boleto");
-  }else if(document.getElementById("cartao").checked){
+  } else if (document.getElementById("cartao").checked) {
     let cartao = {
-      numero : document.querySelector(".input-full").value,
-      nome : document.querySelector(".input-full").value,
-      validade : document.querySelector(".input-half").value,
-      cvv : document.querySelector(".input-half").value,
-      parcelas : document.querySelector(".input-half").value,
-      nascimento : document.querySelector(".input-half").value
-    }
+      numero: document.querySelector(".input-full").value,
+      nome: document.querySelector(".input-full").value,
+      validade: document.querySelector(".input-half").value,
+      cvv: document.querySelector(".input-half").value,
+      parcelas: document.querySelector(".input-half").value,
+      nascimento: document.querySelector(".input-half").value,
+    };
     localStorage.setItem("paymentMethod", "cartao");
     localStorage.setItem("dadosCartao", JSON.stringify(cartao));
-  }else{
+  } else {
     alert("Selecione um método de pagamento!");
     return;
   }
-  
+
   window.location.href = "../pages/orderReview.html";
 });

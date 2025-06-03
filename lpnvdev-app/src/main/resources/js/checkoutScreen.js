@@ -6,6 +6,8 @@ const concluir = document.getElementById("btn-pagar");
 const addEndereco = document.getElementById("addEndereco");
 const loggedInCostumer = JSON.parse(localStorage.getItem("loggedInCostumer"));
 const okModal = document.getElementById("okModal");
+const teste = document.getElementById("teste");
+const endEntregas = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   if (loggedInCostumer) {
@@ -14,14 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("costumerLogin").style.display = "block";
   }
 
-  let adres = loggedInCostumer.enderecos;
-  adres.forEach((address) => {
-    let linha = `
-          <p>${address.logradouro}, ${address.bairro}, ${address.numero} - ${address.cep}</p>
-          <p>${address.cidade}/${address.uf}</p>
-          <input value="${address.id}" type="radio" name="principal" ${address.principal} ? checked || />`;
-    enderecos.insertAdjacentHTML("beforeend", linha);
-  });
+  listarEnds();
 
   let subtotal = document.getElementById("subTotal");
   subtotal.innerText += localStorage.getItem("subTotal");
@@ -41,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     freteEscolhido = "FAST - Em até 2 horas";
   }
+
   let freteText = `
   <div class="shipping-option">
     <label
@@ -72,9 +68,35 @@ document.addEventListener("DOMContentLoaded", () => {
     .insertAdjacentHTML("beforeend", freteText);
 });
 
+function listarEnds() {
+  fetch("http://localhost:8080/adress/" + loggedInCostumer.id)
+    .then((response) => response.json())
+    .then((adres) => {
+      adres.forEach((address) => {
+        console.log(address);
+        if (!address.tipoEndereco) {
+          let linha = `
+          <p>${address.logradouro}, ${address.bairro}, ${address.numero} - ${
+            address.cep
+          }</p>
+          <p>${address.cidade}/${address.uf}</p>
+          <input value="${address.id}" type="radio" name="principal" ${
+            address.principal ? "checked" : ""
+          } />`;
+
+          enderecos.insertAdjacentHTML("beforeend", linha);
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("Erro ao buscar endereços:", error);
+    });
+}
+
 voltar.addEventListener("click", () => {
   window.location.href = "../pages/cartScreen.html";
 });
+
 function verifCostumer(costumer) {
   document.getElementById("leave").style.display = "block";
   const perfilC = document.getElementById("perfilC");
@@ -103,10 +125,18 @@ function costumerLogouts() {
 }
 
 concluir.addEventListener("click", () => {
-  const val = document.querySelector('input[name="frete"]:checked');
-  localStorage.setItem("enderecoEntrega", val.value);
-
+  let val = document.querySelector('input[name="principal"]:checked').value;
+  let resume = localStorage.getItem("resumoPedido");
+  let res = JSON.parse(resume);
+  res.idEndereco = val;
+  localStorage.setItem("resumoPedido", JSON.stringify(res));
   window.location.href = "../pages/paymentScreen.html";
+});
+
+teste.addEventListener("click", () => {
+  let val = document.querySelector('input[name="principal"]:checked').value;
+  console.log(val);
+  console.log("Teste de botão OK");
 });
 
 // Quando o botão "Abrir Modal" for clicado, o modal é mostrado
@@ -152,6 +182,7 @@ okModal.onclick = async function (evt) {
       .then((data) => {
         console.log(data);
         modal.style.display = "none";
+        window.location.reload();
       });
   } catch (error) {
     console.error("Erro ao cadastrar endereço:", error);

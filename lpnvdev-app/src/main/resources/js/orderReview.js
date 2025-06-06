@@ -49,9 +49,41 @@ document.addEventListener("DOMContentLoaded", () => {
 voltar.addEventListener("click", () => {
   window.location.href = "../pages/paymentScreen.html";
 });
-concluir.addEventListener("click", () => {
-  alert("Pedido realizado com sucesso!");
-  window.location.href = "../pages/mainProductSc.html";
+
+concluir.addEventListener("click", (e) => {
+  e.preventDefault();
+  let resumoPedido = JSON.parse(localStorage.getItem("resumoPedido"));
+  fetch("http://localhost:8080/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      adressID: resumoPedido.idEndereco,
+      formapagamento: resumoPedido.formaPagamento,
+      valorfrete: resumoPedido.frete,
+      valortotalpedido: resumoPedido.total,
+      produtos: JSON.parse(resumoPedido.produtos),
+      costumer: JSON.parse(localStorage.getItem("loggedInCostumer")),
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro ao realizar o pedido");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Pedido realizado com sucesso:", data);
+      alert("Pedido realizado com sucesso!");
+      localStorage.removeItem("carrinho");
+      localStorage.removeItem("resumoPedido");
+      window.location.href = "../pages/mainProductSc.html";
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
+      alert("Erro ao realizar o pedido. Tente novamente.");
+    });
 });
 
 function listarProdutos() {

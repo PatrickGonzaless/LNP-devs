@@ -71,17 +71,30 @@ foreign key (id_cliente) references cliente(id),
 foreign key (id_produto) references produto(id)
 );
 
+drop table pedido;
+drop table produtos_pedidos;
+
 create table pedido(
 id_pedido integer auto_increment primary key,
 dtpedido varchar(150) not null,
-formapagamento BOOLEAN not null,
+formapagamento varchar(50) not null,
 valorfrete double not null,
 valortotalpedido double not null,
-statuspedido boolean ,
+statuspedido varchar(200),
 id_cliente integer not null,
 foreign key (id_cliente) references cliente(id),
 id_endereco integer not null,
-foreign key (id_endereco) references enderecos(id_endereco)
+foreign key (id_endereco) references enderecos(id_endereco),
+id_produto integer not null,
+foreign key (id_produto) references produto(id)
+);
+
+create table produtos_pedidos(
+id integer auto_increment primary key,
+id_produto integer not null,
+foreign key (id_produto) references produto(id),
+id_pedido integer not null,
+foreign key (id_pedido) references pedido(id_pedido)
 );
 
 create table itempedido(

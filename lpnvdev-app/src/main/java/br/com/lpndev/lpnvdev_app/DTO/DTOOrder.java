@@ -1,12 +1,27 @@
 package br.com.lpndev.lpnvdev_app.DTO;
 
+import java.util.List;
+
+import br.com.lpndev.lpnvdev_app.model.Costumer;
+import br.com.lpndev.lpnvdev_app.model.Product;
+
 public class DTOOrder {
-     private Integer adressID;
-     private String dtpedido;
-     private Integer formapagamento;
-     private Integer valorfrete;
-     private Integer valortotalpedido;
-     private boolean statuspedido;
+    private Integer adressID;
+    private String formapagamento;
+    private Double valorfrete;
+    private Double valortotalpedido;
+    private List<Product> produtos;
+    private Costumer costumer;
+
+    public DTOOrder(Integer adressID, String formapagamento, Double valorfrete, Double valortotalpedido,
+            List<Product> produtos, Costumer costumer) {
+        this.adressID = adressID;
+        this.formapagamento = formapagamento;
+        this.valorfrete = valorfrete;
+        this.valortotalpedido = valortotalpedido;
+        this.produtos = produtos;
+        this.costumer = costumer; // Initialize costumer as null
+    }
 
     public Integer getAdressID() {
         return adressID;
@@ -16,43 +31,44 @@ public class DTOOrder {
         this.adressID = adressID;
     }
 
-    public String getDtpedido() {
-        return dtpedido;
-    }
-
-    public void setDtpedido(String dtpedido) {
-        this.dtpedido = dtpedido;
-    }
-
-    public Integer getFormapagamento() {
+    public String getFormapagamento() {
         return formapagamento;
     }
 
-    public void setFormapagamento(Integer formapagamento) {
+    public void setFormapagamento(String formapagamento) {
         this.formapagamento = formapagamento;
     }
 
-    public Integer getValortotalpedido() {
+    public Double getValortotalpedido() {
         return valortotalpedido;
     }
 
-    public void setValortotalpedido(Integer valortotalpedido) {
+    public void setValortotalpedido(Double valortotalpedido) {
         this.valortotalpedido = valortotalpedido;
     }
 
-    public Integer getValorfrete() {
+    public Double getValorfrete() {
         return valorfrete;
     }
 
-    public void setValorfrete(Integer valorfrete) {
+    public void setValorfrete(Double valorfrete) {
         this.valorfrete = valorfrete;
     }
 
-    public boolean isStatuspedido() {
-        return statuspedido;
+    public List<Product> getProdutos() {
+        return produtos;
     }
 
-    public void setStatuspedido(boolean statuspedido) {
-        this.statuspedido = statuspedido;
+    public void setProdutos(List<Product> produtos) {
+        this.produtos = produtos;
     }
+
+    public Costumer getCostumer() {
+        return costumer;
+    }
+
+    public void setCostumer(Costumer costumer) {
+        this.costumer = costumer;
+    }
+
 }

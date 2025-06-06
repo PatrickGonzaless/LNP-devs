@@ -36,7 +36,7 @@ public class OrderService {
 
         // Cria nova instância de Order com os dados atualizados
         Order order2 = new Order(order.getDt_pedido(), order.getFormapagamento(), order.getValorfrete(),
-                order.getValortotalpedido(), order.isStatuspedido(), adress, costumer);
+                order.getValortotalpedido(), order.isStatuspedido(), adress, costumer, order.getProdutos());
 
         return daoO.save(order2);
     }

@@ -84,10 +84,10 @@ statuspedido varchar(200),
 id_cliente integer not null,
 foreign key (id_cliente) references cliente(id),
 id_endereco integer not null,
-foreign key (id_endereco) references enderecos(id_endereco),
-id_produto integer not null,
-foreign key (id_produto) references produto(id)
+foreign key (id_endereco) references enderecos(id_endereco)
 );
+
+select * from pedido;
 
 create table produtos_pedidos(
 id integer auto_increment primary key,
